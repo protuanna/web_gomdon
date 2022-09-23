@@ -1,0 +1,591 @@
+.content {
+  margin-bottom: 70px;
+}
+
+.content_2 {
+  margin-bottom: 300px;
+}
+
+.type_business {
+  padding: 14px 20px;
+}
+.type_business .tingle {
+  font-family: "Montserrat medium";
+  color: #4f4f4f;
+  margin-bottom: 15px;
+}
+.type_business .extra {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 0 -15px;
+}
+.type_business .extra li {
+  padding: 0 15px;
+}
+.type_business .extra li label input {
+  display: none;
+}
+.type_business .extra li label input[type=radio]:checked + .item-dm p {
+  font-family: "Montserrat bold";
+  color: #333333;
+}
+.type_business .extra li label input[type=radio]:checked + .item-dm::before {
+  border: 1px solid var(--color1);
+}
+.type_business .extra li label input[type=radio]:checked + .item-dm::after {
+  visibility: visible;
+  opacity: 1;
+}
+.type_business .extra li .item-dm {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+}
+.type_business .extra li .item-dm p {
+  font-family: "Montserrat medium";
+  color: #4f4f4f;
+  line-height: 130.19%;
+}
+.type_business .extra li .item-dm::after {
+  visibility: hidden;
+  opacity: 0;
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 3px;
+  border-radius: 15px;
+  width: 9.6px;
+  height: 9.6px;
+  background: var(--color1);
+  line-height: 0;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+.type_business .extra li .item-dm::before {
+  content: "";
+  width: 16px;
+  height: 16px;
+  border: 1px solid #bdbdbd;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-radius: 15px;
+  margin-right: 12px;
+  background: var(--white);
+  -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 0 rgba(203, 34, 237, 0.2);
+          box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 0 rgba(203, 34, 237, 0.2);
+  -webkit-transition: all 0.275s;
+  transition: all 0.275s;
+}
+
+.pro_col9_shipping {
+  overflow: hidden;
+}
+
+.destination {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-top: 20px;
+}
+.destination .des {
+  /*min-width: -webkit-fit-content;
+  min-width: -moz-fit-content;*/
+  min-width: fit-content;
+  padding: 10px;
+  text-align: center;
+}
+.destination .des svg {
+  color: rgb(0, 101, 224);
+  margin: auto;
+  margin-bottom: 7px;
+}
+.destination .des p {
+  font-family: "Montserrat bold";
+  color: #333333;
+}
+.destination .sender {
+  /*min-width: -webkit-fit-content;
+  min-width: -moz-fit-content;*/
+  min-width: fit-content;
+  padding: 10px;
+  text-align: center;
+}
+.destination .sender svg {
+  color: rgb(224, 49, 0);
+  margin: auto;
+  margin-bottom: 7px;
+}
+.destination .sender p {
+  font-family: "Montserrat bold";
+  color: #333333;
+}
+.destination .information {
+  width: 100%;
+  margin: 0 20px 0 30px;
+  /*
+  border-bottom: 0.5px solid #d6d4d4;
+  */
+}
+.destination .information .info-top {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.destination .information .info-top .name {
+  margin-right: 20px;
+}
+.destination .information .info-top .info-text {
+  font-family: "Montserrat bold";
+  color: #333333;
+}
+.destination .information .info-text {
+  color: #333333;
+  margin-bottom: 10px;
+}
+.destination .address-card {
+  /*min-width: -webkit-fit-content;
+  min-width: -moz-fit-content;*/
+  min-width: fit-content;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.destination .address-card::before {
+  content: "";
+  width: 1px;
+  height: 50px;
+  background: #bdbdbd;
+}
+.destination .address-card .fa-address-card {
+  color: #bdbdbd;
+  margin-left: 20px;
+  font-size: 26px;
+}
+
+.titling {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-bottom: 25px;
+}
+.titling .sender {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.titling .sender svg {
+  color: rgb(0, 101, 224);
+  margin-right: 7px;
+}
+.titling .sender span {
+  font-family: "Montserrat bold";
+  color: #333333;
+}
+.titling .receiver {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.titling .receiver svg {
+  color: rgb(224, 49, 0);
+  margin-right: 7px;
+}
+.titling .receiver span {
+  font-family: "Montserrat bold";
+  color: #333333;
+}
+.titling .steps {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.titling .steps p {
+  font-family: "Montserrat bold";
+  color: #333333;
+}
+.titling .steps p span {
+  font-family: "Montserrat bold";
+  color: var(--color1);
+}
+.titling .steps .fa-address-card {
+  color: #bdbdbd;
+  margin-left: 12px;
+  font-size: 26px;
+}
+
+.html_shipping_col {
+  padding-top: 40px;
+}
+.html_shipping_col .type_business {
+  padding: 14px 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+.html_shipping_col .titling {
+  padding-bottom: 12px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid #e0e0e0;
+}
+.html_shipping_col form {
+  width: 100%;
+  margin-bottom: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  flex-wrap: wrap;
+}
+.html_shipping_col form .form-field {
+  width: 100%;
+  margin-bottom: 8px;
+  border-bottom: 0.5px solid #e0e0e0;
+}
+.html_shipping_col form input {
+  width: 100%;
+  height: 50px;
+  outline: 0;
+  background: rgba(255, 255, 255, 0.3);
+  font-family: "Nunito medium";
+  font-size: 16px;
+  line-height: 150%;
+  color: #000000;
+}
+.html_shipping_col form input::-webkit-input-placeholder {
+  font-family: "Nunito medium";
+  font-size: 16px;
+  line-height: 150%;
+  color: #4f4f4f;
+}
+.html_shipping_col form input::-moz-placeholder {
+  font-family: "Nunito medium";
+  font-size: 16px;
+  line-height: 150%;
+  color: #4f4f4f;
+}
+.html_shipping_col form input:-ms-input-placeholder {
+  font-family: "Nunito medium";
+  font-size: 16px;
+  line-height: 150%;
+  color: #4f4f4f;
+}
+.html_shipping_col form input::-ms-input-placeholder {
+  font-family: "Nunito medium";
+  font-size: 16px;
+  line-height: 150%;
+  color: #4f4f4f;
+}
+.html_shipping_col form input::placeholder {
+  font-family: "Nunito medium";
+  font-size: 16px;
+  line-height: 150%;
+  color: #4f4f4f;
+}
+.html_shipping_col form textarea {
+  width: 100%;
+  outline: 0;
+  background: rgba(255, 255, 255, 0.3);
+  font-family: "Nunito medium";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 150%;
+  color: #000000;
+}
+.html_shipping_col form textarea::-webkit-input-placeholder {
+  font-family: "Nunito medium";
+  font-size: 16px;
+  line-height: 150%;
+  color: #4f4f4f;
+}
+.html_shipping_col form textarea::-moz-placeholder {
+  font-family: "Nunito medium";
+  font-size: 16px;
+  line-height: 150%;
+  color: #4f4f4f;
+}
+.html_shipping_col form textarea:-ms-input-placeholder {
+  font-family: "Nunito medium";
+  font-size: 16px;
+  line-height: 150%;
+  color: #4f4f4f;
+}
+.html_shipping_col form textarea::-ms-input-placeholder {
+  font-family: "Nunito medium";
+  font-size: 16px;
+  line-height: 150%;
+  color: #4f4f4f;
+}
+.html_shipping_col form textarea::placeholder {
+  font-family: "Nunito medium";
+  font-size: 16px;
+  line-height: 150%;
+  color: #4f4f4f;
+}
+.html_shipping_col .butt {
+  width: 100%;
+  height: 50px;
+  border-radius: 6px;
+}
+
+.html_add_address .butt {
+  margin-top: 20px;
+  width: 100%;
+  height: 50px;
+  border-radius: 6px;
+}
+
+.form_product {
+  padding-top: 16px;
+}
+.form_product .form-field {
+  width: 100%;
+  margin-bottom: 16px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.form_product .form-field .title_form {
+  width: 50%;
+  font-family: "Montserrat medium";
+  color: #333333;
+}
+.form_product .form-field .item_unit {
+  width: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  /*-webkit-box-pack: end;
+      -ms-flex-pack: end;*/
+          justify-content: flex-end;
+}
+.form_product .form-field .item_unit input {
+  text-align: right;
+}
+.form_product .form-field .item_unit .unit {
+  font-family: "Montserrat medium";
+  color: #333333;
+  margin-left: 7px;
+}
+.form_product .form-field textarea {
+  padding-top: 16px;
+}
+.form-group{
+  width: 100%;
+}
+.Group_mobile #show_comment_form {
+  display: none;
+}
+.Group_mobile #show_comment_form:checked + .price_list {
+  display: block;
+}
+.Group_mobile .total_amount {
+  padding: 20px 30px;
+  -webkit-box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.12);
+          box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.12);
+}
+.Group_mobile .total_amount .price_list {
+  display: none;
+}
+.Group_mobile .total_amount .price_list ul {
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e0e0e0;
+}
+.Group_mobile .total_amount .price_list li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-bottom: 12px;
+}
+.Group_mobile .total_amount .price_list li .text-disi span {
+  color: #41a13c;
+}
+.Group_mobile .total_amount .price_list li p {
+  color: #333333;
+}
+.Group_mobile .total_amount .price_list li p.bold {
+  font-family: "Montserrat medium";
+  color: #000000;
+}
+.Group_mobile .total_amount .price_list li p.bold span {
+  font-family: "Montserrat medium";
+  color: #333333;
+}
+.Group_mobile .total_amount .provisional label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 20px;
+}
+.Group_mobile .total_amount .provisional label input {
+  display: none;
+}
+.Group_mobile .total_amount .provisional label p {
+  color: #333333;
+}
+.Group_mobile .total_amount .provisional label a {
+  font-family: "Montserrat medium";
+  color: rgb(51, 140, 249);
+}
+.Group_mobile .total_amount .provisional label input[type=checkbox]:checked + .item-dm::before {
+  background: var(--color1);
+  border: 1px solid var(--color1);
+}
+.Group_mobile .total_amount .provisional label input[type=checkbox]:checked + .item-dm::after {
+  visibility: visible;
+  opacity: 1;
+}
+.Group_mobile .total_amount .provisional .item-dm {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+}
+.Group_mobile .total_amount .provisional .item-dm p {
+  color: #4f4f4f;
+}
+.Group_mobile .total_amount .provisional .item-dm::after {
+  content: "";
+  position: absolute;
+  top: 6px;
+  left: 7px;
+  width: 3px;
+  height: 8px;
+  border-right: 2px solid var(--white);
+  border-bottom: 2px solid var(--white);
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+.Group_mobile .total_amount .provisional .item-dm::before {
+  content: "";
+  width: 18px;
+  height: 18px;
+  margin-right: 12px;
+  background: var(--white);
+  border: 2px solid #878787;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-transition: all 0.275s;
+  transition: all 0.275s;
+}
+.Group_mobile .total_amount .provisional .synthetic {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.Group_mobile .total_amount .provisional .synthetic .butt {
+  min-width: 86px;
+  height: 46px;
+  border-radius: 6px;
+}
+.Group_mobile .total_amount .provisional .item-visi {
+  width: 100%;
+  padding-right: 40px;
+}
+.Group_mobile .total_amount .provisional .item-visi label {
+  margin: 0;
+}
+.Group_mobile .total_amount .provisional .item-visi .flex-visi {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  /*-webkit-box-pack: start;
+      -ms-flex-pack: start;*/
+          justify-content: flex-start;
+}
+.Group_mobile .total_amount .provisional .item-visi .text-visi {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  /*-webkit-box-pack: start;
+      -ms-flex-pack: start;*/
+          justify-content: flex-start;
+  margin-bottom: 14px;
+  font-family: "Montserrat medium";
+  color: #333333;
+}
+.Group_mobile .total_amount .provisional .item-visi .text-visi p {
+  margin-left: 20px;
+}
+.Group_mobile .total_amount .provisional .item-visi .text-visi svg {
+  margin-left: 26px;
+  cursor: pointer;
+}
+.Group_mobile .total_amount .provisional .item-visi .text-visi span {
+  font-family: "Montserrat medium";
+}
+.Group_mobile .total_amount .provisional .item-visi p {
+  font-family: "Montserrat medium";
+  color: var(--color1);
+}

@@ -1,0 +1,104 @@
+/* Lưu các font family và đường dẫn */
+
+
+/* Nếu dùng  font của google thì import như này */
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap');
+
+
+@font-face {
+    font-family: San Francisco Display;
+    src: url("../../font/San Francisco Display/SF-Pro-Display-Regular.otf");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: San Francisco Display light;
+    src: url("../../font/San Francisco Display/SF-Pro-Display-Light.otf");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: San Francisco Display medium;
+    src: url("../../font/San Francisco Display/SF-Pro-Display-Medium.otf");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: San Francisco Display bold;
+    src: url("../../font/San Francisco Display/SF-Pro-Display-Bold.otf");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: Montserrat;
+    src: url("../../font/Montserrat/Montserrat-Regular.ttf");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: Montserrat light;
+    src: url("../../font/Montserrat/Montserrat-Light.ttf");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: Montserrat medium;
+    src: url("../../font/Montserrat/Montserrat-Medium.ttf");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: Montserrat bold;
+    src: url("../../font/Montserrat/Montserrat-Bold.ttf");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: Nunito;
+    src: url("../../font/Nunito/Nunito-Regular.ttf");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: Nunito light;
+    src: url("../../font/Nunito/Nunito-Light.ttf");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: Nunito medium;
+    src: url("../../font/Nunito/Nunito-Medium.ttf");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: Nunito bold;
+    src: url("../../font/Nunito/Nunito-Bold.ttf");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: SVN-Cookies;
+    src: url("../../font/SVN-Cookies.ttf");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: SVN-Coco FY;
+    src: url("../../font/SVN-Coco FY/SVN-Coco FY.ttf");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: MTD-21-Cent;
+    src: url("../../font/MTD 21 Cent.otf");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: MRCH NewYork;
+    src: url("../../font/MRCH NewYork.ttf");
+    font-display: swap;
+}
+

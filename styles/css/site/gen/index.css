@@ -1,0 +1,311 @@
+.bann_home {
+    position: relative;
+    line-height: 0;
+}
+
+.content {
+    padding-top: 30px 0;
+}
+
+.list_order {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    margin-bottom: 60px;
+}
+
+.list_order .ordering {
+    padding: 0 60px;
+}
+
+.list_order .ordering .images {
+    width: 260px;
+    overflow: hidden;
+}
+
+.list_order .ordering .images img {
+    width: 100%;
+}
+
+.list_order .ordering p {
+    text-align: center;
+    color: #4f4f4f;
+}
+
+.title_top {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    margin-bottom: 46px;
+}
+
+.title_top::before {
+    content: "";
+    width: 5px;
+    height: 23px;
+    background: var(--color1);
+    margin-right: 7px;
+}
+
+.title_top h3 {
+    font-family: "Montserrat bold";
+    line-height: 150%;
+    color: #333333;
+}
+
+.html_management_col {
+    margin-bottom: 40px;
+}
+
+.management_information {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.management_information .information {
+    width: 100%;
+}
+
+.management_information .information .title_item {
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.management_information .information .title_item .title_info {
+    font-family: "Montserrat bold";
+    font-size: 18px;
+    line-height: 150%;
+    color: #333333;
+}
+
+.management_information .information .status {
+    width: 60%;
+}
+
+.management_information .information .amount {
+    width: 20%;
+    text-align: center;
+}
+
+.management_information .information .percent {
+    width: 20%;
+    text-align: right;
+}
+
+.management_information .information ul {
+    width: 100%;
+}
+
+.management_information .information ul li {
+    width: 100%;
+    margin-bottom: 10px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    font-size: 16px;
+    line-height: 150%;
+    color: #4f4f4f;
+}
+
+.management_information .information ul li .status_info {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.management_information .information ul li .status_info::before {
+    content: "";
+    width: 15px;
+    height: 15px;
+    margin-right: 10px;
+}
+
+.management_information .information ul li:nth-child(1) .status_info::before {
+    background-color: rgb(255, 0, 0);
+}
+
+.management_information .information ul li:nth-child(2) .status_info::before {
+    background-color: rgb(255, 149, 0);
+}
+
+.management_information .information ul li:nth-child(3) .status_info::before {
+    background-color: rgb(0, 105, 5);
+}
+
+.management_information .information ul li:nth-child(4) .status_info::before {
+    background-color: rgb(0, 122, 111);
+}
+
+.management_information .information ul li:nth-child(5) .status_info::before {
+    background-color: rgb(0, 69, 173);
+}
+
+.management_information .information ul li:nth-child(6) .status_info::before {
+    background-color: rgb(92, 1, 145);
+}
+
+.management_information .information ul li:nth-child(7) .status_info::before {
+    background-color: rgb(188, 40, 181);
+}
+
+.list_single_code .item_single {
+    width: 100%;
+    position: relative;
+    margin-bottom: 26px;
+    border-radius: 10px;
+    border: 1px solid #bdbdbd;
+    overflow: hidden;
+    padding: 15px;
+}
+
+.list_single_code .item_single .new {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px;
+    font-size: 12px;
+    color: #fff;
+    background: var(--color1);
+    border-radius: 0 10px;
+}
+
+.list_single_code .item_single h5 {
+    color: #4f4f4f;
+    margin-bottom: 20px;
+}
+
+.list_single_code .item_single p {
+    color: #909090;
+}
+
+.list_single_code .item_single p.bold {
+    font-family: "Montserrat bold";
+    color: #333333;
+    margin-bottom: 7px;
+}
+
+.list_single_code .item_single .tp_to {
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
+    margin-bottom: 16px;
+}
+
+.list_single_code .item_single .tp_to .honest .name {
+    font-family: "Montserrat bold";
+    color: #333333;
+    font-size: 16px;
+    line-height: 150%;
+    margin-bottom: 3px;
+    text-align: center;
+}
+
+.list_single_code .item_single .tp_to .honest .city {
+    font-size: 12px;
+    color: #909090;
+    line-height: 150%;
+    text-align: center;
+}
+
+.login_content {
+    text-align: center;
+}
+
+.login_content .lbl_login {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.login_content .btn_login {
+    width: 200px;
+    background-color: #ED1C2A;
+    padding: 12px 0;
+    margin: 0 auto 20px;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-weight: 700;
+
+}
+
+.login_logo {
+    text-align: center;
+}
+
+.login_logo .images {
+    width: 260px;
+    margin: 0 auto;
+}
+
+.mt-15{
+    margin-top: 15px;
+}
+
+.label_error{
+    color: red;
+    font-size: 12px;
+    font-style: inherit;
+}
+
+@-webkit-keyframes growProgressBar {
+    0%, 33% {
+        --pgPercentage: 0;
+    }
+    100% {
+        --pgPercentage: var(--value);
+    }
+}
+
+@keyframes growProgressBar {
+    0%, 33% {
+        --pgPercentage: 0;
+    }
+    100% {
+        --pgPercentage: var(--value);
+    }
+}
+
+@property --pgPercentage {
+    syntax: "<number>";
+    inherits: false;
+    initial-value: 0;
+}
+div[role=progressbar] {
+    --pgPercentage: var(--value);
+    -webkit-animation: growProgressBar 3s 1 forwards;
+    animation: growProgressBar 3s 1 forwards;
+    min-width: 30rem;
+    max-width: 30rem;
+    height: 30rem;
+    margin-bottom: 60px;
+    margin-left: 100px;
+    border-radius: 50%;
+    display: -ms-grid;
+    display: grid;
+    place-items: center;
+    background: radial-gradient(closest-side, white 0%, transparent 0 99.9%, white 0), conic-gradient(var(--color1) calc(var(--pgPercentage) * 1%), #def 0);
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 2.4rem;
+    color: var(--color1);
+}

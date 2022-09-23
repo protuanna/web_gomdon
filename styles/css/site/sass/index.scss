@@ -1,0 +1,268 @@
+.bann_home {
+    position: relative;
+    line-height: 0;
+}
+
+.content {
+    padding-top: 30px 0;
+}
+
+.list_order {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 60px;
+
+    .ordering {
+        padding: 0 60px;
+
+        .images {
+            width: 260px;
+            overflow: hidden;
+
+            img {
+                width: 100%;
+            }
+        }
+
+        p {
+            text-align: center;
+            color: #4f4f4f;
+        }
+    }
+}
+
+.title_top {
+    display: flex;
+    align-items: center;
+    margin-bottom: 46px;
+
+    &::before {
+        content: "";
+        width: 5px;
+        height: 23px;
+        background: var(--color1);
+        margin-right: 7px;
+    }
+
+    h3 {
+        font-family: "Montserrat bold";
+        line-height: 150%;
+        color: #333333;
+    }
+}
+
+.html_management_col {
+    margin-bottom: 40px;
+}
+
+.management_information {
+    display: flex;
+    align-items: center;
+
+    .information {
+        width: 100%;
+
+        .title_item {
+            width: 100%;
+            display: flex;
+            margin-bottom: 20px;
+
+            .title_info {
+                font-family: "Montserrat bold";
+                font-size: 18px;
+                line-height: 150%;
+                color: #333333;
+            }
+        }
+
+        .status {
+            width: 60%;
+        }
+        .amount {
+            width: 20%;
+            text-align: center;
+        }
+        .percent {
+            width: 20%;
+            text-align: right;
+        }
+
+        ul {
+            width: 100%;
+            li {
+                width: 100%;
+                margin-bottom: 10px;
+                display: flex;
+                font-size: 16px;
+                line-height: 150%;
+                color: #4f4f4f;
+
+                .status_info {
+                    display: flex;
+                    align-items: center;
+
+                    &::before {
+                        content: "";
+                        width: 15px;
+                        height: 15px;
+                        margin-right: 10px;
+                    }
+                }
+
+                &:nth-child(1) {
+                    .status_info {
+                        &::before {
+                            background-color: rgb(255, 0, 0);
+                        }
+                    }
+                }
+
+                &:nth-child(2) {
+                    .status_info {
+                        &::before {
+                            background-color: rgb(255, 149, 0);
+                        }
+                    }
+                }
+
+                &:nth-child(3) {
+                    .status_info {
+                        &::before {
+                            background-color: rgb(0, 105, 5);
+                        }
+                    }
+                }
+
+                &:nth-child(4) {
+                    .status_info {
+                        &::before {
+                            background-color: rgb(0, 122, 111);
+                        }
+                    }
+                }
+
+                &:nth-child(5) {
+                    .status_info {
+                        &::before {
+                            background-color: rgb(0, 69, 173);
+                        }
+                    }
+                }
+
+                &:nth-child(6) {
+                    .status_info {
+                        &::before {
+                            background-color: rgb(92, 1, 145);
+                        }
+                    }
+                }
+
+                &:nth-child(7) {
+                    .status_info {
+                        &::before {
+                            background-color: rgb(188, 40, 181);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.list_single_code {
+    .item_single {
+        width: 100%;
+        position: relative;
+        margin-bottom: 26px;
+        border-radius: 10px;
+        border: 1px solid #bdbdbd;
+        overflow: hidden;
+        padding: 15px;
+
+        .new {
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 10px;
+            font-size: 12px;
+            color: #fff;
+            background: var(--color1);
+            border-radius: 0 10px;
+        }
+
+        h5 {
+            color: #4f4f4f;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: #909090;
+
+            &.bold {
+                font-family: "Montserrat bold";
+                color: #333333;
+                margin-bottom: 7px;
+            }
+        }
+
+        .tp_to {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            margin-bottom: 16px;
+
+            .honest {
+                .name {
+                    font-family: "Montserrat bold";
+                    color: #333333;
+                    font-size: 16px;
+                    line-height: 150%;
+                    margin-bottom: 3px;
+                    text-align: center;
+                }
+
+                .city {
+                    font-size: 12px;
+                    color: #909090;
+                    line-height: 150%;
+                    text-align: center;
+                }
+            }
+        }
+    }
+}
+
+@keyframes growProgressBar {
+    0%,
+    33% {
+        --pgPercentage: 0;
+    }
+    100% {
+        --pgPercentage: var(--value);
+    }
+}
+
+@property --pgPercentage {
+    syntax: "<number>";
+    inherits: false;
+    initial-value: 0;
+}
+
+div[role="progressbar"] {
+    --pgPercentage: var(--value);
+    animation: growProgressBar 3s 1 forwards;
+    min-width: 30rem;
+    max-width: 30rem;
+    height: 30rem;
+    margin-bottom: 60px;
+    margin-left: 100px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: radial-gradient(closest-side, white 0%, transparent 0 99.9%, white 0),
+        conic-gradient(var(--color1) calc(var(--pgPercentage) * 1%), #def 0);
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: calc(12rem / 5);
+    color: var(--color1);
+}

@@ -1,0 +1,82 @@
+.head_col {
+  padding: 80px 0 30px 0;
+  background-color: var(--color1);
+}
+.head_col .images {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+}
+.head_col .images img {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.head_col h3 {
+  font-family: "Montserrat medium";
+  color: #ffffff;
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+.content {
+  padding-top: 10px;
+}
+
+.tab_list_menu {
+  position: relative;
+  padding-bottom: 10px;
+}
+.tab_list_menu .alv_col {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 12px 0;
+}
+.tab_list_menu .alv_col .icon {
+  width: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.tab_list_menu .alv_col .icon .fas, .tab_list_menu .alv_col .icon svg {
+  font-size: 16px;
+  color: rgb(0, 101, 224);
+}
+.tab_list_menu .alv_col p {
+  width: 100%;
+  padding: 0 15px;
+}
+.tab_list_menu .alv_col .angle-right .fa-angle-right {
+  font-size: 18px;
+  color: #BDBDBD;
+}
+.tab_list_menu::before {
+  position: absolute;
+  content: "";
+  bottom: 0;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0);
+          transform: translate(-50%, 0);
+  width: 1000px;
+  height: 10px;
+  background: #f9f9f9;
+}
