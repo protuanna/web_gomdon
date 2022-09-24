@@ -18,13 +18,15 @@ export default function QuanLyDonHang() {
     }
 
     const [day, setDay] = useState('');
-    const [type, setType] = useState(1);
+   // const [type, setType] = useState(1);
     const [orderId, setOrderId] = useState('');
     const [orderStatus, setOrderStatus] = useState(0);
     const [hasMore, setHasMore] = useState(true);
-    const [page, setPage] = useState(1);
-    const [loadPage, setLoadPage] = useState('');
-    const [lastPage, setLastPage] = useState(2);
+    const [lastPage, setLastPage] = useState(1);
+    const [filter, setFilter] = useState({
+        page:1,
+        type:1
+    });
     const [total, setTotal] = useState(0);
     const [orders, setOrders] = useState([]);
     const [aryStatus, setAryStatus] = useState(
@@ -95,46 +97,60 @@ export default function QuanLyDonHang() {
         ])
     useEffect(async () => {
         {
-            let res = await getOrder();
-            console.log(res)
-            if (res.result === true) {
-                setTotal(res.meta.total)
-                if (res.meta.current_page === 1) {
-                    setOrders(res.data)
-                } else {
-                    setOrders(orders.concat(res.data))
+            //if(page !== 1){
+               // console.log(page, '333')
+            if(filter.page <= lastPage){
+                let res = await getOrder();
+                console.log(res)
+                if (res.result === true) {
+                    setTotal(res.meta.total)
+                    if (res.meta.current_page === 1) {
+                        setOrders(res.data)
+                    } else {
+                        setOrders(orders.concat(res.data))
+                    }
+                    setLastPage(res.meta.last_page)
                 }
-                if (res.meta.current_page < res.meta.last_page) {
-                    setPage(res.meta.current_page + 1)
+            }
+            //}
+        }
+    }, [filter]);
+
+    /*useEffect(async () => {
+        {
+            if(page === 1){
+                console.log(page, '3434')
+                let res = await getOrder();
+                console.log(res)
+                if (res.result === true) {
+                    setTotal(res.meta.total)
+                    if (res.meta.current_page === 1) {
+                        setOrders(res.data)
+                    } else {
+                        setOrders(orders.concat(res.data))
+                    }
                 }
-                setLastPage(res.meta.last_page)
+            }else {
+                setPage(1);
             }
         }
-    }, [page, loadPage]);
+    }, [type]);*/
 
-    useEffect(async () => {
-        {
-            console.log(type)
-            setLoadPage('changeType')
-        }
-    }, [type]);
-
-    /*useEffect(() => {
+    useEffect(() => {
         window.addEventListener("scroll", loadMore);
     }, []);
 
-
     async function loadMore(){
-
         if (window.innerHeight + document.documentElement.scrollTop >= document.scrollingElement.scrollHeight) {
-            setPage(page + 1)
+            document.getElementById('load_more').click();
         }
-    }*/
+    }
+
 
     async function getOrder() {
         let data = {
-            page: page,
-            limit: 100
+            page: filter.page,
+            limit: 30
         }
         let res = await ordersDelivery(data)
         return res
@@ -308,8 +324,20 @@ export default function QuanLyDonHang() {
                             </div>
                         </div>
                         <div className="pws-list">
-                            <a href="javascript:void(0)" onClick={() => setType(1)} title="" className={type === 1 ? "title15 pws-title active" : "title15 pws-title"}>Hàng gửi</a>
-                            <a href="javascript:void(0)" onClick={() => setType(2)} title="" className={type === 2 ? "title15 pws-title active" : "title15 pws-title"}>Hàng nhận</a>
+                            <a href="javascript:void(0)" onClick={() => {
+                                setFilter((existingValues) => ({
+                                    ...existingValues,
+                                    type: 1,
+                                    page: 1
+                                }))
+                            }} title="" className={filter.type === 1 ? "title15 pws-title active" : "title15 pws-title"}>Hàng gửi</a>
+                            <a href="javascript:void(0)" onClick={() => {
+                                setFilter((existingValues) => ({
+                                    ...existingValues,
+                                    type: 2,
+                                    page:1
+                                }))
+                            }} title="" className={filter.type === 2 ? "title15 pws-title active" : "title15 pws-title"}>Hàng nhận</a>
                         </div>
                     </div>
 
@@ -363,7 +391,12 @@ export default function QuanLyDonHang() {
                             <div className="pro_col9_sanpham">
                                 <div className="list_single_code">
                                     {html_content}
-
+                                    <div style={{"display":"none"}} id="load_more" onClick={() => {
+                                        setFilter((existingValues) => ({
+                                            ...existingValues,
+                                            page: filter.page + 1,
+                                        }))
+                                    }}>new page</div>
                                 </div>
                                 {/*<p className="title16 load_text">Đã tải hết danh sách</p>*/}
                             </div>
