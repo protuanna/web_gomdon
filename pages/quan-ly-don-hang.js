@@ -180,7 +180,7 @@ export default function QuanLyDonHang() {
                                 <div className="name">{item.source_name}</div>
                                 <div className="city">{item.source_province}</div>
                             </div>
-                            <span>-----></span>
+                            <span>-----</span>
                             <div className="honest">
                                 <div className="name">{item.dest_name}</div>
                                 <div className="city">{item.dest_province}</div>
