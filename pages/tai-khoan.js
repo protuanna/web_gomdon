@@ -14,6 +14,7 @@ import Image from "next/image";
 export default function TaiKhoan() {
     const {data: session, status} = useSession()
     let name = ''
+    let base_url = process.env.NEXT_PUBLIC_BASE_URL;
     if (status === 'authenticated') {
         name = session.user.name
     }
@@ -120,7 +121,7 @@ export default function TaiKhoan() {
                                     <div className="angle-right"><i className='fas fa-angle-right'></i></div>
                                 </a>
                                 <a href="javascript:void(0)" title="" className="alv_col" onClick={() => {
-                                    signOut({callbackUrl:'/'});
+                                    signOut({callbackUrl: base_url});
                                     //router.push('/')
                                 }}>
                                     <div className="icon">
