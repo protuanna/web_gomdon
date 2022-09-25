@@ -9,7 +9,7 @@ export default function Footer(/*{ children }*/) {
     const [activeHome, setActiveHome] = useState(routerName === '/' ? 'active' : '');
     const [activeDelivery, setActiveDelivery] = useState(routerName === '/gui-hang' ? 'active' : '');
     const [activeOrder, setActiveOrder] = useState(routerName === '/quan-ly-don-hang' ? 'active' : '');
-    const [activeAccount, setActiveAccount] = useState(routerName === '/account' ? 'active' : '');
+    const [activeAccount, setActiveAccount] = useState(routerName === '/tai-khoan' ? 'active' : '');
     return (
         <div className="Group_mobile">
             <ul className="form">
@@ -53,7 +53,7 @@ export default function Footer(/*{ children }*/) {
                     </Link>
                 </li>
                 <li>
-                    <Link href="/account">
+                    <Link href="/tai-khoan">
                         <a title="" className={ activeAccount }>
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                  className="bi bi-person" viewBox="0 0 16 16">

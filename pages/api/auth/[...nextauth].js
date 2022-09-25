@@ -20,15 +20,16 @@ export const authOptions = {
                 let result = await login(credentials.username, credentials.password);
                 if(result.result === true){
                     let data = result.data
-
-                    return {
-                        phone:data.user.name,
-                        name: data.user.name,
-                        access_token: data.access_token,
-                    };
-                }else {
-                    throw new Error(result.message)
+                    if(data.user.type === 'customer'){
+                        return {
+                            phone:data.user.name,
+                            name: data.user.name,
+                            access_token: data.access_token,
+                        };
+                    }
+                    result.message = 'Tài khoản không tồn tại'
                 }
+                throw new Error(result.message)
             }
         })
     ],

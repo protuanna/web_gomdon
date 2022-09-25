@@ -1,8 +1,5 @@
 import Footer from "../components/footer"
 import {useState, useEffect} from "react"
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
-import {faAddressCard, faAngleLeft, faThumbTack, faPlus} from '@fortawesome/free-solid-svg-icons'
-import InfiniteScroll from 'react-infinite-scroller';
 
 import {
     ordersDelivery,
@@ -18,14 +15,14 @@ export default function QuanLyDonHang() {
     }
 
     const [day, setDay] = useState('');
-   // const [type, setType] = useState(1);
-    const [orderId, setOrderId] = useState('');
+    //const [orderId, setOrderId] = useState('');
     const [orderStatus, setOrderStatus] = useState(0);
-    const [hasMore, setHasMore] = useState(true);
+    //const [hasMore, setHasMore] = useState(true);
     const [lastPage, setLastPage] = useState(1);
     const [filter, setFilter] = useState({
         page:1,
-        type:1
+        type:1,
+        orderId:''
     });
     const [total, setTotal] = useState(0);
     const [orders, setOrders] = useState([]);
@@ -135,14 +132,17 @@ export default function QuanLyDonHang() {
             }
         }
     }, [type]);*/
-
     useEffect(() => {
         window.addEventListener("scroll", loadMore);
     }, []);
 
     async function loadMore(){
         if (window.innerHeight + document.documentElement.scrollTop >= document.scrollingElement.scrollHeight) {
-            document.getElementById('load_more').click();
+            let myEle = document.getElementById("load_more");
+            if(myEle){
+                myEle.click();
+            }
+            //document.getElementById('load_more').click();
         }
     }
 
@@ -150,6 +150,8 @@ export default function QuanLyDonHang() {
     async function getOrder() {
         let data = {
             page: filter.page,
+            type: (filter.type === 1) ? '1,3' : '2',
+            id: filter.orderId,
             limit: 30
         }
         let res = await ordersDelivery(data)
@@ -180,7 +182,7 @@ export default function QuanLyDonHang() {
                                 <div className="name">{item.source_name}</div>
                                 <div className="city">{item.source_province}</div>
                             </div>
-                            <span>-----</span>
+                            <span>-----&gt;</span>
                             <div className="honest">
                                 <div className="name">{item.dest_name}</div>
                                 <div className="city">{item.dest_province}</div>
@@ -345,7 +347,16 @@ export default function QuanLyDonHang() {
                         <div className="ranle">
                             <div className="item_search">
                                 <div className="search" id="search">
-                                    <form action="">
+                                    <form onSubmit={(e) =>{
+                                        e.preventDefault();
+                                        console.log('333')
+                                        let orderId = document.getElementById('txt_search').value
+                                        setFilter((existingValues) => ({
+                                            ...existingValues,
+                                            orderId: orderId,
+                                            page:1
+                                        }))
+                                    }}>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                              fill="currentColor"
                                              className="bi bi-qr-code-scan" viewBox="0 0 16 16">
@@ -357,7 +368,16 @@ export default function QuanLyDonHang() {
                                                 d="M9 2h5v5H9V2Zm1 1v3h3V3h-3ZM8 8v2h1v1H8v1h2v-2h1v2h1v-1h2v-1h-3V8H8Zm2 2H9V9h1v1Zm4 2h-1v1h-2v1h3v-2Zm-4 2v-1H8v1h2Z"/>
                                             <path d="M12 9h2V8h-2v1Z"/>
                                         </svg>
-                                        <input type="text" placeholder="Tra cứu mã đơn hàng / mã vận đơn"/>
+                                        <input type="text"
+                                               id="txt_search"
+                                               /*onChange={(e) => {
+                                                    setFilter((existingValues) => ({
+                                                        ...existingValues,
+                                                        orderId: e.target.value,
+                                                        page:1
+                                                    }))
+                                                }}*/
+                                               placeholder="Tra cứu mã đơn hàng / mã vận đơn"/>
                                     </form>
                                 </div>
                                 <ul className="extra">

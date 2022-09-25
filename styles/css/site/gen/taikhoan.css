@@ -1,8 +1,8 @@
-.head_col {
+.head_col_acc {
   padding: 80px 0 30px 0;
   background-color: var(--color1);
 }
-.head_col .images {
+.head_col_acc .images {
   width: 120px;
   height: 120px;
   border-radius: 50%;
@@ -11,14 +11,14 @@
   margin-right: auto;
   margin-bottom: 20px;
 }
-.head_col .images img {
+.head_col_acc .images img {
   width: 100%;
   height: 100%;
   overflow: hidden;
   -o-object-fit: cover;
      object-fit: cover;
 }
-.head_col h3 {
+.head_col_acc h3 {
   font-family: "Montserrat medium";
   color: #ffffff;
   text-align: center;
