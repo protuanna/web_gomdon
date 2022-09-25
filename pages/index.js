@@ -51,7 +51,7 @@ export default function Home({ banners , report}) {
                     </Carousel>
                     <div className="content">
                         <div className="list_order">
-                            <Link href="/order">
+                            <Link href="/quan-ly-don-hang">
                                 <a href="" title="">
                                     <div className="ordering">
                                         <div className="images">
@@ -61,7 +61,7 @@ export default function Home({ banners , report}) {
                                     </div>
                                 </a>
                             </Link>
-                            <Link href="/delivery">
+                            <Link href="/gui-hang">
                                 <a href="" title="">
                                     <div className="ordering">
                                         <div className="images">
