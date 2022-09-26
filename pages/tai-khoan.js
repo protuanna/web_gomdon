@@ -121,7 +121,7 @@ export default function TaiKhoan() {
                                     <div className="angle-right"><i className='fas fa-angle-right'></i></div>
                                 </a>*/}
                                 <a href="javascript:void(0)" title="" className="alv_col" onClick={() => {
-                                    signOut({callbackUrl: '/'});
+                                    signOut({callbackUrl: `${window.location.origin}`});
                                     //router.push('/')
                                 }}>
                                     <div className="icon">
