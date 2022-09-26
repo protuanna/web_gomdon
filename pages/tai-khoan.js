@@ -45,7 +45,7 @@ export default function TaiKhoan() {
                     </div>
                     <div className="content">
                         <div className="ranle">
-                            <div className="tab_list_menu">
+                            {/*<div className="tab_list_menu">
                                 <a href="./tracuugia.html" title="" className="alv_col">
                                     <div className="icon"><i className='fas fa-search'></i></div>
                                     <p className="title16">Tra cứu phí vận chuyển</p>
@@ -74,9 +74,9 @@ export default function TaiKhoan() {
                                     <p className="title16">Phản hồi khánh hàng</p>
                                     <div className="angle-right"><i className='fas fa-angle-right'></i></div>
                                 </a>
-                            </div>
+                            </div>*/}
                             <div className="tab_list_menu">
-                                <a href="./gioithieu.html" title="" className="alv_col">
+                                {/*<a href="./gioithieu.html" title="" className="alv_col">
                                     <div className="icon"><i style={{ fontSize:16 + "px"}} className='far'>&#xf022;</i></div>
                                     <p className="title16">Giới thiệu</p>
                                     <div className="angle-right"><i className='fas fa-angle-right'></i></div>
@@ -119,7 +119,7 @@ export default function TaiKhoan() {
                                     </div>
                                     <p className="title16">Trung tâm trợ giúp</p>
                                     <div className="angle-right"><i className='fas fa-angle-right'></i></div>
-                                </a>
+                                </a>*/}
                                 <a href="javascript:void(0)" title="" className="alv_col" onClick={() => {
                                     signOut({callbackUrl: router.push('/')});
                                     //router.push('/')

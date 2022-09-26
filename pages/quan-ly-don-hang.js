@@ -1,11 +1,13 @@
 import Footer from "../components/footer"
-import {useState, useEffect} from "react"
+import {useState, useEffect, useRef} from "react"
 
 import {
     ordersDelivery,
 } from '../lib/ajax_gomdon'
 import {useSession} from "next-auth/react";
 import {useRouter} from "next/router";
+import Link from "next/link";
+import {console} from "next/dist/compiled/@edge-runtime/primitives/console";
 
 export default function QuanLyDonHang() {
     const {data: session, status} = useSession()
@@ -14,30 +16,31 @@ export default function QuanLyDonHang() {
         router.push('/login')
     }
 
-    const [day, setDay] = useState('');
-    //const [orderId, setOrderId] = useState('');
+    const [open, setOpen] = useState(false);
+    const dropdown = useRef(null);
     const [orderStatus, setOrderStatus] = useState(0);
-    //const [hasMore, setHasMore] = useState(true);
+    const [htmlStatus, setHtmlStatus] = useState([]);
     const [lastPage, setLastPage] = useState(1);
     const [filter, setFilter] = useState({
         page:1,
         type:1,
-        orderId:''
+        orderId:'',
+        day:'week'
     });
     const [total, setTotal] = useState(0);
     const [orders, setOrders] = useState([]);
     const [aryStatus, setAryStatus] = useState(
         {
-            1: 'Tạo mới',
-            2: 'Hủy',
-            3: 'Đã lấy hàng',
-            4: 'Đang vận chuyển',
-            5: 'Đang giao hàng',
-            6: 'Đang chuyển hoàn',
-            7: 'Đã giao hàng',
-            8: 'Đã chuyển hoàn',
-            9: 'Kiện vấn đề',
-            10: 'Lấy hàng thất bại'
+            '1': 'Tạo mới',
+            '2': 'Hủy',
+            '3': 'Đã lấy hàng',
+            '4': 'Đang vận chuyển',
+            '5': 'Đang giao hàng',
+            '6': 'Đang chuyển hoàn',
+            '7': 'Đã giao hàng',
+            '8': 'Đã chuyển hoàn',
+            '9': 'Kiện vấn đề',
+            '10': 'Lấy hàng thất bại',
         })
     const [report, setReport] = useState(
         [
@@ -94,11 +97,8 @@ export default function QuanLyDonHang() {
         ])
     useEffect(async () => {
         {
-            //if(page !== 1){
-               // console.log(page, '333')
             if(filter.page <= lastPage){
                 let res = await getOrder();
-                console.log(res)
                 if (res.result === true) {
                     setTotal(res.meta.total)
                     if (res.meta.current_page === 1) {
@@ -109,29 +109,22 @@ export default function QuanLyDonHang() {
                     setLastPage(res.meta.last_page)
                 }
             }
-            //}
         }
     }, [filter]);
 
-    /*useEffect(async () => {
-        {
-            if(page === 1){
-                console.log(page, '3434')
-                let res = await getOrder();
-                console.log(res)
-                if (res.result === true) {
-                    setTotal(res.meta.total)
-                    if (res.meta.current_page === 1) {
-                        setOrders(res.data)
-                    } else {
-                        setOrders(orders.concat(res.data))
-                    }
-                }
-            }else {
-                setPage(1);
+    useEffect(() => {
+        // only add the event listener when the dropdown is opened
+        if (!open) return;
+        function handleClick(event) {
+            if (dropdown.current && !dropdown.current.contains(event.target)) {
+                setOpen(false);
             }
         }
-    }, [type]);*/
+        window.addEventListener("click", handleClick);
+        // clean up
+        return () => window.removeEventListener("click", handleClick);
+    }, [open]);
+
     useEffect(() => {
         window.addEventListener("scroll", loadMore);
     }, []);
@@ -146,14 +139,44 @@ export default function QuanLyDonHang() {
         }
     }
 
+    function getFirstDayOfWeek(d) {
+        const date = d ? new Date(d) : new Date();
+        const day = date.getDay(); // 👉️ get day of week
+        const diff = date.getDate() - day + (day === 0 ? -6 : 1);
+        return new Date(date.setDate(diff));
+    }
+
+    function getFirstDayOfMonth(d){
+        const date = d ? new Date(d) : new Date();
+        return new Date(date.getFullYear(), date.getMonth(), 1);
+    }
+
+    function getLastDayOfMonth(d){
+        const date = d ? new Date(d) : new Date();
+        return new Date(date.getFullYear(), date.getMonth() + 1, 0);
+    }
 
     async function getOrder() {
         let data = {
             page: filter.page,
             type: (filter.type === 1) ? '1,3' : '2',
             id: filter.orderId,
-            limit: 30
+            limit: 30,
         }
+        if(filter.day === 'day'){
+            data.start_time = parseInt(((new Date()).setHours(0, 0, 0, 0))/1000)
+            data.end_time = data.start_time + 86400//parseInt(((new Date()).setHours(0, 0, 0, 0))/1000)
+        }
+        if(filter.day === 'week'){
+            data.start_time = parseInt(getFirstDayOfWeek().setHours(0, 0, 0, 0)/1000)
+            data.end_time = data.start_time + (7*86400)
+        }
+
+        if(filter.day === 'month'){
+            data.start_time = parseInt(getFirstDayOfMonth().setHours(0, 0, 0, 0)/1000)
+            data.end_time = parseInt(getLastDayOfMonth().setHours(0, 0, 0, 0)/1000) + 86400
+        }
+        console.log(data)
         let res = await ordersDelivery(data)
         return res
     }
@@ -173,6 +196,7 @@ export default function QuanLyDonHang() {
     if (orders) {
         orders.forEach(function (item, index) {
             html_content.push(
+                <Link href={"/chi-tiet-don-hang?id="+ item.id} >
                 <a href="" title="">
                     <div className="item_single">
                         <div className="new">{aryStatus[item.status]}</div>
@@ -194,9 +218,57 @@ export default function QuanLyDonHang() {
                         <p className="title12">Thời gian cập nhật {format_date(item.updated_at)}</p>
                     </div>
                 </a>
+                </Link>
             )
         })
     }
+    let html_status = []
+    Object.keys(aryStatus).forEach(function(key) {
+        html_status.push(
+            <li onClick={() => console.log('click')}>
+                <label>
+                    <input className="Dashboard"
+                           name="clothing"
+                           type="radio"
+                           value={key}
+                           checked={orderStatus === key}
+                           onChange={() => {console.log(key);setOrderStatus(key)}}
+                    />
+                    <div className="item-dm">
+                        <p className="">{aryStatus[key]}</p>
+                    </div>
+                </label>
+            </li>
+        )
+    });
+    useEffect(() => {
+        console.log(orderStatus, '34343')
+        let html_status = []
+        Object.keys(aryStatus).forEach(function(key) {
+            html_status.push(
+                <li onClick={() => console.log('click')}>
+                    <label>
+                        <input className="Dashboard"
+                               name="clothing"
+                               type="radio"
+                               value={key}
+                               checked={orderStatus === key}
+                               onChange={() => {console.log(key);setOrderStatus(key)}}
+                        />
+                        <div className="item-dm">
+                            <p className="">{aryStatus[key]}</p>
+                        </div>
+                    </label>
+                </li>
+            )
+        });
+        setHtmlStatus(html_status)
+    }, [orderStatus]);
+
+    /*aryStatus.forEach(function (item,index){
+        console.log(item,index)
+    })*/
+
     return (
         <div id="main">
             <div className="container">
@@ -205,7 +277,7 @@ export default function QuanLyDonHang() {
                         <div className="head_title">
                             <h3 className="title18">Quản lý đơn hàng</h3>
                             <div className="profil_col3_locsanpham">
-                                <div className="fill-wrapper">
+                                <div className="fill-wrapper rotate-menu" onClick={() => setOpen(!open)}>
                                     <div className="filter">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26"
                                              fill="currentColor"
@@ -215,7 +287,7 @@ export default function QuanLyDonHang() {
                                         </svg>
                                     </div>
                                 </div>
-                                <div className="main_fill">
+                                <div ref={dropdown} className={open ? "main_fill open" : "main_fill"}>
                                     <div className="tabel">
                                         <div className="list-danhmuc">
                                             <div className="label wow fadeInLeft" data-wow-delay="0.3s">
@@ -228,87 +300,7 @@ export default function QuanLyDonHang() {
                                                        checked="checkbox"/>
                                                 <div className="item_fields">
                                                     <ul className="extra">
-                                                        <li>
-                                                            <label>
-                                                                <input className="Dashboard" name="clothing"
-                                                                       type="radio"/>
-                                                                <div className="item-dm">
-                                                                    <p className="">Tạo mới</p>
-                                                                </div>
-                                                            </label>
-                                                        </li>
-                                                        <li>
-                                                            <label>
-                                                                <input className="Dashboard" name="clothing"
-                                                                       type="radio"/>
-                                                                <div className="item-dm">
-                                                                    <p className="">Đã lấy hàng</p>
-                                                                </div>
-                                                            </label>
-                                                        </li>
-                                                        <li>
-                                                            <label>
-                                                                <input className="Dashboard" name="clothing"
-                                                                       type="radio"/>
-                                                                <div className="item-dm">
-                                                                    <p className="">Đang vận chuyển</p>
-                                                                </div>
-                                                            </label>
-                                                        </li>
-                                                        <li>
-                                                            <label>
-                                                                <input className="Dashboard" name="clothing"
-                                                                       type="radio"/>
-                                                                <div className="item-dm">
-                                                                    <p className="">Đang giao hàng</p>
-                                                                </div>
-                                                            </label>
-                                                        </li>
-                                                        <li>
-                                                            <label>
-                                                                <input className="Dashboard" name="clothing"
-                                                                       type="radio"/>
-                                                                <div className="item-dm">
-                                                                    <p className="">Đang chuyển hàng</p>
-                                                                </div>
-                                                            </label>
-                                                        </li>
-                                                        <li>
-                                                            <label>
-                                                                <input className="Dashboard" name="clothing"
-                                                                       type="radio"/>
-                                                                <div className="item-dm">
-                                                                    <p className="">Đã giao hàng</p>
-                                                                </div>
-                                                            </label>
-                                                        </li>
-                                                        <li>
-                                                            <label>
-                                                                <input className="Dashboard" name="clothing"
-                                                                       type="radio"/>
-                                                                <div className="item-dm">
-                                                                    <p className="">Đã trả hàng</p>
-                                                                </div>
-                                                            </label>
-                                                        </li>
-                                                        <li>
-                                                            <label>
-                                                                <input className="Dashboard" name="clothing"
-                                                                       type="radio"/>
-                                                                <div className="item-dm">
-                                                                    <p className="">Kiện vấn đề</p>
-                                                                </div>
-                                                            </label>
-                                                        </li>
-                                                        <li>
-                                                            <label>
-                                                                <input className="Dashboard" name="clothing"
-                                                                       type="radio"/>
-                                                                <div className="item-dm">
-                                                                    <p className="">Hủy</p>
-                                                                </div>
-                                                            </label>
-                                                        </li>
+                                                        {html_status}
                                                     </ul>
                                                     <div className="item-btn">
                                                         <button className="butt">
@@ -383,7 +375,20 @@ export default function QuanLyDonHang() {
                                 <ul className="extra">
                                     <li>
                                         <label>
-                                            <input className="Dashboard" name="clothing" type="radio" checked/>
+                                            <input
+                                                className="Dashboard"
+                                                name="clothing"
+                                                type="radio"
+                                                value="day"
+                                                checked={filter.day === 'day'}
+                                                onChange={() => {
+                                                    setFilter((existingValues) => ({
+                                                        ...existingValues,
+                                                        day: 'day',
+                                                        page:1
+                                                    }))
+                                                }}
+                                            />
                                             <div className="item-dm">
                                                 <p className="">Hôm nay</p>
                                             </div>
@@ -391,7 +396,20 @@ export default function QuanLyDonHang() {
                                     </li>
                                     <li>
                                         <label>
-                                            <input className="Dashboard" name="clothing" type="radio"/>
+                                            <input
+                                                className="Dashboard"
+                                                name="clothing"
+                                                type="radio"
+                                                value="week"
+                                                checked={filter.day === 'week'}
+                                                onChange={() => {
+                                                    setFilter((existingValues) => ({
+                                                        ...existingValues,
+                                                        day: 'week',
+                                                        page:1
+                                                    }))
+                                                }}
+                                            />
                                             <div className="item-dm">
                                                 <p className="">Tuần gần nhất</p>
                                             </div>
@@ -399,7 +417,20 @@ export default function QuanLyDonHang() {
                                     </li>
                                     <li>
                                         <label>
-                                            <input className="Dashboard" name="clothing" type="radio"/>
+                                            <input
+                                                className="Dashboard"
+                                                name="clothing"
+                                                type="radio"
+                                                value="month"
+                                                checked={filter.day === 'month'}
+                                                onChange={() => {
+                                                    setFilter((existingValues) => ({
+                                                        ...existingValues,
+                                                        day: 'month',
+                                                        page:1
+                                                    }))
+                                                }}
+                                            />
                                             <div className="item-dm">
                                                 <p className="">Tháng gần nhất</p>
                                             </div>
