@@ -25,7 +25,8 @@ export default function QuanLyDonHang() {
         page:1,
         type:1,
         orderId:'',
-        day:'week'
+        day:'week',
+        status: 0
     });
     const [total, setTotal] = useState(0);
     const [orders, setOrders] = useState([]);
@@ -161,6 +162,7 @@ export default function QuanLyDonHang() {
             page: filter.page,
             type: (filter.type === 1) ? '1,3' : '2',
             id: filter.orderId,
+            status: filter.status,
             limit: 30,
         }
         if(filter.day === 'day'){
@@ -225,15 +227,15 @@ export default function QuanLyDonHang() {
     let html_status = []
     Object.keys(aryStatus).forEach(function(key) {
         html_status.push(
-            <li onClick={() => console.log('click')}>
+            <li onClick={() => setOrderStatus(orderStatus === key ? 0 : key)} className={orderStatus === key ? "active" : ""}>
                 <label>
-                    <input className="Dashboard"
+                    {/*<input className="Dashboard"
                            name="clothing"
                            type="radio"
                            value={key}
                            checked={orderStatus === key}
                            onChange={() => {console.log(key);setOrderStatus(key)}}
-                    />
+                    />*/}
                     <div className="item-dm">
                         <p className="">{aryStatus[key]}</p>
                     </div>
@@ -303,10 +305,25 @@ export default function QuanLyDonHang() {
                                                         {html_status}
                                                     </ul>
                                                     <div className="item-btn">
-                                                        <button className="butt">
+                                                        <button className="butt" onClick={() => {
+                                                            setOpen(false)
+                                                            setOrderStatus(0)
+                                                            setFilter((existingValues) => ({
+                                                                ...existingValues,
+                                                                status: 0,
+                                                                page:1
+                                                            }))
+                                                        }}>
                                                             <span>Đặt lại</span>
                                                         </button>
-                                                        <button className="butt active">
+                                                        <button className="butt active" onClick={() => {
+                                                            setOpen(false)
+                                                            setFilter((existingValues) => ({
+                                                                ...existingValues,
+                                                                status: orderStatus,
+                                                                page:1
+                                                            }))
+                                                        }}>
                                                             <span>Xác nhận</span>
                                                         </button>
                                                     </div>

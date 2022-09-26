@@ -269,7 +269,7 @@
   overflow: hidden;
   background: #eceaea;
 }
-.profil_col3_locsanpham .tabel .list-danhmuc .item_fields .extra li label .item-dm::after {
+.profil_col3_locsanpham .tabel .list-danhmuc .item_fields .extra li.active label .item-dm::after {
   content: "";
   position: absolute;
   top: 9px;
@@ -283,6 +283,10 @@
   -webkit-transform: rotate(45deg);
           transform: rotate(45deg);
 }
+.profil_col3_locsanpham .tabel .list-danhmuc .item_fields .extra li.active label .item-dm {
+  border: 1px solid var(--color1);
+}
+
 .profil_col3_locsanpham .tabel .list-danhmuc .item_fields .extra li label .item-dm p {
   font-family: "Nunito medium";
   font-size: 14px;
