@@ -161,9 +161,13 @@ export default function QuanLyDonHang() {
         let data = {
             page: filter.page,
             type: (filter.type === 1) ? '1,3' : '2',
-            id: filter.orderId,
-            status: filter.status,
             limit: 30,
+        }
+        if(filter.orderId !== ''){
+            data.id = filter.orderId
+        }
+        if(filter.status !== 0){
+            data.status = filter.status
         }
         if(filter.day === 'day'){
             data.start_time = parseInt(((new Date()).setHours(0, 0, 0, 0))/1000)

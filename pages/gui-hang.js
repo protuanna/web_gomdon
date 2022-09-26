@@ -602,6 +602,7 @@ export default function GuiHang() {
                     dest_ward: destWard,
                     dest_address: destAddress
                 }
+                console.log(data)
                 let res = await createOrderDelivery(data)
                 if(res.result === true){
                     router.push('/gui-hang-thanh-cong')
