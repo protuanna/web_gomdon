@@ -1902,6 +1902,10 @@ p {
   color: #ffffff;
 }
 
+.disabled{
+  opacity: 0.5;
+}
+
 @media (max-width: 1399px) {
   .title48 {
     font-size: 46px;

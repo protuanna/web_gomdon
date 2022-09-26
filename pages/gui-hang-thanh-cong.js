@@ -26,7 +26,7 @@ export default function GuiHangThanhCong() {
                                 </div>
                             </div>
                             <div className="pro_col9_shipping">
-                                <div className="html_shipping_col">
+                                <div className="txt_shipping_col">
                                     Gửi hàng thành công
                                 </div>
                             </div>

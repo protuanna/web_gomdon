@@ -39,6 +39,7 @@ export default function GuiHang() {
     const [width, setWidth] = useState('')
     const [fee, setFee] = useState('')
     const [note, setNote] = useState('')
+    const [disabled, setDisabled] = useState(false)
 
     const [sourceName, setSourceName] = useState('')
     const [errorSourceName, setErrorSourceName] = useState('')
@@ -419,45 +420,51 @@ export default function GuiHang() {
     }
 
     async function addNewContactSend() {
-        let error = 0
-        if (contactName.trim() === '') {
-            error = 1
-            setErrorContactName('Vui lòng nhập tên')
-        }
-        if (contactPhone.trim() === '') {
-            error = 1
-            setErrorContactPhone('Vui lòng nhập số điện thoại')
-        }
-        if (contactProvince.trim() === '' || contactDistrict.trim() === '' || contactWard.trim() === '') {
-            error = 1
-            setErrorContactProvince('Vui lòng nhập đầy đủ địa chỉ')
-        }
-        if (contactAddress.trim() === '') {
-            error = 1
-            setErrorContactAddress('Vui lòng nhập chi tiết địa chỉ')
-        }
-        if (error === 0) {
-            let contact_type = (((type === 1 || type === 3) && action === 'openAddressSend') || type === 2 && action === 'openAddressReceive') ? 'send' : 'receive';
-            let data = {
-                name: contactName,
-                phone: contactPhone,
-                address: contactAddress,
-                province_id: contactProvinceId,
-                district_id: contactDistrictId,
-                ward_id: contactWardId,
-                type: contact_type,
-                set_default: contactDefault
+        if(disabled === false){
+            setDisabled(true)
+            let error = 0
+            if (contactName.trim() === '') {
+                error = 1
+                setErrorContactName('Vui lòng nhập tên')
             }
-            let result = await createContact(data)
-            if (result.result === true) {
-                if (action === 'openAddressSend') {
-                    openAddressSend()
-                }
-                if (action === 'openAddressReceive') {
-                    openAddressReceive()
-                }
+            if (contactPhone.trim() === '') {
+                error = 1
+                setErrorContactPhone('Vui lòng nhập số điện thoại')
             }
+            if (contactProvince.trim() === '' || contactDistrict.trim() === '' || contactWard.trim() === '') {
+                error = 1
+                setErrorContactProvince('Vui lòng nhập đầy đủ địa chỉ')
+            }
+            if (contactAddress.trim() === '') {
+                error = 1
+                setErrorContactAddress('Vui lòng nhập chi tiết địa chỉ')
+            }
+            if (error === 0) {
+                let contact_type = (((type === 1 || type === 3) && action === 'openAddressSend') || type === 2 && action === 'openAddressReceive') ? 'send' : 'receive';
+                let data = {
+                    name: contactName,
+                    phone: contactPhone,
+                    address: contactAddress,
+                    province_id: contactProvinceId,
+                    district_id: contactDistrictId,
+                    ward_id: contactWardId,
+                    type: contact_type,
+                    set_default: contactDefault
+                }
+                let result = await createContact(data)
+                if (result.result === true) {
+                    if (action === 'openAddressSend') {
+                        openAddressSend()
+                    }
+                    if (action === 'openAddressReceive') {
+                        openAddressReceive()
+                    }
+                }
+
+            }
+            setDisabled(false)
         }
+
     }
 
     function nextStepOne() {
@@ -556,45 +563,55 @@ export default function GuiHang() {
     }
 
     async function createOrder() {
-
-        let error = 0
-        if (productName.trim() === '') {
-            error = 1
-            setErrorProductName('Vui lòng nhập tên sản phẩm')
-        }
-        if (!policy) {
-            alert('Vui lòng chấp nhận điều khoản của chúng tôi')
-            return
-        }
-        if (error === 0) {
-            let data = {
-                product_name: productName,
-                product_number: productNumber,
-                product_price: productPrice ? productPrice : 0,
-                collect_amount: collectAmount ? collectAmount : 0,
-                weight: weight ? weight * 1000 : 0,
-                height: height ? height * 10 : 0,
-                length: length ? length * 10 : 0,
-                width: width ? width * 10 : 0,
-                type: type,
-                pickup_type: pickupType,
-                service_id: serviceId,
-                note: note,
-                source_name: sourceName,
-                source_phone: sourcePhone,
-                source_province: sourceProvince,
-                source_district: sourceDistrict,
-                source_ward: sourceWard,
-                source_address: sourceAddress,
-                dest_name: destName,
-                dest_phone: destPhone,
-                dest_province: destProvince,
-                dest_district: destDistrict,
-                dest_ward: destWard,
-                dest_address: destAddress
+        console.log(disabled)
+        if (disabled === false) {
+            setDisabled(true)
+            let error = 0
+            if (productName.trim() === '') {
+                error = 1
+                setErrorProductName('Vui lòng nhập tên sản phẩm')
             }
-            let res = await createOrderDelivery(data)
-            console.log(res)
+            if (!policy) {
+                alert('Vui lòng chấp nhận điều khoản của chúng tôi')
+                error = 1;
+            }
+            if (error === 0) {
+                let data = {
+                    product_name: productName,
+                    product_number: productNumber,
+                    product_price: productPrice ? productPrice : 0,
+                    collect_amount: collectAmount ? collectAmount : 0,
+                    weight: weight ? weight * 1000 : 0,
+                    height: height ? height * 10 : 0,
+                    length: length ? length * 10 : 0,
+                    width: width ? width * 10 : 0,
+                    type: type,
+                    pickup_type: pickupType,
+                    service_id: serviceId,
+                    note: note,
+                    source_name: sourceName,
+                    source_phone: sourcePhone,
+                    source_province: sourceProvince,
+                    source_district: sourceDistrict,
+                    source_ward: sourceWard,
+                    source_address: sourceAddress,
+                    dest_name: destName,
+                    dest_phone: destPhone,
+                    dest_province: destProvince,
+                    dest_district: destDistrict,
+                    dest_ward: destWard,
+                    dest_address: destAddress
+                }
+                let res = await createOrderDelivery(data)
+                if(res.result === true){
+                    router.push('/gui-hang-thanh-cong')
+                }else {
+                    alert(res.message)
+                    setDisabled(false)
+                }
+            }else {
+                setDisabled(false)
+            }
         }
     }
 
@@ -988,8 +1005,8 @@ export default function GuiHang() {
                                    onChange={() => setPolicy((policy === 1) ? 0 : 1)}
                             />
                             <div className="item-dm">
-                                <p className="title16">Tôi đồng ý <a href="" title="">điều khoản người
-                                    dùng</a></p>
+                                <p className="title16">Tôi đồng ý điều khoản người
+                                    dùng</p>
                             </div>
                         </label>
                         <div className="synthetic">
@@ -1009,7 +1026,8 @@ export default function GuiHang() {
                                 </div>
                                 <p className="text-ship">Tiền phí ship do người nhận thanh toán</p>
                             </div>
-                            <button className="butt active" onClick={() => createOrder()}>
+                            <button className={disabled ? "butt active disabled" : "butt active"}
+                                    onClick={() => createOrder()}>
                                 <span>Gửi</span>
                             </button>
                         </div>
@@ -1189,7 +1207,7 @@ export default function GuiHang() {
                                         </label>
                                     </div>
                                 </form>
-                                <a href="javascript:void(0)" title="" className="butt active"
+                                <a href="javascript:void(0)" title="" className={disabled ? "butt active disabled" : "butt active"}
                                    onClick={() => addNewContactSend()}>
                                     <span>Xác nhận</span>
                                 </a>
