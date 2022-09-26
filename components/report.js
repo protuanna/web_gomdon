@@ -60,7 +60,7 @@ export default function Report({data}) {
                 percent: ((dt[7] ?? 0) * 100 / total).toFixed(2)
             },
             {
-                label: 'Đã chuyển hoàn',
+                label: 'Đã trả hàng',
                 status: 8,
                 value: dt[8] ?? 0,
                 color: 'red',
@@ -84,7 +84,7 @@ export default function Report({data}) {
     return (
         <div className="html_management_col">
             <div className="title_top">
-                <h3 className="title21">Người gửi theo gói quản lý</h3>
+                <h3 className="title21">Người gửi theo dõi quản lý</h3>
             </div>
             {/*<div role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"
                  style="--value:65"></div>*/}

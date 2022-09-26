@@ -134,6 +134,19 @@ export default function GuiHang() {
             title = 'Thông tin shop'
             break
     }
+
+    let title_two = ''
+    switch (type) {
+        case 1:
+            title_two = 'Người nhận'
+            break
+        case 2:
+            title_two = 'Thông tin người mua'
+            break
+        case 3:
+            title_two = 'Thông tin shop'
+            break
+    }
     /*useEffect(() => {
         changeAddress('')
     }, [goStep]);*/
@@ -708,7 +721,7 @@ export default function GuiHang() {
                                         <path
                                             d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
                                     </svg>
-                                    <span className="title16">Người nhận</span>
+                                    <span className="title16">{title_two}</span>
                                 </div>
                                 <div className="steps">
                                     <p className="title16">Bước <span className="title18">2</span> /3</p>
@@ -1025,7 +1038,7 @@ export default function GuiHang() {
                                         </svg>
                                     </label>
                                 </div>
-                                <p className="text-ship">Tiền phí ship do người nhận thanh toán</p>
+                                <p className="text-ship">Phí vận chuyển người gửi trả sẽ trừ tiền COD</p>
                             </div>
                             <button className={disabled ? "butt active disabled" : "butt active"}
                                     onClick={() => createOrder()}>

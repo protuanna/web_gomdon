@@ -22,7 +22,7 @@ export default function QuanLyDonHang({order}) {
             5: 'Đang giao hàng',
             6: 'Đang chuyển hoàn',
             7: 'Đã giao hàng',
-            8: 'Đã chuyển hoàn',
+            8: 'Đã trả hàng',
             9: 'Kiện vấn đề',
             10: 'Lấy hàng thất bại'
         })

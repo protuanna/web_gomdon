@@ -39,7 +39,7 @@ export default function QuanLyDonHang() {
             '5': 'Đang giao hàng',
             '6': 'Đang chuyển hoàn',
             '7': 'Đã giao hàng',
-            '8': 'Đã chuyển hoàn',
+            '8': 'Đã trả hàng',
             '9': 'Kiện vấn đề',
             '10': 'Lấy hàng thất bại',
         })
@@ -81,7 +81,7 @@ export default function QuanLyDonHang() {
                 color: 'red',
             },
             {
-                label: 'Đã chuyển hoàn',
+                label: 'Đã trả hàng',
                 status: 8,
                 color: 'red',
             },
@@ -199,7 +199,7 @@ export default function QuanLyDonHang() {
     }
 
     let html_content = []
-    if (orders) {
+    if (orders.length > 0) {
         orders.forEach(function (item, index) {
             html_content.push(
                 <Link href={"/chi-tiet-don-hang?id="+ item.id} >
@@ -227,19 +227,17 @@ export default function QuanLyDonHang() {
                 </Link>
             )
         })
+    }else {
+        html_content = (
+            <div style={{ textAlign:'center'}}>Danh sách trống</div>
+        )
     }
+    console.log(html_content)
     let html_status = []
     Object.keys(aryStatus).forEach(function(key) {
         html_status.push(
             <li onClick={() => setOrderStatus(orderStatus === key ? 0 : key)} className={orderStatus === key ? "active" : ""}>
                 <label>
-                    {/*<input className="Dashboard"
-                           name="clothing"
-                           type="radio"
-                           value={key}
-                           checked={orderStatus === key}
-                           onChange={() => {console.log(key);setOrderStatus(key)}}
-                    />*/}
                     <div className="item-dm">
                         <p className="">{aryStatus[key]}</p>
                     </div>
