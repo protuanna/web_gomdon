@@ -14,70 +14,60 @@ export default function Report({data}) {
                 label: 'Tạo mới',
                 status: 1,
                 value: dt[1] ?? 0,
-                color: 'red',
                 percent: ((dt[1] ?? 0) * 100 / total).toFixed(2)
             },
             {
                 label: 'Hủy',
                 status: 2,
                 value: dt[2] ?? 0,
-                color: 'red',
                 percent: ((dt[2] ?? 0) * 100 / total).toFixed(2)
             },
             {
                 label: 'Đã lấy hàng',
                 status: 3,
                 value: dt[3] ?? 0,
-                color: 'red',
                 percent: ((dt[3] ?? 0) * 100 / total).toFixed(2)
             },
             {
                 label: 'Đang vận chuyển',
                 status: 4,
                 value: dt[4] ?? 0,
-                color: 'red',
                 percent: ((dt[4] ?? 0) * 100 / total).toFixed(2)
             },
             {
                 label: 'Đang giao hàng',
                 status: 5,
                 value: dt[5] ?? 0,
-                color: 'red',
                 percent: ((dt[5] ?? 0) * 100 / total).toFixed(2)
             },
             {
                 label: 'Đang chuyển hoàn',
                 status: 6,
                 value: dt[6] ?? 0,
-                color: 'red',
                 percent: ((dt[6] ?? 0) * 100 / total).toFixed(2)
             },
             {
                 label: 'Đã giao hàng',
                 status: 7,
                 value: dt[7] ?? 0,
-                color: 'red',
                 percent: ((dt[7] ?? 0) * 100 / total).toFixed(2)
             },
             {
                 label: 'Đã trả hàng',
                 status: 8,
                 value: dt[8] ?? 0,
-                color: 'red',
                 percent: ((dt[8] ?? 0) * 100 / total).toFixed(2)
             },
             {
                 label: 'Kiện vấn đề',
                 status: 9,
                 value: dt[9] ?? 0,
-                color: 'red',
                 percent: ((dt[9] ?? 0) * 100 / total).toFixed(2)
             },
             {
                 label: 'Đơn lấy hàng thất bại',
                 status: 10,
                 value: dt[10] ?? 0,
-                color: 'red',
                 percent: ((dt[10] ?? 0) * 100 / total).toFixed(2)
             },
         ])
@@ -99,7 +89,7 @@ export default function Report({data}) {
                     <ul className="">
                         {report.map((dt) => (
                             <li>
-                                <div className="status_info status">{dt.label}</div>
+                                <div className={"status_info status status_" + dt.status}>{dt.label}</div>
                                 <div className="amount_info amount">{dt.value}</div>
                                 <div className="percent_info percent">{dt.percent}%</div>
                             </li>

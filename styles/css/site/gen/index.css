@@ -136,33 +136,37 @@
     margin-right: 10px;
 }
 
-.management_information .information ul li:nth-child(1) .status_info::before {
-    background-color: rgb(255, 0, 0);
+.management_information .information ul li .status_info.status_1::before {
+    background-color: #228B22;
+}
+.management_information .information ul li .status_info.status_2::before {
+    background-color: #BEBEBE;
+}
+.management_information .information ul li .status_info.status_3::before {
+    background-color: #FF0000;
+}
+.management_information .information ul li .status_info.status_4::before {
+    background-color: #4CAEE3;
+}
+.management_information .information ul li .status_info.status_5::before {
+    background-color: #FF8C00;
+}
+.management_information .information ul li .status_info.status_6::before {
+    background-color: #4169E1;
+}
+.management_information .information ul li .status_info.status_7::before {
+    background-color: #20B2AA;
+}
+.management_information .information ul li .status_info.status_8::before {
+    background-color: #9966FF;
+}
+.management_information .information ul li .status_info.status_9:before {
+    background-color: #FF69B4;
+}
+.management_information .information ul li .status_info.status_10:before {
+    background-color: #607C8E;
 }
 
-.management_information .information ul li:nth-child(2) .status_info::before {
-    background-color: rgb(255, 149, 0);
-}
-
-.management_information .information ul li:nth-child(3) .status_info::before {
-    background-color: rgb(0, 105, 5);
-}
-
-.management_information .information ul li:nth-child(4) .status_info::before {
-    background-color: rgb(0, 122, 111);
-}
-
-.management_information .information ul li:nth-child(5) .status_info::before {
-    background-color: rgb(0, 69, 173);
-}
-
-.management_information .information ul li:nth-child(6) .status_info::before {
-    background-color: rgb(92, 1, 145);
-}
-
-.management_information .information ul li:nth-child(7) .status_info::before {
-    background-color: rgb(188, 40, 181);
-}
 
 .list_single_code .item_single {
     width: 100%;

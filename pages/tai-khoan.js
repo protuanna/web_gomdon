@@ -26,6 +26,11 @@ export default function TaiKhoan() {
         router.push('/login')
     }*/
 
+    function logout(){
+        signOut();
+        return router.push('/')
+    }
+
 
 
 
@@ -120,10 +125,7 @@ export default function TaiKhoan() {
                                     <p className="title16">Trung tâm trợ giúp</p>
                                     <div className="angle-right"><i className='fas fa-angle-right'></i></div>
                                 </a>*/}
-                                <a href="javascript:void(0)" title="" className="alv_col" onClick={() => {
-                                    signOut({callbackUrl: `${window.location.origin}`});
-                                    //router.push('/')
-                                }}>
+                                <a href="javascript:void(0)" title="" className="alv_col" onClick={() => logout()}>
                                     <div className="icon">
                                         <FontAwesomeIcon icon={faSignOut}/>
                                     </div>

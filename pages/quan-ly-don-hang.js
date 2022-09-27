@@ -205,7 +205,7 @@ export default function QuanLyDonHang() {
                 <Link href={"/chi-tiet-don-hang?id="+ item.id} >
                 <a href="" title="">
                     <div className="item_single">
-                        <div className="new">{aryStatus[item.status]}</div>
+                        <div className={"new new_" + item.status}>{aryStatus[item.status]}</div>
                         <h5 className="title16">Mã vận đơn: {item.partner_code}</h5>
                         <div className="tp_to">
                             <div className="honest">
