@@ -1,10 +1,12 @@
 import Footer from "../components/footer"
+import Loading from "../components/loading"
 import {useState, useEffect} from "react"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faAddressCard, faAngleLeft, faThumbTack, faPlus} from '@fortawesome/free-solid-svg-icons'
 import {address, createContact, createOrderDelivery, districts, feeShop, provinces, wards} from '../lib/ajax_gomdon'
 import {useSession} from "next-auth/react";
 import {useRouter} from "next/router";
+
 
 export default function GuiHang() {
 
@@ -188,7 +190,9 @@ export default function GuiHang() {
     }
 
     async function loadAddressSend(search) {
-        setHtmlAddressSend('....')
+        setHtmlAddressSend(
+            <Loading/>
+        )
         setTotalAddressSend('')
         const delayDebounceFn = setTimeout(() => {
             renderAddressSend(search)
@@ -206,7 +210,7 @@ export default function GuiHang() {
             total = data.meta.total
             address.forEach(function (item, index) {
                 html_address.push(
-                    <a href="javascript:void(0)" onClick={() => selectAddressSend(item)} title=""
+                    <a href="#!" key={index}  onClick={() => selectAddressSend(item)} title=""
                        className="guest_single">
                         <div className="guesting">
                             {item.set_default === 1 &&
@@ -311,7 +315,7 @@ export default function GuiHang() {
             let html_province = []
             provinces.forEach(function (item, index) {
                 html_province.push(
-                    <a href="javascript:void(0)" onClick={() => selectProvinceSend(item)} title=""
+                    <a key={index} href="#!" onClick={() => selectProvinceSend(item)} title=""
                        className="address_single">
                         <p>
                             {item.name}
@@ -357,7 +361,7 @@ export default function GuiHang() {
             let districts = data.data
             districts.forEach(function (item, index) {
                 html_province.push(
-                    <a href="javascript:void(0)" onClick={() => selectDistrictSend(item)} title=""
+                    <a key={index} href="#!" onClick={() => selectDistrictSend(item)} title=""
                        className="address_single">
                         <p>
                             {item.name}
@@ -396,7 +400,7 @@ export default function GuiHang() {
             let wards = data.data
             wards.forEach(function (item, index) {
                 html_province.push(
-                    <a href="javascript:void(0)" onClick={() => selectWardSend(item)} title=""
+                    <a key={index} href="#!" onClick={() => selectWardSend(item)} title=""
                        className="address_single">
                         <p>
                             {item.name}
@@ -530,7 +534,7 @@ export default function GuiHang() {
         if (number === '' || number === 0) {
             return ''
         }
-        return number.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".");
+        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     }
 
     function replaceString(value, max = 0) {
@@ -615,10 +619,13 @@ export default function GuiHang() {
                     dest_ward: destWard,
                     dest_address: destAddress
                 }
-                console.log(data)
                 let res = await createOrderDelivery(data)
                 if(res.result === true){
-                    router.push('/gui-hang-thanh-cong')
+                    let or = res.data
+                    router.push({
+                        pathname: '/gui-hang-thanh-cong',
+                        query:{id:or.id}
+                    })
                 }else {
                     alert(res.message)
                     setDisabled(false)
@@ -649,7 +656,7 @@ export default function GuiHang() {
                                 </div>
                                 <div className="steps">
                                     <p className="title16">Bước <span className="title18">1</span> /3</p>
-                                    <a href="javascript:void(0)" onClick={() => openAddressSend()}>
+                                    <a href="#!" onClick={() => openAddressSend()}>
                                         <FontAwesomeIcon icon={faAddressCard}/>
                                     </a>
                                 </div>
@@ -668,6 +675,7 @@ export default function GuiHang() {
                                 <div className="form-field">
                                     <input type="text"
                                            value={(sourceProvince || sourceDistrict || sourceWard) && (sourceProvince + ' ' + sourceDistrict + ' ' + sourceWard)}
+                                           onChange={(e) => e.preventDefault()}
                                            placeholder="Địa chỉ *" onClick={() => openSelectProvinceSend()}/>
                                 </div>
                                 <div className="label_error">{errorSourceProvince}</div>
@@ -677,7 +685,7 @@ export default function GuiHang() {
                                 </div>
                                 <div className="label_error">{errorSourceAddress}</div>
                             </form>
-                            <a href="javascript:void(0)" title="" className="butt active" onClick={() => nextStepOne()}>
+                            <a href="#!" title="" className="butt active" onClick={() => nextStepOne()}>
                                 <span>Tiếp tục</span>
                             </a>
                         </div>
@@ -743,7 +751,7 @@ export default function GuiHang() {
                                 <div className="form-field">
                                     <input type="text"
                                            value={(destProvince || destDistrict || destWard) && (destProvince + ' ' + destDistrict + ' ' + destWard)}
-                                           placeholder="Địa chỉ *" onClick={() => openSelectProvinceReceive()}/>
+                                           placeholder="Địa chỉ *" onChange={(e) => e.preventDefault()} onClick={() => openSelectProvinceReceive()}/>
                                 </div>
                                 <div className="label_error">{errorDestProvince}</div>
                                 <div className="form-field">
@@ -753,7 +761,7 @@ export default function GuiHang() {
                                 </div>
                                 <div className="label_error">{errorDestAddress}</div>
                             </form>
-                            <a href="javascript:void(0)" onClick={() => nextStepTwo()} title="" className="butt active">
+                            <a href="#!" onClick={() => nextStepTwo()} title="" className="butt active">
                                 <span>Tiếp tục</span>
                             </a>
                         </div>
@@ -992,7 +1000,7 @@ export default function GuiHang() {
         content_sum = (
             <div className="Group_mobile" style={{bottom: '70px'}}>
                 <div className="total_amount">
-                    <input id="show_comment_form" className="" name="" type="checkbox"/>
+                    <input id="show_comment_form" className="" name="" type="checkbox" defaultValue={''}/>
                     <div className="price_list">
                         <ul>
                             <li>
@@ -1124,12 +1132,12 @@ export default function GuiHang() {
                     <div className="contents">
                         <div className="head_col">
                             <div className="head_title">
-                                <a href="javascript:void(0)" onClick={() => setIsOpen(0)}>
+                                <a href="#!" onClick={() => setIsOpen(0)}>
                                     <FontAwesomeIcon icon={faAngleLeft}/>
                                 </a>
                                 <h3 className="title18">Thông tin địa chỉ</h3>
                                 <span>
-                                    <a href="javascript:void(0)" onClick={() => openNewContactSend()} title=""
+                                    <a href="#!" onClick={() => openNewContactSend()} title=""
                                        className="plus">
                                         <FontAwesomeIcon icon={faPlus}/>
                                     </a>
@@ -1141,7 +1149,7 @@ export default function GuiHang() {
                                 <form action="">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18"
                                          fill="currentColor">
-                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                        <path fillRule="evenodd" clipRule="evenodd"
                                               d="M17.5893 16.5227L14.5291 13.3863L14.5307 13.3814C15.7032 11.9286 16.3426 10.1122 16.341 8.23907C16.3409 6.61419 15.8644 5.02562 14.9714 3.67313C14.0784 2.32063 12.8089 1.26458 11.3224 0.637769C9.83587 0.0109578 8.19878 -0.158631 6.61697 0.150326C5.03515 0.459284 3.57922 1.23299 2.43225 2.37417C1.28528 3.51535 0.498479 4.97304 0.17078 6.56396C-0.15692 8.15487 -0.0108875 9.80799 0.590514 11.3154C1.19192 12.8229 2.22184 14.1173 3.55077 15.0361C4.87971 15.9548 6.44833 16.4568 8.05939 16.4789C9.93479 16.4833 11.7567 15.8486 13.2294 14.6776L16.2025 17.7637C16.2886 17.8455 16.3905 17.9086 16.5019 17.949C16.6133 17.9893 16.7317 18.006 16.8497 17.9981C16.9678 17.9902 17.083 17.9577 17.188 17.9029C17.2931 17.848 17.3858 17.7719 17.4604 17.6792C18.0901 17.01 17.5893 16.5227 17.5893 16.5227ZM11.5648 13.529C10.5311 14.2437 9.31098 14.6343 8.05778 14.6516C6.36096 14.6633 4.72902 13.9948 3.52088 12.7932C2.31274 11.5915 1.62734 9.95515 1.61542 8.24394C1.61522 6.97999 1.9856 5.7442 2.67998 4.69197C3.37435 3.63974 4.36173 2.81805 5.51793 2.33022C6.67414 1.8424 7.94756 1.71022 9.17806 1.95032C10.4086 2.19041 11.5412 2.79206 12.4335 3.6796C13.3259 4.56713 13.9381 5.70094 14.1932 6.93843C14.4483 8.17592 14.3348 9.46185 13.8672 10.6345C13.3995 11.8072 12.5985 12.8142 11.5648 13.529ZM4.34065 6.77527L5.87092 7.38367L5.87075 7.3841C5.64605 7.94959 5.65513 8.58118 5.896 9.13999C6.13693 9.69894 6.59004 10.1393 7.15564 10.3642L6.54723 11.8944C5.77738 11.5883 5.12886 11.0498 4.68691 10.3617C4.57117 10.1815 4.46961 9.99107 4.38373 9.79184C4.29786 9.59262 4.22913 9.388 4.1776 9.18014C3.98079 8.38635 4.03457 7.54512 4.34065 6.77527Z"/>
                                     </svg>
                                     <input
@@ -1175,7 +1183,7 @@ export default function GuiHang() {
                     <div className="contents">
                         <div className="head_col">
                             <div className="head_title">
-                                <a href="javascript:void(0)" onClick={() => {
+                                <a href="#!" onClick={() => {
                                     setIsOpen(1)
                                 }}>
                                     <FontAwesomeIcon icon={faAngleLeft}/>
@@ -1203,7 +1211,7 @@ export default function GuiHang() {
                                         <h3 className="title16 title_form">Địa chỉ <span>:</span></h3>
                                         <input type="text"
                                                value={(contactProvince || contactDistrict || contactWard) && (contactProvince + ' ' + contactDistrict + ' ' + contactWard)}
-                                               placeholder="" onClick={() => openProvinceContact()}/>
+                                               placeholder="" onChange={(e) => e.preventDefault()} onClick={() => openProvinceContact()}/>
                                     </div>
                                     <div className="label_error">{errorContactProvince}</div>
                                     <div className="form-field">
@@ -1221,7 +1229,7 @@ export default function GuiHang() {
                                         </label>
                                     </div>
                                 </form>
-                                <a href="javascript:void(0)" title="" className={disabled ? "butt active disabled" : "butt active"}
+                                <a href="#!" title="" className={disabled ? "butt active disabled" : "butt active"}
                                    onClick={() => addNewContactSend()}>
                                     <span>Xác nhận</span>
                                 </a>
@@ -1240,32 +1248,32 @@ export default function GuiHang() {
                     <div className="contents">
                         <div className="head_col">
                             <div className="head_title">
-                                <a href="javascript:void(0)" onClick={() => setIsOpen(0)}>
+                                <a href="#!" onClick={() => setIsOpen(0)}>
                                     <FontAwesomeIcon icon={faAngleLeft}/>
                                 </a>
                                 <h3 className="title18">Lựa chọn địa chỉ</h3>
                                 <span></span>
                             </div>
-                            <div className="search" id="search">
+                            {/*<div className="search" id="search">
                                 <form action="">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18"
                                          fill="currentColor">
-                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                        <path fillRule="evenodd" clipRule="evenodd"
                                               d="M17.5893 16.5227L14.5291 13.3863L14.5307 13.3814C15.7032 11.9286 16.3426 10.1122 16.341 8.23907C16.3409 6.61419 15.8644 5.02562 14.9714 3.67313C14.0784 2.32063 12.8089 1.26458 11.3224 0.637769C9.83587 0.0109578 8.19878 -0.158631 6.61697 0.150326C5.03515 0.459284 3.57922 1.23299 2.43225 2.37417C1.28528 3.51535 0.498479 4.97304 0.17078 6.56396C-0.15692 8.15487 -0.0108875 9.80799 0.590514 11.3154C1.19192 12.8229 2.22184 14.1173 3.55077 15.0361C4.87971 15.9548 6.44833 16.4568 8.05939 16.4789C9.93479 16.4833 11.7567 15.8486 13.2294 14.6776L16.2025 17.7637C16.2886 17.8455 16.3905 17.9086 16.5019 17.949C16.6133 17.9893 16.7317 18.006 16.8497 17.9981C16.9678 17.9902 17.083 17.9577 17.188 17.9029C17.2931 17.848 17.3858 17.7719 17.4604 17.6792C18.0901 17.01 17.5893 16.5227 17.5893 16.5227ZM11.5648 13.529C10.5311 14.2437 9.31098 14.6343 8.05778 14.6516C6.36096 14.6633 4.72902 13.9948 3.52088 12.7932C2.31274 11.5915 1.62734 9.95515 1.61542 8.24394C1.61522 6.97999 1.9856 5.7442 2.67998 4.69197C3.37435 3.63974 4.36173 2.81805 5.51793 2.33022C6.67414 1.8424 7.94756 1.71022 9.17806 1.95032C10.4086 2.19041 11.5412 2.79206 12.4335 3.6796C13.3259 4.56713 13.9381 5.70094 14.1932 6.93843C14.4483 8.17592 14.3348 9.46185 13.8672 10.6345C13.3995 11.8072 12.5985 12.8142 11.5648 13.529ZM4.34065 6.77527L5.87092 7.38367L5.87075 7.3841C5.64605 7.94959 5.65513 8.58118 5.896 9.13999C6.13693 9.69894 6.59004 10.1393 7.15564 10.3642L6.54723 11.8944C5.77738 11.5883 5.12886 11.0498 4.68691 10.3617C4.57117 10.1815 4.46961 9.99107 4.38373 9.79184C4.29786 9.59262 4.22913 9.388 4.1776 9.18014C3.98079 8.38635 4.03457 7.54512 4.34065 6.77527Z"/>
                                     </svg>
-                                    <input type="text" placeholder="Nhập từ khóa tìm kiếm"/>
+                                    <input type="text" placeholder="Nhập từ khóa tìm kiếm" defaultValue={''}/>
                                 </form>
-                            </div>
+                            </div>*/}
                             <div className="link_list">
-                                <a href="javascript:void(0)" title="" className={activeTabProvinceSend(1)}
+                                <a href="#!" title="" className={activeTabProvinceSend(1)}
                                    onClick={() => changeTabProvinceSend(1)}>
                                     <span className="title16">TỈNH/THÀNH</span>
                                 </a>
-                                <a href="javascript:void(0)" title="" className={activeTabProvinceSend(2)}
+                                <a href="#!" title="" className={activeTabProvinceSend(2)}
                                    onClick={() => changeTabProvinceSend(2)}>
                                     <span className="title16">QUẬN/HUYỆN</span>
                                 </a>
-                                <a href="javascript:void(0)" title="" className={activeTabProvinceSend(3)}
+                                <a href="#!" title="" className={activeTabProvinceSend(3)}
                                    onClick={() => changeTabProvinceSend(3)}>
                                     <span className="title16">PHƯỜNG/XÃ</span>
                                 </a>

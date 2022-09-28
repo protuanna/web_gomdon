@@ -1,4 +1,5 @@
 import Footer from "../components/footer"
+import Loading from "../components/loading"
 import {useState, useEffect, useRef} from "react"
 
 import {
@@ -7,7 +8,6 @@ import {
 import {useSession} from "next-auth/react";
 import {useRouter} from "next/router";
 import Link from "next/link";
-import {console} from "next/dist/compiled/@edge-runtime/primitives/console";
 
 export default function QuanLyDonHang() {
     const {data: session, status} = useSession()
@@ -15,10 +15,11 @@ export default function QuanLyDonHang() {
     if (status === 'unauthenticated') {
         router.push('/login')
     }
-
+    const{id} = router.query
     const [open, setOpen] = useState(false);
     const dropdown = useRef(null);
     const [orderStatus, setOrderStatus] = useState(0);
+    const [loading, setLoading] = useState(false);
     const [htmlStatus, setHtmlStatus] = useState([]);
     const [lastPage, setLastPage] = useState(1);
     const [filter, setFilter] = useState({
@@ -97,18 +98,20 @@ export default function QuanLyDonHang() {
             },
         ])
     useEffect(async () => {
-        {
-            if(filter.page <= lastPage){
-                let res = await getOrder();
-                if (res.result === true) {
-                    setTotal(res.meta.total)
-                    if (res.meta.current_page === 1) {
-                        setOrders(res.data)
-                    } else {
-                        setOrders(orders.concat(res.data))
-                    }
-                    setLastPage(res.meta.last_page)
+        if(filter.page <= lastPage){
+            if(filter.page === 1){
+                setLoading(true)
+            }
+            let res = await getOrder();
+            if (res.result === true) {
+                setTotal(res.meta.total)
+                if (res.meta.current_page === 1) {
+                    setOrders(res.data)
+                    setLoading(false)
+                } else {
+                    setOrders(orders.concat(res.data))
                 }
+                setLastPage(res.meta.last_page)
             }
         }
     }, [filter]);
@@ -138,6 +141,13 @@ export default function QuanLyDonHang() {
             }
             //document.getElementById('load_more').click();
         }
+    }
+
+    async function changeId(search) {
+        const delayDebounceFn = setTimeout(() => {
+
+        }, 500)
+        return () => clearTimeout(delayDebounceFn)
     }
 
     function getFirstDayOfWeek(d) {
@@ -174,15 +184,14 @@ export default function QuanLyDonHang() {
             data.end_time = data.start_time + 86400//parseInt(((new Date()).setHours(0, 0, 0, 0))/1000)
         }
         if(filter.day === 'week'){
-            data.start_time = parseInt(getFirstDayOfWeek().setHours(0, 0, 0, 0)/1000)
-            data.end_time = data.start_time + (7*86400)
+            data.end_time = parseInt(((new Date()))/1000)
+            data.start_time = data.end_time - (7*86400)
         }
 
         if(filter.day === 'month'){
             data.start_time = parseInt(getFirstDayOfMonth().setHours(0, 0, 0, 0)/1000)
             data.end_time = parseInt(getLastDayOfMonth().setHours(0, 0, 0, 0)/1000) + 86400
         }
-        console.log(data)
         let res = await ordersDelivery(data)
         return res
     }
@@ -202,28 +211,28 @@ export default function QuanLyDonHang() {
     if (orders.length > 0) {
         orders.forEach(function (item, index) {
             html_content.push(
-                <Link href={"/chi-tiet-don-hang?id="+ item.id} >
-                <a href="" title="">
-                    <div className="item_single">
-                        <div className={"new new_" + item.status}>{aryStatus[item.status]}</div>
-                        <h5 className="title16">Mã vận đơn: {item.partner_code}</h5>
-                        <div className="tp_to">
-                            <div className="honest">
-                                <div className="name">{item.source_name}</div>
-                                <div className="city">{item.source_province}</div>
+                <Link href={"/chi-tiet-don-hang?id="+ item.id} key={item.id}>
+                    <a href="" title="">
+                        <div className="item_single">
+                            <div className={"new new_" + item.status}>{aryStatus[item.status]}</div>
+                            <h5 className="title16">Mã vận đơn: {item.partner_code}</h5>
+                            <div className="tp_to">
+                                <div className="honest">
+                                    <div className="name">{item.source_name}</div>
+                                    <div className="city">{item.source_province}</div>
+                                </div>
+                                <span>-----&gt;</span>
+                                <div className="honest">
+                                    <div className="name">{item.dest_name}</div>
+                                    <div className="city">{item.dest_province}</div>
+                                </div>
                             </div>
-                            <span>-----&gt;</span>
-                            <div className="honest">
-                                <div className="name">{item.dest_name}</div>
-                                <div className="city">{item.dest_province}</div>
-                            </div>
+                            <p className="title15 bold">{item.source_district} [{item.source_name}], Được gửi đến
+                                [{item.dest_name}]</p>
+                            <p className="title12">Thời gian tạo đơn {format_date(item.created_at)}</p>
+                            <p className="title12">Thời gian cập nhật {format_date(item.updated_at)}</p>
                         </div>
-                        <p className="title15 bold">{item.source_district} [{item.source_name}], Được gửi đến
-                            [{item.dest_name}]</p>
-                        <p className="title12">Thời gian tạo đơn {format_date(item.created_at)}</p>
-                        <p className="title12">Thời gian cập nhật {format_date(item.updated_at)}</p>
-                    </div>
-                </a>
+                    </a>
                 </Link>
             )
         })
@@ -232,11 +241,13 @@ export default function QuanLyDonHang() {
             <div style={{ textAlign:'center'}}>Danh sách trống</div>
         )
     }
-    console.log(html_content)
+    if(loading === true){
+        html_content = (<Loading/>)
+    }
     let html_status = []
     Object.keys(aryStatus).forEach(function(key) {
         html_status.push(
-            <li onClick={() => setOrderStatus(orderStatus === key ? 0 : key)} className={orderStatus === key ? "active" : ""}>
+            <li key={key} onClick={() => setOrderStatus(orderStatus === key ? 0 : key)} className={orderStatus === key ? "active" : ""}>
                 <label>
                     <div className="item-dm">
                         <p className="">{aryStatus[key]}</p>
@@ -246,18 +257,17 @@ export default function QuanLyDonHang() {
         )
     });
     useEffect(() => {
-        console.log(orderStatus, '34343')
         let html_status = []
         Object.keys(aryStatus).forEach(function(key) {
             html_status.push(
-                <li onClick={() => console.log('click')}>
+                <li key={key}>
                     <label>
                         <input className="Dashboard"
                                name="clothing"
                                type="radio"
                                value={key}
                                checked={orderStatus === key}
-                               onChange={() => {console.log(key);setOrderStatus(key)}}
+                               onChange={() => {setOrderStatus(key)}}
                         />
                         <div className="item-dm">
                             <p className="">{aryStatus[key]}</p>
@@ -300,8 +310,8 @@ export default function QuanLyDonHang() {
                                                         <h3 className="">Trạng thái</h3>
                                                     </div>
                                                 </label>
-                                                <input id="show_01" className="show_form" name="" type="checkbox"
-                                                       checked="checkbox"/>
+                                                {/*<input id="show_01" className="show_form" name="" type="checkbox"
+                                                       checked="checkbox"/>*/}
                                                 <div className="item_fields">
                                                     <ul className="extra">
                                                         {html_status}
@@ -337,20 +347,20 @@ export default function QuanLyDonHang() {
                             </div>
                         </div>
                         <div className="pws-list">
-                            <a href="javascript:void(0)" onClick={() => {
+                            <div style={{cursor:'pointer'}} onClick={() => {
                                 setFilter((existingValues) => ({
                                     ...existingValues,
                                     type: 1,
                                     page: 1
                                 }))
-                            }} title="" className={filter.type === 1 ? "title15 pws-title active" : "title15 pws-title"}>Hàng gửi</a>
-                            <a href="javascript:void(0)" onClick={() => {
+                            }} title="" className={filter.type === 1 ? "title15 pws-title active" : "title15 pws-title"}>Hàng gửi</div>
+                            <div style={{cursor:'pointer'}} onClick={() => {
                                 setFilter((existingValues) => ({
                                     ...existingValues,
                                     type: 2,
                                     page:1
                                 }))
-                            }} title="" className={filter.type === 2 ? "title15 pws-title active" : "title15 pws-title"}>Hàng nhận</a>
+                            }} title="" className={filter.type === 2 ? "title15 pws-title active" : "title15 pws-title"}>Hàng nhận</div>
                         </div>
                     </div>
 
@@ -358,15 +368,8 @@ export default function QuanLyDonHang() {
                         <div className="ranle">
                             <div className="item_search">
                                 <div className="search" id="search">
-                                    <form onSubmit={(e) =>{
+                                    <form onSubmit={(e) => {
                                         e.preventDefault();
-                                        console.log('333')
-                                        let orderId = document.getElementById('txt_search').value
-                                        setFilter((existingValues) => ({
-                                            ...existingValues,
-                                            orderId: orderId,
-                                            page:1
-                                        }))
                                     }}>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                              fill="currentColor"
@@ -381,14 +384,16 @@ export default function QuanLyDonHang() {
                                         </svg>
                                         <input type="text"
                                                id="txt_search"
-                                               /*onChange={(e) => {
+                                               onChange={(e) => {
                                                     setFilter((existingValues) => ({
                                                         ...existingValues,
                                                         orderId: e.target.value,
                                                         page:1
                                                     }))
-                                                }}*/
-                                               placeholder="Tra cứu mã đơn hàng / mã vận đơn"/>
+                                                }}
+                                            value={filter.orderId}
+                                            //defaultValue={filter.orderId}
+                                           placeholder="Tra cứu mã đơn hàng / mã vận đơn"/>
                                     </form>
                                 </div>
                                 <ul className="extra">
@@ -472,7 +477,15 @@ export default function QuanLyDonHang() {
                             </div>
                         </div>
                     </div>
-
+                    <div className="Group_cancel">
+                        <div className="btn_print">
+                            <Link href='/in-don-hang'>
+                                <button className="butt active" >
+                                    <span>In số lượng lớn</span>
+                                </button>
+                            </Link>
+                        </div>
+                    </div>
                     <Footer/>
                 </div>
             </div>
@@ -480,3 +493,4 @@ export default function QuanLyDonHang() {
     )
 
 }
+

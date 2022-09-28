@@ -1,11 +1,11 @@
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons'
 import { getCsrfToken } from "next-auth/react"
-import Link from "next/link"
 import Image from "next/image"
 import {useSession, signIn, signOut} from "next-auth/react"
 import { useState } from "react";
 import { useRouter } from 'next/router'
+import Loading from "../components/loading";
 
 export default function Login({csrfToken}) {
     const { data: session, status } = useSession()
@@ -18,10 +18,10 @@ export default function Login({csrfToken}) {
     if(status === 'authenticated'){
         //signOut()
         router.push('/')
-        return ('Loading ...')
+        return (<Loading/>)
     }
     if(status === 'loading'){
-        return ('Loading ...')
+        return (<Loading/>)
     }
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -59,7 +59,7 @@ export default function Login({csrfToken}) {
                         <div className="ranle">
                             <div className="login_logo">
                                 <div className="images">
-                                    <Image src="/images/logo.png" alt="" width="100%" height="100%" layout="responsive" objectFit="contain"/>
+                                    <Image src="/images/logo.png" alt="" width="100%" height="100%" layout="responsive" objectFit="contain" priority/>
                                 </div>
                             </div>
                             <div className="pro_col9_shipping">

@@ -88,7 +88,7 @@ export default function Report({data}) {
                     </div>
                     <ul className="">
                         {report.map((dt) => (
-                            <li>
+                            <li key={dt.status}>
                                 <div className={"status_info status status_" + dt.status}>{dt.label}</div>
                                 <div className="amount_info amount">{dt.value}</div>
                                 <div className="percent_info percent">{dt.percent}%</div>

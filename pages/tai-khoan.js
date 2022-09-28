@@ -19,7 +19,7 @@ export default function TaiKhoan() {
         name = session.user.name
     }
     const router = useRouter()
-    console.log(session)
+    //console.log(session)
     /*const {data: session, status} = useSession()
     const router = useRouter()
     if (status === 'unauthenticated') {
@@ -28,11 +28,19 @@ export default function TaiKhoan() {
 
     function logout(){
         signOut();
-        return router.push('/')
     }
-
-
-
+    let btn_logout = ''
+    if(status === 'authenticated'){
+        console.log(status)
+        btn_logout = (
+            <a href="#" title="" className="alv_col" onClick={() => logout()}>
+                <div className="icon">
+                    <FontAwesomeIcon icon={faSignOut}/>
+                </div>
+                <p className="title16">Đăng xuất</p>
+            </a>
+        )
+    }
 
     return (
         <div id="main">
@@ -41,7 +49,7 @@ export default function TaiKhoan() {
                     <div className="head_col_acc">
                         <div className="">
                             <div className="images">
-                                <Image src="/images/logo.png" alt="" width="100%" height="100%" layout="responsive" />
+                                <Image src="/images/logo.png" alt="" width="100%" height="100%" layout="responsive" priority />
                                 {/*<img src="./images/icon/Logo-filnal.png" alt=""/>*/}
                             </div>
                             <h3 className="title18">{name}</h3>
@@ -125,12 +133,7 @@ export default function TaiKhoan() {
                                     <p className="title16">Trung tâm trợ giúp</p>
                                     <div className="angle-right"><i className='fas fa-angle-right'></i></div>
                                 </a>*/}
-                                <a href="javascript:void(0)" title="" className="alv_col" onClick={() => logout()}>
-                                    <div className="icon">
-                                        <FontAwesomeIcon icon={faSignOut}/>
-                                    </div>
-                                    <p className="title16">Đăng xuất</p>
-                                </a>
+                                {btn_logout}
                             </div>
 
                         </div>

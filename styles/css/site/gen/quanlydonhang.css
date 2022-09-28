@@ -219,7 +219,7 @@
   color: #333333;
 }
 .profil_col3_locsanpham .tabel .list-danhmuc .item_fields {
-  display: none;
+  /*display: none;*/
   padding: 0 16px;
 }
 .profil_col3_locsanpham .tabel .list-danhmuc .item_fields .extra {

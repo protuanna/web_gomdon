@@ -534,6 +534,66 @@
   -webkit-transition: all 0.275s;
   transition: all 0.275s;
 }
+
+.print_item input{
+  display: none;
+}
+.print_item input[type=checkbox]:checked + .item-dm::before {
+  background: var(--color1);
+  border: 1px solid var(--color1);
+}
+.print_item input[type=checkbox]:checked + .item-dm::after {
+  visibility: visible;
+  opacity: 1;
+}
+
+.print_item .item-dm {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  cursor: pointer;
+}
+.print_item .item-dm span {
+  color: #4f4f4f;
+}
+.print_item .item-dm::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 7px;
+  width: 3px;
+  height: 8px;
+  border-right: 2px solid var(--white);
+  border-bottom: 2px solid var(--white);
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.print_item .item-dm::before {
+  content: "";
+  width: 18px;
+  height: 18px;
+  margin-right: 12px;
+  background: var(--white);
+  border: 2px solid #878787;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: all 0.275s;
+  transition: all 0.275s;
+}
+
+label input[type="checkbox"]:checked + label{
+  border: 1px solid red;
+}
+
 .Group_mobile .total_amount .provisional .synthetic {
   display: -webkit-box;
   display: -ms-flexbox;

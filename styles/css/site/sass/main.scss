@@ -537,6 +537,7 @@
 
             .butt {
                 margin-right: 30px;
+                cursor: pointer;
             }
         }
     }
@@ -951,6 +952,7 @@
     overflow: hidden;
     box-sizing: border-box;
     z-index: 1;
+    cursor: pointer;
 
     span {
         font-family: "Montserrat";
