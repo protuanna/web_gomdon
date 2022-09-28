@@ -370,11 +370,102 @@
   color: #828282;
   margin-bottom: 7px;
 }
-
 .html_guest_col12 .list_address .address_single p {
   padding: 20px;
 }
 
+.html_add_address .update_int {
+  padding-top: 26px;
+}
+.html_add_address .update_int .title_int {
+  font-family: "Montserrat bold";
+  color: #333333;
+  margin-bottom: 12px;
+}
+.html_add_address .update_int .form-field input {
+  text-align: right;
+}
+.html_add_address .update_int form .form-field {
+  padding: 10px 0;
+}
+.html_add_address .update_int .butt {
+  width: 100%;
+  height: 46px;
+  border-radius: 10px;
+  margin: 10px 0;
+}
+.html_add_address .update_int .butt span {
+  font-weight: 600;
+}
+.html_add_address .int_fact {
+  margin: 30px 0;
+}
+.html_add_address .int_fact .form-field {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  border-bottom: 1px solid #e0e0e0;
+  margin: 0 8px;
+  padding: 10px 0;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.html_add_address .int_fact .title_form {
+  min-width: 200px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.html_add_address .int_fact .form-wave h3, .html_add_address .int_fact .form-wave p {
+  color: #000000;
+  font-weight: 800;
+  line-height: 130%;
+}
+.html_add_address .int_fact p {
+  color: #828282;
+  font-weight: 800;
+  line-height: 130%;
+}
+.html_add_address .int_fact .item-field {
+  text-align: right;
+}
+.html_add_address .int_fact .item-field .flex-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.html_add_address .int_fact .item-field .flex-item p {
+  margin-left: 12px;
+}
+.html_add_address .int_fact .item-field .unit {
+  font-family: "Montserrat medium";
+  color: #333333;
+  margin-left: 7px;
+}
+.html_add_address .int_fact .butt {
+  width: 100%;
+  height: 46px;
+  border-radius: 10px;
+  margin: 10px 0;
+}
+.html_add_address .int_fact .butt span {
+  font-weight: 600;
+}
 .html_add_address form {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -731,7 +822,7 @@
   height: 200px;
   margin-left: 30px;
   background-image: -webkit-gradient(linear, left bottom, left top, color-stop(2%, rgba(0, 0, 0, 0.1)), color-stop(2%, transparent));
-  /*background-image: linear-gradient(bottom, rgba(0, 0, 0, 0.1) 2%, transparent 2%);*/
+  background-image: linear-gradient(bottom, rgba(0, 0, 0, 0.1) 2%, transparent 2%);
   background-size: 100% 50px;
   background-position: left top;
 }

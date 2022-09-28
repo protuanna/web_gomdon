@@ -7,7 +7,7 @@ export default function Footer(/*{ children }*/) {
     const router = useRouter()
     let routerName = router.route
     const [activeHome, setActiveHome] = useState(routerName === '/' ? 'active' : '');
-    const [activeDelivery, setActiveDelivery] = useState(routerName === '/gui-hang' ? 'active' : '');
+    const [activeDelivery, setActiveDelivery] = useState((routerName === '/gui-hang' || routerName === '/gui-hang-thanh-cong') ? 'active' : '');
     const [activeOrder, setActiveOrder] = useState((routerName === '/quan-ly-don-hang' || routerName === '/chi-tiet-don-hang') ? 'active' : '');
     const [activeAccount, setActiveAccount] = useState(routerName === '/tai-khoan' ? 'active' : '');
     return (
