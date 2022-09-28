@@ -141,7 +141,30 @@ export async function orders(token, type, search){
         return error.response.data ?? {result: false, message: "Lấy dữ liệu k thành công"}
     });
     return result;
-}*/ async function order_detail(req, res, id) {
+}*/ async function api_orders(req, res, data) {
+    let session = await unstable_getServerSession(req, res, authOptions);
+    if (session) {
+        let token = session.accessToken;
+        let result = await Axios({
+            method: "get",
+            url: "https://admin.gomdon.com.vn" + "/api/v2/order",
+            params: data,
+            headers: {
+                Authorization: `Bearer ` + token
+            }
+        }).then(function(response) {
+            return response.data;
+        }).catch(function(error) {
+            return error.response.data ?? {
+                result: false,
+                message: "Lấy dữ liệu k th\xe0nh c\xf4ng"
+            };
+        });
+        return result;
+    }
+    return null;
+}
+async function order_detail(req, res, id) {
     let session = await unstable_getServerSession(req, res, authOptions);
     if (session) {
         let token = session.accessToken;
