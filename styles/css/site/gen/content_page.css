@@ -822,7 +822,7 @@
   height: 200px;
   margin-left: 30px;
   background-image: -webkit-gradient(linear, left bottom, left top, color-stop(2%, rgba(0, 0, 0, 0.1)), color-stop(2%, transparent));
-  background-image: linear-gradient(bottom, rgba(0, 0, 0, 0.1) 2%, transparent 2%);
+  /*background-image: linear-gradient(bottom, rgba(0, 0, 0, 0.1) 2%, transparent 2%);*/
   background-size: 100% 50px;
   background-position: left top;
 }
