@@ -82,35 +82,60 @@ function InDonHang({ result  }) {
     if (result.result === true) {
         orders = result.data;
     }
-    const { 0: ids , 1: setIds  } = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)([]);
-    const handleSelect = (event)=>{
-        const id = event.target.value;
-        console.log(id);
-        console.log(event.target.checked);
-        if (!ids.includes(id)) {
-            setIds([
-                ...ids,
-                id
-            ]);
-        } else {
-            setIds(ids.filter((selectedId)=>{
-                return selectedId !== id;
-            }));
-        }
+    let init = [];
+    orders.forEach(function(item, index) {
+        let id = item.id;
+        init[id] = false;
+    });
+    const { 0: checkedAll , 1: setCheckedAll  } = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(false);
+    const { 0: checked , 1: setChecked  } = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(init);
+    const toggleCheck = (inputName)=>{
+        setChecked((prevState)=>{
+            const newState = {
+                ...prevState
+            };
+            newState[inputName] = !prevState[inputName];
+            return newState;
+        });
     };
-    const handleSelectAll = ()=>{
-        if (ids.length < orders.length) {
-            setIds(orders.map(({ id  })=>id));
-        } else {
-            setIds([]);
-        }
+    const selectAll = (value)=>{
+        setCheckedAll(value);
+        setChecked((prevState)=>{
+            const newState = {
+                ...prevState
+            };
+            for(const inputName in newState){
+                newState[inputName] = value;
+            }
+            return newState;
+        });
     };
+    (0,react__WEBPACK_IMPORTED_MODULE_3__.useEffect)(()=>{
+        let allChecked = true;
+        for(const inputName in checked){
+            if (checked[inputName] === false) {
+                allChecked = false;
+            }
+        }
+        if (allChecked) {
+            setCheckedAll(true);
+        } else {
+            setCheckedAll(false);
+        }
+    }, [
+        checked
+    ]);
     async function printTrigger() {
+        let ids = [];
+        for(const inputName in checked){
+            if (checked[inputName] === true) {
+                ids.push(inputName);
+            }
+        }
         if (ids.length > 0) {
             let res = await (0,_lib_ajax_gomdon__WEBPACK_IMPORTED_MODULE_4__/* .print_order */ .h7)({
                 "ids": ids.join(",")
             });
-            console.log(res);
             if (res.result === true) {
                 await Promise.resolve(/* import() */).then(__webpack_require__.t.bind(__webpack_require__, 525, 23));
                 printJS(res.data);
@@ -153,7 +178,7 @@ function InDonHang({ result  }) {
                                         return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("label", {
                                             className: "",
                                             children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                                className: ids.includes(id.toString()) ? "item_single active" : "item_single",
+                                                className: "item_single",
                                                 children: [
                                                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
                                                         className: "print_item",
@@ -162,12 +187,10 @@ function InDonHang({ result  }) {
                                                         },
                                                         children: [
                                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
-                                                                className: "Dashboard",
-                                                                name: "clothing",
                                                                 type: "checkbox",
-                                                                value: id,
-                                                                checked: ids.includes(id),
-                                                                onChange: handleSelect
+                                                                name: id,
+                                                                checked: checked[id],
+                                                                onChange: ()=>toggleCheck(id)
                                                             }),
                                                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("span", {
                                                                 className: "item-dm",
@@ -233,11 +256,9 @@ function InDonHang({ result  }) {
                                     /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("label", {
                                         children: [
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
-                                                className: "Dashboard",
-                                                name: "clothing",
                                                 type: "checkbox",
-                                                checked: ids.length === orders.length,
-                                                onChange: handleSelectAll
+                                                onChange: (event)=>selectAll(event.target.checked),
+                                                checked: checkedAll
                                             }),
                                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                                 className: "item-dm",

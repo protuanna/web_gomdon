@@ -20,36 +20,56 @@ export default function InDonHang({result}) {
     if(result.result === true){
         orders = result.data
     }
+    let init = []
+    orders.forEach(function (item, index) {
+        let id = item.id
+        init[id] = false
+    })
+    const [checkedAll, setCheckedAll] = useState(false);
+    const [checked, setChecked] = useState(init);
 
-    const [ids, setIds] = useState([]);
-
-    const handleSelect = (event) => {
-        const id = event.target.value;
-        console.log(id )
-        console.log(event.target.checked)
-        if (!ids.includes(id)) {
-            setIds([...ids, id]);
-        } else {
-            setIds(
-                ids.filter((selectedId) => {
-                    return selectedId !== id;
-                })
-            );
-        }
+    const toggleCheck = (inputName) => {
+        setChecked((prevState) => {
+            const newState = { ...prevState };
+            newState[inputName] = !prevState[inputName];
+            return newState;
+        });
     };
 
-    const handleSelectAll = () => {
-        if (ids.length < orders.length) {
-            setIds(orders.map(({ id }) => id));
-        } else {
-            setIds([]);
-        }
+    const selectAll = (value) => {
+        setCheckedAll(value);
+        setChecked((prevState) => {
+            const newState = { ...prevState };
+            for (const inputName in newState) {
+                newState[inputName] = value;
+            }
+            return newState;
+        });
     };
+
+    useEffect(() => {
+        let allChecked = true;
+        for (const inputName in checked) {
+            if (checked[inputName] === false) {
+                allChecked = false;
+            }
+        }
+        if (allChecked) {
+            setCheckedAll(true);
+        } else {
+            setCheckedAll(false);
+        }
+    }, [checked]);
 
     async function printTrigger() {
+        let ids = [];
+        for (const inputName in checked) {
+            if (checked[inputName] === true) {
+                ids.push(inputName)
+            }
+        }
         if(ids.length > 0){
             let res = await print_order({'ids': ids.join(',')})
-            console.log(res)
             if (res.result === true) {
                 (await import('print-js'))
                 printJS(res.data)
@@ -84,14 +104,13 @@ export default function InDonHang({result}) {
                                         return (
 
                                             <label className="" key={id}>
-                                                <div className={ids.includes((id).toString()) ? "item_single active" : "item_single"}>
+                                                <div className= "item_single">
                                                     <div className="print_item" style={{marginBottom:"10px"}}>
-                                                        <input className="Dashboard"
-                                                               name="clothing"
+                                                        <input
                                                                type="checkbox"
-                                                               value={id}
-                                                               checked={ids.includes(id)}
-                                                               onChange={handleSelect}
+                                                               name={id}
+                                                               checked={checked[id]}
+                                                               onChange={() => toggleCheck(id)}
                                                         />
                                                         <span className="item-dm">Mã vận đơn: {partner_code}</span>
                                                     </div>
@@ -121,11 +140,10 @@ export default function InDonHang({result}) {
 
                             <div className="provisional">
                                 <label>
-                                    <input className="Dashboard"
-                                           name="clothing"
+                                    <input
                                            type="checkbox"
-                                           checked={ids.length === orders.length}
-                                           onChange={handleSelectAll}
+                                           onChange={(event) => selectAll(event.target.checked)}
+                                           checked={checkedAll}
                                     />
                                     <div className="item-dm">
                                         <p className="title16">Chọn tất cả</p>
