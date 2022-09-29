@@ -27,7 +27,9 @@ export default function TaiKhoan() {
     }*/
 
     function logout(){
-        signOut();
+        signOut({
+            callbackUrl: `${window.location.origin}`
+        });
     }
     let btn_logout = ''
     if(status === 'authenticated'){
