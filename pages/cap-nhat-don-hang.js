@@ -15,6 +15,7 @@ import {
     update_order,
     wards
 } from "../lib/ajax_gomdon";
+import Swal from "sweetalert2";
 
 export default function CapNhatDonHang({order}) {
     const {data: session, status} = useSession()
@@ -260,9 +261,9 @@ export default function CapNhatDonHang({order}) {
             }
             let res = await update_order(detail.id, data)
             if (res.result === true) {
-                alert('Cập nhật đơn hàng thành công')
+                Swal.fire('Cập nhật đơn hàng thành công')
             } else {
-                alert(res.message)
+                Swal.fire(res.message)
             }
             setDisabled(false)
         }
@@ -332,9 +333,9 @@ export default function CapNhatDonHang({order}) {
             if (error === 0) {
                 let res = await update_address_order(detail.id, data)
                 if (res.result === true) {
-                    alert('Cập nhật thông tin địa chỉ thành công')
+                    Swal.fire('Cập nhật thông tin địa chỉ thành công')
                 } else {
-                    alert(res.message)
+                    Swal.fire(res.message)
                 }
             }
             setDisabled(false)

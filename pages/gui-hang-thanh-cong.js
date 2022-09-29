@@ -10,6 +10,7 @@ import {useSession} from "next-auth/react";
 import {useRouter} from "next/router";
 import Link from "next/link";
 import dynamic from 'next/dynamic'
+import Swal from "sweetalert2";
 
 /*const DynamicHeader = dynamic(() => import('print-js'), {
     ssr : false,
@@ -30,7 +31,7 @@ export default function GuiHangThanhCong() {
             (await import('print-js'))
             printJS(res.data)
         } else {
-            alert(res.message)
+            Swal.fire(res.message)
         }
 
     }

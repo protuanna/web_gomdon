@@ -42,8 +42,9 @@ function Loading() {
 /***/ }),
 
 /***/ 9247:
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
 
+__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ InDonHang),
@@ -63,6 +64,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(1664);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var _lib_api_gomdon__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(8893);
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(271);
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(7197);
+/* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(4563);
+var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_11__]);
+_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_11__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];
+
+
+
 
 
 
@@ -140,10 +151,10 @@ function InDonHang({ result  }) {
                 await Promise.resolve(/* import() */).then(__webpack_require__.t.bind(__webpack_require__, 525, 23));
                 printJS(res.data);
             } else {
-                alert(res.message);
+                sweetalert2__WEBPACK_IMPORTED_MODULE_9___default().fire(res.message);
             }
         } else {
-            alert("Vui l\xf2ng chọn h\xf3a đơn cần in");
+            sweetalert2__WEBPACK_IMPORTED_MODULE_9___default().fire("Vui l\xf2ng chọn h\xf3a đơn cần in");
         }
     }
     return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
@@ -158,6 +169,12 @@ function InDonHang({ result  }) {
                         children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
                             className: "head_title",
                             children: [
+                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
+                                    onClick: ()=>router.back(),
+                                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_10__.FontAwesomeIcon, {
+                                        icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_11__.faAngleLeft
+                                    })
+                                }),
                                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
                                     className: "title18",
                                     children: "In đơn h\xe0ng"
@@ -304,6 +321,15 @@ async function getServerSideProps(context) {
     };
 }
 
+__webpack_async_result__();
+} catch(e) { __webpack_async_result__(e); } });
+
+/***/ }),
+
+/***/ 7197:
+/***/ ((module) => {
+
+module.exports = require("@fortawesome/react-fontawesome");
 
 /***/ }),
 
@@ -528,6 +554,20 @@ module.exports = require("react");
 /***/ ((module) => {
 
 module.exports = require("react/jsx-runtime");
+
+/***/ }),
+
+/***/ 271:
+/***/ ((module) => {
+
+module.exports = require("sweetalert2");
+
+/***/ }),
+
+/***/ 4563:
+/***/ ((module) => {
+
+module.exports = import("@fortawesome/free-solid-svg-icons");;
 
 /***/ })
 

@@ -5,7 +5,7 @@ exports.id = 405;
 exports.ids = [405];
 exports.modules = {
 
-/***/ 2473:
+/***/ 9978:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 // ESM COMPAT FLAG
@@ -86,7 +86,11 @@ function HeaderSearch() {
 var footer = __webpack_require__(6151);
 // EXTERNAL MODULE: external "react"
 var external_react_ = __webpack_require__(6689);
+;// CONCATENATED MODULE: external "chart.js/auto"
+const auto_namespaceObject = require("chart.js/auto");
+var auto_default = /*#__PURE__*/__webpack_require__.n(auto_namespaceObject);
 ;// CONCATENATED MODULE: ./components/report.js
+
 
 
 function Report({ data  }) {
@@ -102,63 +106,108 @@ function Report({ data  }) {
             label: "Tạo mới",
             status: 1,
             value: dt[1] ?? 0,
-            percent: ((dt[1] ?? 0) * 100 / total).toFixed(2)
+            percent: ((dt[1] ?? 0) * 100 / total).toFixed(2),
+            color: "#228B22"
         },
         {
             label: "Hủy",
             status: 2,
             value: dt[2] ?? 0,
-            percent: ((dt[2] ?? 0) * 100 / total).toFixed(2)
+            percent: ((dt[2] ?? 0) * 100 / total).toFixed(2),
+            color: "#BEBEBE"
         },
         {
             label: "Đ\xe3 lấy h\xe0ng",
             status: 3,
             value: dt[3] ?? 0,
-            percent: ((dt[3] ?? 0) * 100 / total).toFixed(2)
+            percent: ((dt[3] ?? 0) * 100 / total).toFixed(2),
+            color: "#FF0000"
         },
         {
             label: "Đang vận chuyển",
             status: 4,
             value: dt[4] ?? 0,
-            percent: ((dt[4] ?? 0) * 100 / total).toFixed(2)
+            percent: ((dt[4] ?? 0) * 100 / total).toFixed(2),
+            color: "#4CAEE3"
         },
         {
             label: "Đang giao h\xe0ng",
             status: 5,
             value: dt[5] ?? 0,
-            percent: ((dt[5] ?? 0) * 100 / total).toFixed(2)
+            percent: ((dt[5] ?? 0) * 100 / total).toFixed(2),
+            color: "#FF8C00"
         },
         {
             label: "Đang chuyển ho\xe0n",
             status: 6,
             value: dt[6] ?? 0,
-            percent: ((dt[6] ?? 0) * 100 / total).toFixed(2)
+            percent: ((dt[6] ?? 0) * 100 / total).toFixed(2),
+            color: "#4169E1"
         },
         {
             label: "Đ\xe3 giao h\xe0ng",
             status: 7,
             value: dt[7] ?? 0,
-            percent: ((dt[7] ?? 0) * 100 / total).toFixed(2)
+            percent: ((dt[7] ?? 0) * 100 / total).toFixed(2),
+            color: "#20B2AA"
         },
         {
             label: "Đ\xe3 trả h\xe0ng",
             status: 8,
             value: dt[8] ?? 0,
-            percent: ((dt[8] ?? 0) * 100 / total).toFixed(2)
+            percent: ((dt[8] ?? 0) * 100 / total).toFixed(2),
+            color: "#9966FF"
         },
         {
             label: "Kiện vấn đề",
             status: 9,
             value: dt[9] ?? 0,
-            percent: ((dt[9] ?? 0) * 100 / total).toFixed(2)
+            percent: ((dt[9] ?? 0) * 100 / total).toFixed(2),
+            color: "#FF69B4"
         },
         {
             label: "Đơn lấy h\xe0ng thất bại",
             status: 10,
             value: dt[10] ?? 0,
-            percent: ((dt[10] ?? 0) * 100 / total).toFixed(2)
+            percent: ((dt[10] ?? 0) * 100 / total).toFixed(2),
+            color: "#607C8E"
         }, 
     ]);
+    const canvasEl = (0,external_react_.useRef)(null);
+    (0,external_react_.useEffect)(()=>{
+        const ctx = canvasEl.current.getContext("2d");
+        /*const gradient = ctx.createLinearGradient(0, 16, 0, 600);
+        gradient.addColorStop(0, colors.purple.half);
+        gradient.addColorStop(0.65, colors.purple.quarter);
+        gradient.addColorStop(1, colors.purple.zero);
+        */ let lbl = [];
+        let dt = [];
+        let col = [];
+        report.forEach(function(item, index) {
+            lbl.push(item.label);
+            dt.push(item.value);
+            col.push(item.color);
+        });
+        const data = {
+            labels: lbl,
+            datasets: [
+                {
+                    label: "Thống k\xea trạng th\xe1i đơn h\xe0ng",
+                    data: dt,
+                    backgroundColor: col,
+                    hoverOffset: 4
+                }
+            ]
+        };
+        const config = {
+            type: "pie",
+            data: data
+        };
+        const myLineChart = new (auto_default())(ctx, config);
+        return function cleanup() {
+            myLineChart.destroy();
+        };
+    });
     return /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
         className: "html_management_col",
         children: [
@@ -167,6 +216,19 @@ function Report({ data  }) {
                 children: /*#__PURE__*/ jsx_runtime_.jsx("h3", {
                     className: "title21",
                     children: "Người gửi theo d\xf5i quản l\xfd"
+                })
+            }),
+            /*#__PURE__*/ jsx_runtime_.jsx("div", {
+                style: {
+                    width: "60%",
+                    margin: "0 auto 30px"
+                },
+                children: /*#__PURE__*/ jsx_runtime_.jsx("canvas", {
+                    id: "myChart",
+                    ref: canvasEl,
+                    height: "40vh",
+                    width: "80vw",
+                    children: "chart"
                 })
             }),
             /*#__PURE__*/ jsx_runtime_.jsx("div", {
@@ -236,7 +298,11 @@ var api_gomdon = __webpack_require__(8893);
 var router_ = __webpack_require__(1853);
 // EXTERNAL MODULE: ./lib/ajax_gomdon.js
 var ajax_gomdon = __webpack_require__(3314);
+// EXTERNAL MODULE: external "sweetalert2"
+var external_sweetalert2_ = __webpack_require__(271);
+var external_sweetalert2_default = /*#__PURE__*/__webpack_require__.n(external_sweetalert2_);
 ;// CONCATENATED MODULE: ./pages/index.js
+
 
 
 
@@ -295,7 +361,7 @@ function Home({ banners , report  }) {
                 }
             });
         } else {
-            alert("Kh\xf4ng t\xecm thấy th\xf4ng tin đơn h\xe0ng");
+            external_sweetalert2_default().fire("Kh\xf4ng t\xecm thấy th\xf4ng tin đơn h\xe0ng");
         }
     }
     let data_banners = banners.data;
@@ -706,6 +772,13 @@ module.exports = require("react");
 
 module.exports = require("react/jsx-runtime");
 
+/***/ }),
+
+/***/ 271:
+/***/ ((module) => {
+
+module.exports = require("sweetalert2");
+
 /***/ })
 
 };
@@ -715,7 +788,7 @@ module.exports = require("react/jsx-runtime");
 var __webpack_require__ = require("../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [377,952,964,664,675,595,314,893], () => (__webpack_exec__(2473)));
+var __webpack_exports__ = __webpack_require__.X(0, [377,952,964,664,675,595,314,893], () => (__webpack_exec__(9978)));
 module.exports = __webpack_exports__;
 
 })();

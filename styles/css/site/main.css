@@ -1916,6 +1916,28 @@ p {
   opacity: 0.5;
 }
 
+.swal2-styled.swal2-confirm {
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: initial !important;
+  background-color: rgba(43, 21, 21, 0) !important;
+  background-image: linear-gradient(rgba(33, 150, 243, 0.3), rgba(33, 150, 243, 0.3)) !important;
+  color: #2196f3 !important;
+  font-size: 1em !important;
+}
+
+.swal2-title{
+  font-size: 1em !important;
+}
+
+.swal2-styled {
+  margin: 0.3125em !important;
+  padding: 0.625em 1.1em !important;
+  transition: box-shadow 0.1s !important;
+  box-shadow: 0 0 0 3px transparent !important;
+  font-weight: 500 !important;
+}
+
 @media (max-width: 1399px) {
   .title48 {
     font-size: 46px;

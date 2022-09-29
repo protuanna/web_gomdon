@@ -6,6 +6,8 @@ import {faAddressCard, faAngleLeft, faThumbTack, faPlus} from '@fortawesome/free
 import {address, createContact, createOrderDelivery, districts, feeShop, provinces, wards} from '../lib/ajax_gomdon'
 import {useSession} from "next-auth/react";
 import {useRouter} from "next/router";
+import Swal from "sweetalert2";
+import Link from "next/link";
 
 
 export default function GuiHang() {
@@ -142,10 +144,10 @@ export default function GuiHang() {
         case 1:
             title_two = 'Người nhận'
             break
-        case 2:
+        case 3:
             title_two = 'Thông tin người mua'
             break
-        case 3:
+        case 2:
             title_two = 'Thông tin shop'
             break
     }
@@ -589,7 +591,7 @@ export default function GuiHang() {
                 setErrorProductName('Vui lòng nhập tên sản phẩm')
             }
             if (!policy) {
-                alert('Vui lòng chấp nhận điều khoản của chúng tôi')
+                Swal.fire('Vui lòng chấp nhận điều khoản của chúng tôi')
                 error = 1;
             }
             if (error === 0) {
@@ -627,7 +629,7 @@ export default function GuiHang() {
                         query:{id:or.id}
                     })
                 }else {
-                    alert(res.message)
+                    Swal.fire(res.message)
                     setDisabled(false)
                 }
             }else {
@@ -1070,7 +1072,12 @@ export default function GuiHang() {
                                 <span></span>
                             </div>
                             <div className="type_business">
-                                <p className="title16 tingle">Loại đơn theo nghiệp vụ</p>
+                                <div style={{display:"flex", justifyContent:"space-between"}}>
+                                    <span className="title16 tingle">Loại đơn theo nghiệp vụ</span>
+                                    <Link href="/chi-tiet-phi-van-chuyen">
+                                        <span className="title16 tingle" style={{cursor:'pointer',color:'red'}}>Chi tiết phí vận chuyển</span>
+                                    </Link>
+                                </div>
                                 <ul className="extra">
                                     <li>
                                         <label>

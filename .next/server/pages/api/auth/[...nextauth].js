@@ -186,6 +186,28 @@ async function order_detail(req, res, id) {
     }
     return null;
 }
+async function detail_fee(req, res) {
+    let session = await unstable_getServerSession(req, res, authOptions);
+    if (session) {
+        let token = session.accessToken;
+        let result = await Axios({
+            method: "get",
+            url: process.env.GOMDON_API_URI + "/api/v2/user_manual?type=delivery",
+            headers: {
+                Authorization: `Bearer ` + token
+            }
+        }).then(function(response) {
+            return response.data;
+        }).catch(function(error) {
+            return error.response.data ?? {
+                result: false,
+                message: "Lấy dữ liệu k th\xe0nh c\xf4ng"
+            };
+        });
+        return result;
+    }
+    return null;
+}
 
 ;// CONCATENATED MODULE: ./pages/api/auth/[...nextauth].js
 

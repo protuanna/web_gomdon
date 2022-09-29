@@ -30,8 +30,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(4563);
 /* harmony import */ var _lib_api_gomdon__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(8893);
 /* harmony import */ var _lib_ajax_gomdon__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(3314);
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(271);
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_10__);
 var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_7__]);
 _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_7__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];
+
 
 
 
@@ -103,7 +106,7 @@ function ChiTietDonHang({ order  }) {
             await Promise.resolve(/* import() */).then(__webpack_require__.t.bind(__webpack_require__, 525, 23));
             printJS(res.data);
         } else {
-            alert(res.message);
+            sweetalert2__WEBPACK_IMPORTED_MODULE_10___default().fire(res.message);
         }
     }
     function copy(text) {
@@ -114,7 +117,7 @@ function ChiTietDonHang({ order  }) {
         input.select();
         document.execCommand("Copy");
         input.remove();
-        alert("Copied : " + text);
+        sweetalert2__WEBPACK_IMPORTED_MODULE_10___default().fire("Đ\xe3 copy : " + text);
     }
     let btn_cancel = "";
     let btn_edit = /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {});
@@ -1008,6 +1011,13 @@ module.exports = require("react");
 /***/ ((module) => {
 
 module.exports = require("react/jsx-runtime");
+
+/***/ }),
+
+/***/ 271:
+/***/ ((module) => {
+
+module.exports = require("sweetalert2");
 
 /***/ }),
 

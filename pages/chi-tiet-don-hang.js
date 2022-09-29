@@ -7,6 +7,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faAddressCard, faAngleLeft, faEdit} from "@fortawesome/free-solid-svg-icons";
 import {order_detail} from "../lib/api_gomdon";
 import {cancel_order, print_order} from "../lib/ajax_gomdon";
+import Swal from "sweetalert2";
 
 export default function ChiTietDonHang({order}) {
     const {data: session, status} = useSession()
@@ -72,7 +73,7 @@ export default function ChiTietDonHang({order}) {
             (await import('print-js'))
             printJS(res.data)
         } else {
-            alert(res.message)
+            Swal.fire(res.message)
         }
 
     }
@@ -85,7 +86,7 @@ export default function ChiTietDonHang({order}) {
         input.select();
         document.execCommand('Copy');
         input.remove();
-        alert("Copied : " + text);
+        Swal.fire("Đã copy : " + text);
     }
 
     let btn_cancel = ''

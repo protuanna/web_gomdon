@@ -9,6 +9,9 @@ import {useSession} from "next-auth/react";
 import {useRouter} from "next/router";
 import Link from "next/link";
 import {api_orders} from "../lib/api_gomdon";
+import Swal from "sweetalert2";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faAngleLeft} from "@fortawesome/free-solid-svg-icons";
 
 export default function InDonHang({result}) {
     const {data: session, status} = useSession()
@@ -74,10 +77,10 @@ export default function InDonHang({result}) {
                 (await import('print-js'))
                 printJS(res.data)
             } else {
-                alert(res.message)
+                Swal.fire(res.message)
             }
         }else {
-            alert('Vui lòng chọn hóa đơn cần in')
+            Swal.fire('Vui lòng chọn hóa đơn cần in')
         }
 
 
@@ -91,6 +94,9 @@ export default function InDonHang({result}) {
                 <div className="contents">
                     <div className="head_col">
                         <div className="head_title">
+                            <a onClick={() => router.back()}>
+                                <FontAwesomeIcon icon={faAngleLeft} />
+                            </a>
                             <h3 className="title18">In đơn hàng</h3>
                             <span></span>
                         </div>

@@ -9,6 +9,7 @@ import Link from 'next/link'
 import { banners, report } from '../lib/api_gomdon'
 import {useRouter} from "next/router"
 import {detailOrdersDelivery} from '../lib/ajax_gomdon'
+import Swal from 'sweetalert2'
 
 export default function Home({ banners , report}) {
 
@@ -50,7 +51,7 @@ export default function Home({ banners , report}) {
                 query:{id:or.id}
             })
         }else {
-            alert('Không tìm thấy thông tin đơn hàng')
+            Swal.fire('Không tìm thấy thông tin đơn hàng')
         }
     }
 
