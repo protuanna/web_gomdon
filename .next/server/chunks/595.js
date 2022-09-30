@@ -159,24 +159,17 @@ function Footer() {
 /***/ }),
 
 /***/ 5007:
-/***/ ((module, exports, __webpack_require__) => {
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-const _interopRequireWildcard = (__webpack_require__(1598)/* ["default"] */ .Z);
-const _https = /*#__PURE__*/ _interopRequireWildcard(__webpack_require__(5687));
 let axios = __webpack_require__(2167);
+//import * as https from "https";
 const Axios = axios.create({
     //baseURL: window.location.origin,
     headers: {
         "X-Requested-With": "XMLHttpRequest",
         "Content-Type": "application/json"
-    },
-    httpsAgent: new _https.Agent({
-        rejectUnauthorized: false
-    })
+    }
 });
 Axios.interceptors.request.use(function(config) {
     return config;

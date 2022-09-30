@@ -194,7 +194,7 @@ export async function orders(token, type, search){
         let token = session.accessToken;
         let result = await axios_default()({
             method: "get",
-            url: "http://admin.gomdon.com.vn" + "/api/v2/order",
+            url: "https://admin.gomdon.com.vn" + "/api/v2/order",
             params: data,
             headers: {
                 Authorization: `Bearer ` + token

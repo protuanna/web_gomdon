@@ -33,7 +33,7 @@ async function address(type, search, page) {
         let token = session.accessToken;
         let result = await _axios__WEBPACK_IMPORTED_MODULE_0___default()({
             method: "get",
-            url: "http://admin.gomdon.com.vn" + "/api/v2/address",
+            url: "https://admin.gomdon.com.vn" + "/api/v2/address",
             params: {
                 type: type,
                 keyword: search,
@@ -64,7 +64,7 @@ async function provinces() {
         let token = session.accessToken;
         let result = await _axios__WEBPACK_IMPORTED_MODULE_0___default()({
             method: "get",
-            url: "http://admin.gomdon.com.vn" + "/api/v2/provinces",
+            url: "https://admin.gomdon.com.vn" + "/api/v2/provinces",
             /*params: { type: type, keyword:search, page:page },*/ headers: {
                 Authorization: `Bearer ` + token
             }
@@ -89,7 +89,7 @@ async function districts(province_id) {
         let token = session.accessToken;
         let result = await _axios__WEBPACK_IMPORTED_MODULE_0___default()({
             method: "get",
-            url: "http://admin.gomdon.com.vn" + "/api/v2/districts-by-province/" + province_id,
+            url: "https://admin.gomdon.com.vn" + "/api/v2/districts-by-province/" + province_id,
             /*params: { type: type, keyword:search, page:page },*/ headers: {
                 Authorization: `Bearer ` + token
             }
@@ -114,7 +114,7 @@ async function wards(district_id) {
         let token = session.accessToken;
         let result = await _axios__WEBPACK_IMPORTED_MODULE_0___default()({
             method: "get",
-            url: "http://admin.gomdon.com.vn" + "/api/v2/wards-by-district/" + district_id,
+            url: "https://admin.gomdon.com.vn" + "/api/v2/wards-by-district/" + district_id,
             /*params: { type: type, keyword:search, page:page },*/ headers: {
                 Authorization: `Bearer ` + token
             }
@@ -139,7 +139,7 @@ async function createContact(data) {
         let token = session.accessToken;
         let result = await _axios__WEBPACK_IMPORTED_MODULE_0___default()({
             method: "post",
-            url: "http://admin.gomdon.com.vn" + "/api/v2/address/create",
+            url: "https://admin.gomdon.com.vn" + "/api/v2/address/create",
             /*params: { type: type, keyword:search, page:page },*/ data: data,
             headers: {
                 Authorization: `Bearer ` + token
@@ -167,7 +167,7 @@ async function feeShop(data) {
         let token = session.accessToken;
         let result = await _axios__WEBPACK_IMPORTED_MODULE_0___default()({
             method: "post",
-            url: "http://admin.gomdon.com.vn" + "/api/v2/order/shop-fee",
+            url: "https://admin.gomdon.com.vn" + "/api/v2/order/shop-fee",
             /*params: { type: type, keyword:search, page:page },*/ data: data,
             headers: {
                 Authorization: `Bearer ` + token
@@ -193,7 +193,7 @@ async function createOrderDelivery(data) {
         let token = session.accessToken;
         let result = await _axios__WEBPACK_IMPORTED_MODULE_0___default()({
             method: "post",
-            url: "http://admin.gomdon.com.vn" + "/api/v2/order/create",
+            url: "https://admin.gomdon.com.vn" + "/api/v2/order/create",
             /*params: { type: type, keyword:search, page:page },*/ data: data,
             headers: {
                 Authorization: `Bearer ` + token
@@ -219,7 +219,7 @@ async function ordersDelivery(data) {
         let token = session.accessToken;
         let result = await _axios__WEBPACK_IMPORTED_MODULE_0___default()({
             method: "get",
-            url: "http://admin.gomdon.com.vn" + "/api/v2/order",
+            url: "https://admin.gomdon.com.vn" + "/api/v2/order",
             /*params: { type: type, keyword:search, page:page },*/ params: data,
             headers: {
                 Authorization: `Bearer ` + token
@@ -245,7 +245,7 @@ async function cancel_order(id) {
         let token = session.accessToken;
         let result = await _axios__WEBPACK_IMPORTED_MODULE_0___default()({
             method: "post",
-            url: "http://admin.gomdon.com.vn" + "/api/v2/order/cancel/" + id,
+            url: "https://admin.gomdon.com.vn" + "/api/v2/order/cancel/" + id,
             /*params: { type: type, keyword:search, page:page },*/ headers: {
                 Authorization: `Bearer ` + token
             }
@@ -270,7 +270,7 @@ async function print_order(data) {
         let token = session.accessToken;
         let result = await _axios__WEBPACK_IMPORTED_MODULE_0___default()({
             method: "post",
-            url: "http://admin.gomdon.com.vn" + "/api/v2/order/print",
+            url: "https://admin.gomdon.com.vn" + "/api/v2/order/print",
             /*params: { type: type, keyword:search, page:page },*/ data: data,
             headers: {
                 Authorization: `Bearer ` + token
@@ -296,7 +296,7 @@ async function update_address_order(id, data) {
         let token = session.accessToken;
         let result = await _axios__WEBPACK_IMPORTED_MODULE_0___default()({
             method: "post",
-            url: "http://admin.gomdon.com.vn" + "/api/v2/order/update-address/" + id,
+            url: "https://admin.gomdon.com.vn" + "/api/v2/order/update-address/" + id,
             data: data,
             headers: {
                 Authorization: `Bearer ` + token
@@ -322,7 +322,7 @@ async function update_order(id, data) {
         let token = session.accessToken;
         let result = await _axios__WEBPACK_IMPORTED_MODULE_0___default()({
             method: "post",
-            url: "http://admin.gomdon.com.vn" + "/api/v2/order/update/" + id,
+            url: "https://admin.gomdon.com.vn" + "/api/v2/order/update/" + id,
             data: data,
             headers: {
                 Authorization: `Bearer ` + token
@@ -348,7 +348,7 @@ async function detailOrdersDelivery(id) {
         let token = session.accessToken;
         let result = await _axios__WEBPACK_IMPORTED_MODULE_0___default()({
             method: "get",
-            url: "http://admin.gomdon.com.vn" + "/api/v2/order/" + id,
+            url: "https://admin.gomdon.com.vn" + "/api/v2/order/" + id,
             /*params: { type: type, keyword:search, page:page },*/ /*params:data,*/ headers: {
                 Authorization: `Bearer ` + token
             }

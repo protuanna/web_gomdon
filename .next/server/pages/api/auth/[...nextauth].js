@@ -12,32 +12,18 @@ module.exports = require("axios");
 
 /***/ }),
 
-/***/ 5687:
-/***/ ((module) => {
-
-module.exports = require("https");
-
-/***/ }),
-
 /***/ 201:
-/***/ ((module, exports, __webpack_require__) => {
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 
-Object.defineProperty(exports, "__esModule", ({
-    value: true
-}));
-const _interopRequireWildcard = (__webpack_require__(164)/* ["default"] */ .Z);
-const _https = /*#__PURE__*/ _interopRequireWildcard(__webpack_require__(5687));
 let axios = __webpack_require__(2167);
+//import * as https from "https";
 const Axios = axios.create({
     //baseURL: window.location.origin,
     headers: {
         "X-Requested-With": "XMLHttpRequest",
         "Content-Type": "application/json"
-    },
-    httpsAgent: new _https.Agent({
-        rejectUnauthorized: false
-    })
+    }
 });
 Axios.interceptors.request.use(function(config) {
     return config;
@@ -164,7 +150,7 @@ export async function orders(token, type, search){
         let token = session.accessToken;
         let result = await Axios({
             method: "get",
-            url: "http://admin.gomdon.com.vn" + "/api/v2/order",
+            url: "https://admin.gomdon.com.vn" + "/api/v2/order",
             params: data,
             headers: {
                 Authorization: `Bearer ` + token
@@ -310,7 +296,7 @@ const _nextauth_authOptions = {
 var __webpack_require__ = require("../../../webpack-api-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [164], () => (__webpack_exec__(4737)));
+var __webpack_exports__ = (__webpack_exec__(4737));
 module.exports = __webpack_exports__;
 
 })();

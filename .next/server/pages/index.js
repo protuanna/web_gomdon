@@ -779,13 +779,6 @@ module.exports = require("react/jsx-runtime");
 
 module.exports = require("sweetalert2");
 
-/***/ }),
-
-/***/ 5687:
-/***/ ((module) => {
-
-module.exports = require("https");
-
 /***/ })
 
 };
