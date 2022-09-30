@@ -6,13 +6,13 @@
   "/gui-hang": "pages/gui-hang.html",
   "/quan-ly-don-hang": "pages/quan-ly-don-hang.html",
   "/tai-khoan": "pages/tai-khoan.html",
-  "/_document": "pages/_document.js",
-  "/in-don-hang": "pages/in-don-hang.js",
+  "/chi-tiet-phi-van-chuyen": "pages/chi-tiet-phi-van-chuyen.js",
   "/": "pages/index.js",
   "/login": "pages/login.js",
   "/tra-cuu-don-hang": "pages/tra-cuu-don-hang.js",
-  "/chi-tiet-phi-van-chuyen": "pages/chi-tiet-phi-van-chuyen.js",
-  "/chi-tiet-don-hang": "pages/chi-tiet-don-hang.js",
+  "/_document": "pages/_document.js",
   "/cap-nhat-don-hang": "pages/cap-nhat-don-hang.js",
+  "/in-don-hang": "pages/in-don-hang.js",
+  "/chi-tiet-don-hang": "pages/chi-tiet-don-hang.js",
   "/404": "pages/404.html"
 }

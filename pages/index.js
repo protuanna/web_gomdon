@@ -55,7 +55,7 @@ export default function Home({ banners , report}) {
         }
     }
 
-    let data_banners = banners.data;
+    let data_banners = (banners.result === true ) ? banners.data : [];
     return (
         <div id="main">
             <div className="container">

@@ -12,17 +12,32 @@ module.exports = require("axios");
 
 /***/ }),
 
+/***/ 5687:
+/***/ ((module) => {
+
+module.exports = require("https");
+
+/***/ }),
+
 /***/ 201:
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+/***/ ((module, exports, __webpack_require__) => {
 
 
+Object.defineProperty(exports, "__esModule", ({
+    value: true
+}));
+const _interopRequireWildcard = (__webpack_require__(164)/* ["default"] */ .Z);
+const _https = /*#__PURE__*/ _interopRequireWildcard(__webpack_require__(5687));
 let axios = __webpack_require__(2167);
 const Axios = axios.create({
     //baseURL: window.location.origin,
     headers: {
         "X-Requested-With": "XMLHttpRequest",
         "Content-Type": "application/json"
-    }
+    },
+    httpsAgent: new _https.Agent({
+        rejectUnauthorized: false
+    })
 });
 Axios.interceptors.request.use(function(config) {
     return config;
@@ -72,7 +87,8 @@ async function login(phone, password) {
     }).then(function(response) {
         return response.data;
     }).catch(function(error) {
-        return error.response.data ?? {
+        console.log(error);
+        return {
             result: false,
             message: "Đăng nhập kh\xf4ng th\xe0nh c\xf4ng"
         };
@@ -80,13 +96,14 @@ async function login(phone, password) {
     return res;
 }
 async function banners() {
+    console.log(process.env.GOMDON_API_URI);
     let res = await Axios({
         method: "get",
         url: process.env.GOMDON_API_URI + "/api/v2/banner"
     }).then(function(response) {
         return response.data;
     }).catch(function(error) {
-        return error.response.data ?? {
+        return {
             result: false,
             message: "Lấy dữ liệu k th\xe0nh c\xf4ng"
         };
@@ -147,7 +164,7 @@ export async function orders(token, type, search){
         let token = session.accessToken;
         let result = await Axios({
             method: "get",
-            url: "https://admin.gomdon.com.vn" + "/api/v2/order",
+            url: "http://admin.gomdon.com.vn" + "/api/v2/order",
             params: data,
             headers: {
                 Authorization: `Bearer ` + token
@@ -293,7 +310,7 @@ const _nextauth_authOptions = {
 var __webpack_require__ = require("../../../webpack-api-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = (__webpack_exec__(4737));
+var __webpack_exports__ = __webpack_require__.X(0, [164], () => (__webpack_exec__(4737)));
 module.exports = __webpack_exports__;
 
 })();

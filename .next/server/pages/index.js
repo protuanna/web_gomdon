@@ -364,7 +364,7 @@ function Home({ banners , report  }) {
             external_sweetalert2_default().fire("Kh\xf4ng t\xecm thấy th\xf4ng tin đơn h\xe0ng");
         }
     }
-    let data_banners = banners.data;
+    let data_banners = banners.result === true ? banners.data : [];
     return /*#__PURE__*/ jsx_runtime_.jsx("div", {
         id: "main",
         children: /*#__PURE__*/ jsx_runtime_.jsx("div", {
@@ -778,6 +778,13 @@ module.exports = require("react/jsx-runtime");
 /***/ ((module) => {
 
 module.exports = require("sweetalert2");
+
+/***/ }),
+
+/***/ 5687:
+/***/ ((module) => {
+
+module.exports = require("https");
 
 /***/ })
 

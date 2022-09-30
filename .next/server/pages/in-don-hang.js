@@ -569,6 +569,13 @@ module.exports = require("sweetalert2");
 
 module.exports = import("@fortawesome/free-solid-svg-icons");;
 
+/***/ }),
+
+/***/ 5687:
+/***/ ((module) => {
+
+module.exports = require("https");
+
 /***/ })
 
 };

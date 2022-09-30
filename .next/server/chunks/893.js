@@ -117,7 +117,8 @@ async function login(phone, password) {
     }).then(function(response) {
         return response.data;
     }).catch(function(error) {
-        return error.response.data ?? {
+        console.log(error);
+        return {
             result: false,
             message: "Đăng nhập kh\xf4ng th\xe0nh c\xf4ng"
         };
@@ -125,13 +126,14 @@ async function login(phone, password) {
     return res;
 }
 async function banners() {
+    console.log(process.env.GOMDON_API_URI);
     let res = await axios_default()({
         method: "get",
         url: process.env.GOMDON_API_URI + "/api/v2/banner"
     }).then(function(response) {
         return response.data;
     }).catch(function(error) {
-        return error.response.data ?? {
+        return {
             result: false,
             message: "Lấy dữ liệu k th\xe0nh c\xf4ng"
         };
@@ -192,7 +194,7 @@ export async function orders(token, type, search){
         let token = session.accessToken;
         let result = await axios_default()({
             method: "get",
-            url: "https://admin.gomdon.com.vn" + "/api/v2/order",
+            url: "http://admin.gomdon.com.vn" + "/api/v2/order",
             params: data,
             headers: {
                 Authorization: `Bearer ` + token
