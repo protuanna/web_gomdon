@@ -1938,6 +1938,62 @@ p {
   font-weight: 500 !important;
 }
 
+.au_search{
+  -webkit-box-shadow: 0px 3px 8px 0px rgba(163,161,163,1);
+  -moz-box-shadow: 0px 3px 8px 0px rgba(163,161,163,1);
+  box-shadow: 0px 3px 8px 0px rgba(163,161,163,1);
+  position: absolute;
+  top: 57px;
+  height: 250px;
+  overflow-y: scroll;
+  z-index: 2;
+  background: #fff;
+  margin-right: 70px;
+  left: 30px;
+  right: -40px;
+  display: none;
+  /*display: none;*/
+  opacity: 0;
+  /*transition: opacity 0.5s linear;*/
+}
+.au_search.open{
+  display: block;
+  opacity: 1;
+  transition: opacity 0.5s linear;
+  /*display: block;*/
+}
+
+.btn-select-cal{
+  background-color: rgb(61, 145, 255);
+  height: 43px;
+  text-align: center;
+  color: #FFFFFF;
+  font-weight: bold;
+  margin: 0 10px 10px 10px;
+  line-height: 43px;
+  cursor: pointer;
+}
+.item-address{
+  height: 42px;
+  line-height: 42px;
+  border-bottom: 1px solid gainsboro;
+}
+.cal-box{
+  position: absolute;
+  top: 49px;
+  background: #FFFFFF;
+  /* width: 214px; */
+  z-index: 992;
+  right: 0;
+  /*border: 1px solid #bdbdbd;*/
+  -webkit-box-shadow: 0px 3px 8px 0px rgba(163,161,163,1);
+  -moz-box-shadow: 0px 3px 8px 0px rgba(163,161,163,1);
+  box-shadow: 0px 3px 8px 0px rgba(163,161,163,1);
+  display: none;
+}
+.cal-box.open{
+  display: block;
+}
 @media (max-width: 1399px) {
   .title48 {
     font-size: 46px;

@@ -91,7 +91,7 @@ export default function ChiTietDonHang({order}) {
 
     let btn_cancel = ''
     let btn_edit = (<span></span>)
-    if(detail.status === 1){
+    if(detail.status === 1 || detail.status === 10){
         btn_cancel = (
             <div className="Group_cancel">
                 <div className="btn_print">

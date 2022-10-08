@@ -14,6 +14,8 @@ import '../styles/css/site/gen/page_detail.css'
 import "react-responsive-carousel/lib/styles/carousel.min.css"
 import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
+import 'react-date-range/dist/styles.css'; // main style file
+import 'react-date-range/dist/theme/default.css'; // theme css file
 config.autoAddCss = false
 
 
@@ -33,6 +35,15 @@ export default function App({ Component,  pageProps: { session, ...pageProps } }
                 }}
             >
                 <Head>
+                    <meta name="keywords" content=""/>
+                    <meta name="description"
+                              content="Gom Đơn Express giúp bạn  tối đa hóa doanh thu nếu bạn muốn một đối tác vận chuyển đáng tin cậy hỗ trợ xuất sắc ở mọi nơi bạn cần."/>
+                    <meta property="og:url" content="https://www.gomdon.com.vn"/>
+                    <meta property="og:title" content="GOMDON Express"/>
+                    <meta property="og:type" content="website"/>
+                    <meta property="og:image" content="/images/logo-share.png"/>
+                        <meta property="og:description"
+                              content="Gom Đơn Express giúp bạn  tối đa hóa doanh thu nếu bạn muốn một đối tác vận chuyển đáng tin cậy hỗ trợ xuất sắc ở mọi nơi bạn cần."/>
                     <link rel="shortcut icon" href="/favicon.png" />
                 </Head>
                 <Layout>

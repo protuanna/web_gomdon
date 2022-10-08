@@ -19,6 +19,7 @@ exports.modules = {
 /* harmony export */   "aU": () => (/* binding */ feeShop),
 /* harmony export */   "h7": () => (/* binding */ print_order),
 /* harmony export */   "hG": () => (/* binding */ ordersDelivery),
+/* harmony export */   "ms": () => (/* binding */ search_address),
 /* harmony export */   "rE": () => (/* binding */ createContact)
 /* harmony export */ });
 /* harmony import */ var _axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5007);
@@ -160,10 +161,8 @@ async function createContact(data) {
     };
 }
 async function feeShop(data) {
-    console.log(session, "4444");
     const session = await (0,next_auth_react__WEBPACK_IMPORTED_MODULE_1__.getSession)();
     if (session !== null) {
-        console.log(session, "5555");
         let token = session.accessToken;
         let result = await _axios__WEBPACK_IMPORTED_MODULE_0___default()({
             method: "post",
@@ -366,6 +365,21 @@ async function detailOrdersDelivery(id) {
         result: false,
         message: "Vui l\xf2ng đăng nhập"
     };
+}
+async function search_address(data) {
+    let result = await _axios__WEBPACK_IMPORTED_MODULE_0___default()({
+        method: "get",
+        url: "https://admin.gomdon.com.vn" + "/api/v2/address/search",
+        params: data
+    }).then(function(response) {
+        return response.data;
+    }).catch(function(error) {
+        return error.response.data ?? {
+            result: false,
+            message: "Lấy dữ liệu k th\xe0nh c\xf4ng"
+        };
+    });
+    return result;
 }
 
 

@@ -39,7 +39,13 @@ export default function Home({ banners , report}) {
 
     function searchOrder(e){
         e.preventDefault()
-        getOrder()
+        router.push({
+            pathname:'quan-ly-don-hang',
+            query:{
+                search:search
+            }
+        })
+        //getOrder()
     }
 
     async function getOrder(){

@@ -82,6 +82,8 @@ _fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_4__ = (__webpack_asyn
 
 
 
+ // main style file
+ // theme css file
 _fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_4__.config.autoAddCss = false;
 
 
@@ -93,11 +95,41 @@ function App({ Component , pageProps: { session , ...pageProps }  }) {
                 state: {}
             },
             children: [
-                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_head__WEBPACK_IMPORTED_MODULE_2___default()), {
-                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("link", {
-                        rel: "shortcut icon",
-                        href: "/favicon.png"
-                    })
+                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)((next_head__WEBPACK_IMPORTED_MODULE_2___default()), {
+                    children: [
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("meta", {
+                            name: "keywords",
+                            content: ""
+                        }),
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("meta", {
+                            name: "description",
+                            content: "Gom Đơn Express gi\xfap bạn tối đa h\xf3a doanh thu nếu bạn muốn một đối t\xe1c vận chuyển đ\xe1ng tin cậy hỗ trợ xuất sắc ở mọi nơi bạn cần."
+                        }),
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("meta", {
+                            property: "og:url",
+                            content: "https://www.gomdon.com.vn"
+                        }),
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("meta", {
+                            property: "og:title",
+                            content: "GOMDON Express"
+                        }),
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("meta", {
+                            property: "og:type",
+                            content: "website"
+                        }),
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("meta", {
+                            property: "og:image",
+                            content: "/images/logo-share.png"
+                        }),
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("meta", {
+                            property: "og:description",
+                            content: "Gom Đơn Express gi\xfap bạn tối đa h\xf3a doanh thu nếu bạn muốn một đối t\xe1c vận chuyển đ\xe1ng tin cậy hỗ trợ xuất sắc ở mọi nơi bạn cần."
+                        }),
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("link", {
+                            rel: "shortcut icon",
+                            href: "/favicon.png"
+                        })
+                    ]
                 }),
                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_layout__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z, {
                     children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(Component, {

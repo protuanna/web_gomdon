@@ -1,9 +1,18 @@
 import Footer from "../components/footer"
 import Loading from "../components/loading"
-import {useState, useEffect} from "react"
+import {useState, useEffect, useRef} from "react"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
-import {faAddressCard, faAngleLeft, faThumbTack, faPlus} from '@fortawesome/free-solid-svg-icons'
-import {address, createContact, createOrderDelivery, districts, feeShop, provinces, wards} from '../lib/ajax_gomdon'
+import {faAddressCard, faAngleLeft, faThumbTack, faPlus, faMapPin} from '@fortawesome/free-solid-svg-icons'
+import {
+    address,
+    createContact,
+    createOrderDelivery,
+    districts,
+    feeShop,
+    provinces,
+    search_address,
+    wards
+} from '../lib/ajax_gomdon'
 import {useSession} from "next-auth/react";
 import {useRouter} from "next/router";
 import Swal from "sweetalert2";
@@ -28,6 +37,11 @@ export default function GuiHang() {
     const [action, setAction] = useState('');
     const [open, setOpen] = useState('');
     const [policy, setPolicy] = useState(0);
+
+    const dropdown = useRef(null);
+    const [openDrop, setOpenDrop] = useState(false)
+    const [searchAddress, setSearchAddress] = useState('')
+    const [htmlAddress, setHtmlAddress] = useState('')
 
 
     const [serviceId, setServiceId] = useState(12491)
@@ -126,6 +140,23 @@ export default function GuiHang() {
         setErrorProductName('')
     }, [productName])
 
+    useEffect(() => {
+        // only add the event listener when the dropdown is opened
+        if (!openDrop) return;
+        function handleClick(event) {
+            if (dropdown.current && !dropdown.current.contains(event.target)) {
+                setOpenDrop(false);
+            }
+        }
+        window.addEventListener("click", handleClick);
+        // clean up
+        return () => window.removeEventListener("click", handleClick);
+    }, [openDrop]);
+
+    useEffect(() => {
+        loadAddress()
+    }, [searchAddress])
+
     let title = ''
     switch (type) {
         case 1:
@@ -165,6 +196,7 @@ export default function GuiHang() {
     }, [action])
 
     useEffect(() => {
+        console.log(open)
         if (open === 'openSelectProvinceSend' || open === 'openSelectProvinceContactSend' || open === 'openSelectProvinceReceive') {
             openProvinceSend()
         }
@@ -256,6 +288,34 @@ export default function GuiHang() {
         setIsOpen(0)
     }
 
+    function selectProvince(item) {
+        console.log(item)
+        let name = item.name
+        let aryAdd = name.split(",");
+        if (open === 'openSelectProvinceSend') {
+            setSourceProvince(aryAdd[2].trim())
+            setSourceDistrict(aryAdd[1].trim())
+            setSourceWard(aryAdd[0].trim())
+            setIsOpen(0)
+        }
+        if (open === 'openSelectProvinceContactSend') {
+            setContactProvince(aryAdd[2].trim())
+            setContactProvinceId(item.province_id)
+            setContactDistrict(aryAdd[1].trim())
+            setContactDistrictId(item.district_id)
+            setContactWard(aryAdd[0].trim())
+            setContactWardId(item.ward_id)
+            setIsOpen(2)
+        }
+        if (open === 'openSelectProvinceReceive') {
+            setDestProvince(aryAdd[2].trim())
+            setDestDistrict(aryAdd[1].trim())
+            setDestWard(aryAdd[0].trim())
+            setIsOpen(0)
+        }
+
+    }
+
     function openNewContactSend() {
         setIsOpen(2)
         setContactName('')
@@ -311,6 +371,7 @@ export default function GuiHang() {
         setIsOpen(3)
         setHtmlProvinceSend([])
         setActiveProvinceSend(1)
+        setOpenDrop(false)
         let data = await provinces()
         if (data.result === true) {
             let provinces = data.data
@@ -428,6 +489,41 @@ export default function GuiHang() {
             setDestWard(ward.name)
             setIsOpen(0)
         }
+    }
+
+    function changeSearchAddress(search){
+        const delayDebounceFn = setTimeout(() => {
+            setSearchAddress(search)
+        }, 500)
+        return () => clearTimeout(delayDebounceFn)
+    }
+
+    async function loadAddress(){
+        setHtmlAddress(<Loading/>)
+        let data = {
+            keyword: searchAddress,
+            page:1,
+            limit:200
+        }
+        let res = await search_address(data)
+        let html_address = [];
+        if(res.result === true){
+            let address = res.data
+            address.forEach(function (item, index) {
+                html_address.push(
+                    <a href="#!" key={index}  onClick={() => selectProvince(item)} title=""
+                       className="guest_single">
+                        <div className={"item-address"}>
+                            <span>
+                                <FontAwesomeIcon icon={faMapPin}/>
+                            </span>
+                            <span>{item.name}</span>
+                        </div>
+                    </a>
+                )
+            })
+        }
+        setHtmlAddress(html_address)
     }
 
     async function openProvinceContact() {
@@ -1142,7 +1238,7 @@ export default function GuiHang() {
                                 <a href="#!" onClick={() => setIsOpen(0)}>
                                     <FontAwesomeIcon icon={faAngleLeft}/>
                                 </a>
-                                <h3 className="title18">Thông tin địa chỉ</h3>
+                                <h3 className="title18">{action === 'openAddressReceive' ? 'Địa chỉ bên nhận hàng' : 'Địa chỉ bên gửi hàng'}</h3>
                                 <span>
                                     <a href="#!" onClick={() => openNewContactSend()} title=""
                                        className="plus">
@@ -1261,16 +1357,24 @@ export default function GuiHang() {
                                 <h3 className="title18">Lựa chọn địa chỉ</h3>
                                 <span></span>
                             </div>
-                            {/*<div className="search" id="search">
+                            <div className="search" id="search" style={{ position:'relative'}}  ref={dropdown}>
                                 <form action="">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18"
                                          fill="currentColor">
                                         <path fillRule="evenodd" clipRule="evenodd"
                                               d="M17.5893 16.5227L14.5291 13.3863L14.5307 13.3814C15.7032 11.9286 16.3426 10.1122 16.341 8.23907C16.3409 6.61419 15.8644 5.02562 14.9714 3.67313C14.0784 2.32063 12.8089 1.26458 11.3224 0.637769C9.83587 0.0109578 8.19878 -0.158631 6.61697 0.150326C5.03515 0.459284 3.57922 1.23299 2.43225 2.37417C1.28528 3.51535 0.498479 4.97304 0.17078 6.56396C-0.15692 8.15487 -0.0108875 9.80799 0.590514 11.3154C1.19192 12.8229 2.22184 14.1173 3.55077 15.0361C4.87971 15.9548 6.44833 16.4568 8.05939 16.4789C9.93479 16.4833 11.7567 15.8486 13.2294 14.6776L16.2025 17.7637C16.2886 17.8455 16.3905 17.9086 16.5019 17.949C16.6133 17.9893 16.7317 18.006 16.8497 17.9981C16.9678 17.9902 17.083 17.9577 17.188 17.9029C17.2931 17.848 17.3858 17.7719 17.4604 17.6792C18.0901 17.01 17.5893 16.5227 17.5893 16.5227ZM11.5648 13.529C10.5311 14.2437 9.31098 14.6343 8.05778 14.6516C6.36096 14.6633 4.72902 13.9948 3.52088 12.7932C2.31274 11.5915 1.62734 9.95515 1.61542 8.24394C1.61522 6.97999 1.9856 5.7442 2.67998 4.69197C3.37435 3.63974 4.36173 2.81805 5.51793 2.33022C6.67414 1.8424 7.94756 1.71022 9.17806 1.95032C10.4086 2.19041 11.5412 2.79206 12.4335 3.6796C13.3259 4.56713 13.9381 5.70094 14.1932 6.93843C14.4483 8.17592 14.3348 9.46185 13.8672 10.6345C13.3995 11.8072 12.5985 12.8142 11.5648 13.529ZM4.34065 6.77527L5.87092 7.38367L5.87075 7.3841C5.64605 7.94959 5.65513 8.58118 5.896 9.13999C6.13693 9.69894 6.59004 10.1393 7.15564 10.3642L6.54723 11.8944C5.77738 11.5883 5.12886 11.0498 4.68691 10.3617C4.57117 10.1815 4.46961 9.99107 4.38373 9.79184C4.29786 9.59262 4.22913 9.388 4.1776 9.18014C3.98079 8.38635 4.03457 7.54512 4.34065 6.77527Z"/>
                                     </svg>
-                                    <input type="text" placeholder="Nhập từ khóa tìm kiếm" defaultValue={''}/>
+                                    <input type="text"
+                                           placeholder="Nhập từ khóa tìm kiếm"
+                                           defaultValue={searchAddress}
+                                           onChange={(e) => changeSearchAddress(e.target.value)}
+                                           onClick={() => {if(openDrop === false)loadAddress();setOpenDrop(true)}}
+                                    />
+                                    <div className={openDrop ? "au_search open" : "au_search"}>
+                                        {htmlAddress}
+                                    </div>
                                 </form>
-                            </div>*/}
+                            </div>
                             <div className="link_list">
                                 <a href="#!" title="" className={activeTabProvinceSend(1)}
                                    onClick={() => changeTabProvinceSend(1)}>

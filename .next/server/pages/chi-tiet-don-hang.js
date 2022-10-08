@@ -121,7 +121,7 @@ function ChiTietDonHang({ order  }) {
     }
     let btn_cancel = "";
     let btn_edit = /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {});
-    if (detail.status === 1) {
+    if (detail.status === 1 || detail.status === 10) {
         btn_cancel = /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
             className: "Group_cancel",
             children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {

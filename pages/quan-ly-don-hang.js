@@ -1,7 +1,8 @@
 import Footer from "../components/footer"
 import Loading from "../components/loading"
 import {useState, useEffect, useRef} from "react"
-
+import { DateRangePicker, DateRange } from 'react-date-range';
+import { vi } from "date-fns/locale";
 import {
     ordersDelivery,
 } from '../lib/ajax_gomdon'
@@ -9,15 +10,17 @@ import {useSession} from "next-auth/react";
 import {useRouter} from "next/router";
 import Link from "next/link";
 
-export default function QuanLyDonHang() {
+export default function QuanLyDonHang({search}) {
     const {data: session, status} = useSession()
     const router = useRouter()
     if (status === 'unauthenticated') {
         router.push('/login')
     }
-    const{id} = router.query
+    /*const{search} = router.query*/
     const [open, setOpen] = useState(false);
+    const [openCal, setOpenCal] = useState(false);
     const dropdown = useRef(null);
+    const dropdown_call = useRef(null);
     const [orderStatus, setOrderStatus] = useState(0);
     const [loading, setLoading] = useState(false);
     const [htmlStatus, setHtmlStatus] = useState([]);
@@ -25,7 +28,7 @@ export default function QuanLyDonHang() {
     const [filter, setFilter] = useState({
         page:1,
         type:1,
-        orderId:'',
+        orderId:search,
         day:'week',
         status: 0
     });
@@ -44,59 +47,19 @@ export default function QuanLyDonHang() {
             '9': 'Kiện vấn đề',
             '10': 'Lấy hàng thất bại',
         })
-    const [report, setReport] = useState(
-        [
-            {
-                label: 'Tạo mới',
-                status: 1,
-                color: 'red',
-            },
-            {
-                label: 'Hủy',
-                status: 2,
-                color: 'red',
-            },
-            {
-                label: 'Đã lấy hàng',
-                status: 3,
-                color: 'red',
-            },
-            {
-                label: 'Đang vận chuyển',
-                status: 4,
-                color: 'red',
-            },
-            {
-                label: 'Đang giao hàng',
-                status: 5,
-                color: 'red',
-            },
-            {
-                label: 'Đang chuyển hoàn',
-                status: 6,
-                color: 'red',
-            },
-            {
-                label: 'Đã giao hàng',
-                status: 7,
-                color: 'red',
-            },
-            {
-                label: 'Đã trả hàng',
-                status: 8,
-                color: 'red',
-            },
-            {
-                label: 'Kiện vấn đề',
-                status: 9,
-                color: 'red',
-            },
-            {
-                label: 'Đơn lấy hàng thất bại',
-                status: 10,
-                color: 'red',
-            },
-        ])
+    /*const selectionRange = {
+        startDate: new Date(),
+        endDate: new Date(),
+        key: 'selection',
+    }*/
+    const [selectionRange, setSelectionRange] = useState([
+        {
+            startDate: new Date(),
+            endDate: new Date(),
+            key: 'selection'
+        }
+    ]);
+
     useEffect(async () => {
         if(filter.page <= lastPage){
             if(filter.page === 1){
@@ -118,20 +81,25 @@ export default function QuanLyDonHang() {
 
     useEffect(() => {
         // only add the event listener when the dropdown is opened
-        if (!open) return;
+        if (!open && !openCal) return;
         function handleClick(event) {
             if (dropdown.current && !dropdown.current.contains(event.target)) {
                 setOpen(false);
+                setOpenCal(false);
             }
         }
         window.addEventListener("click", handleClick);
         // clean up
         return () => window.removeEventListener("click", handleClick);
-    }, [open]);
+    }, [open, openCal]);
 
     useEffect(() => {
         window.addEventListener("scroll", loadMore);
     }, []);
+
+    useEffect(() => {
+        console.log(selectionRange)
+    }, [selectionRange]);
 
     async function loadMore(){
         if (window.innerHeight + document.documentElement.scrollTop >= document.scrollingElement.scrollHeight) {
@@ -143,9 +111,25 @@ export default function QuanLyDonHang() {
         }
     }
 
+    function sbmDate(){
+        setOpenCal(false)
+        let startDate = format_day(selectionRange[0].startDate)
+        let endDate = format_day(selectionRange[0].endDate)
+        let day = startDate + ' - ' + endDate
+        setFilter((existingValues) => ({
+            ...existingValues,
+            day: day,
+            page:1
+        }))
+    }
+
     async function changeId(search) {
         const delayDebounceFn = setTimeout(() => {
-
+            setFilter((existingValues) => ({
+                ...existingValues,
+                orderId: search,
+                page:1
+            }))
         }, 500)
         return () => clearTimeout(delayDebounceFn)
     }
@@ -174,23 +158,27 @@ export default function QuanLyDonHang() {
             limit: 30,
         }
         if(filter.orderId !== ''){
-            data.id = filter.orderId
+            data.search = filter.orderId
         }
         if(filter.status !== 0){
             data.status = filter.status
         }
-        if(filter.day === 'day'){
-            data.start_time = parseInt(((new Date()).setHours(0, 0, 0, 0))/1000)
-            data.end_time = data.start_time + 86400//parseInt(((new Date()).setHours(0, 0, 0, 0))/1000)
-        }
-        if(filter.day === 'week'){
-            data.end_time = parseInt(((new Date()))/1000)
-            data.start_time = data.end_time - (7*86400)
-        }
-
-        if(filter.day === 'month'){
-            data.start_time = parseInt(getFirstDayOfMonth().setHours(0, 0, 0, 0)/1000)
-            data.end_time = parseInt(getLastDayOfMonth().setHours(0, 0, 0, 0)/1000) + 86400
+        switch (filter.day){
+            case 'day':
+                data.start_time = parseInt(((new Date()).setHours(0, 0, 0, 0))/1000)
+                data.end_time = data.start_time + 86400//parseInt(((new Date()).setHours(0, 0, 0, 0))/1000)
+                break
+            case 'week':
+                data.end_time = parseInt(((new Date()))/1000)
+                data.start_time = data.end_time - (7*86400)
+                break
+            case 'month':
+                data.start_time = parseInt(getFirstDayOfMonth().setHours(0, 0, 0, 0)/1000)
+                data.end_time = parseInt(getLastDayOfMonth().setHours(0, 0, 0, 0)/1000) + 86400
+                break
+            default:
+                data.start_time = parseInt(new Date(selectionRange[0].startDate).setHours(0, 0, 0, 0)/1000)
+                data.end_time = parseInt(new Date(selectionRange[0].endDate).setHours(23, 59, 59, 0)/1000)
         }
         let res = await ordersDelivery(data)
         return res
@@ -205,6 +193,14 @@ export default function QuanLyDonHang() {
         let minutes = ('0' + t.getMinutes()).slice(-2);
         let seconds = ('0' + t.getSeconds()).slice(-2);
         return `${date}/${month}/${year}, ${hours}:${minutes}:${seconds}`;
+    }
+
+    function format_day(ti) {
+        let t = new Date(ti);
+        let date = ('0' + t.getDate()).slice(-2);
+        let month = ('0' + (t.getMonth() + 1)).slice(-2);
+        let year = t.getFullYear().toString().substr(-2);
+        return `${date}/${month}/${year}`;
     }
 
     let html_content = []
@@ -384,16 +380,19 @@ export default function QuanLyDonHang() {
                                         </svg>
                                         <input type="text"
                                                id="txt_search"
-                                               onChange={(e) => {
+                                               /*onChange={(e) => {
                                                     setFilter((existingValues) => ({
                                                         ...existingValues,
                                                         orderId: e.target.value,
                                                         page:1
                                                     }))
-                                                }}
-                                            value={filter.orderId}
-                                            //defaultValue={filter.orderId}
-                                           placeholder="Tra cứu mã đơn hàng / mã vận đơn"/>
+                                                }}*/
+                                               onChange={(e) => {
+                                                   changeId(e.target.value)
+                                               }}
+                                            //value={filter.orderId}
+                                            defaultValue={filter.orderId}
+                                           placeholder="Tra cứu đơn hàng"/>
                                     </form>
                                 </div>
                                 <ul className="extra">
@@ -460,6 +459,31 @@ export default function QuanLyDonHang() {
                                             </div>
                                         </label>
                                     </li>
+                                    <li style={{position:'relative'}}>
+                                        <label>
+                                            <div className={(filter.day === 'day' || filter.day === 'week' || filter.day === 'month' ? "item-dm" : "item-dm active")}  onClick={() => {
+                                                setOpenCal(!openCal)
+                                                /*setFilter((existingValues) => ({
+                                                    ...existingValues,
+                                                    day: 'day',
+                                                    page:1
+                                                }))*/
+                                            }}>
+                                                <p className="">{ (filter.day === 'day' || filter.day === 'week' || filter.day === 'month') ? 'Chọn ngày' :  filter.day}</p>
+                                            </div>
+                                        </label>
+                                        <div ref={dropdown} className={openCal ? "cal-box open" : "cal-box"}>
+                                            <DateRange
+                                                /*editableDateInputs={true}*/
+                                                onChange={item => setSelectionRange([item.selection])}
+                                                moveRangeOnFirstSelection={false}
+                                                showDateDisplay={false}
+                                                ranges={selectionRange}
+                                                locale={vi}
+                                            />
+                                            <div className={'btn-select-cal'} onClick={() =>sbmDate()}>Chọn</div>
+                                        </div>
+                                    </li>
                                 </ul>
                             </div>
 
@@ -492,5 +516,16 @@ export default function QuanLyDonHang() {
         </div>
     )
 
+}
+
+export async function getServerSideProps(context) {
+    /* const session = await unstable_getServerSession(context.req, context.res, authOptions)
+     console.log(session);*/
+    const{search } =context.query
+    return {
+        props: {
+            search:search ?? ''
+        },
+    }
 }
 
