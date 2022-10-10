@@ -81,17 +81,29 @@ export default function QuanLyDonHang({search}) {
 
     useEffect(() => {
         // only add the event listener when the dropdown is opened
-        if (!open && !openCal) return;
+        if (!open) return;
         function handleClick(event) {
             if (dropdown.current && !dropdown.current.contains(event.target)) {
                 setOpen(false);
+            }
+        }
+        window.addEventListener("click", handleClick);
+        // clean up
+        return () => window.removeEventListener("click", handleClick);
+    }, [open]);
+
+    useEffect(() => {
+        // only add the event listener when the dropdown is opened
+        if (!openCal) return;
+        function handleClick(event) {
+            if (dropdown_call.current && !dropdown_call.current.contains(event.target)) {
                 setOpenCal(false);
             }
         }
         window.addEventListener("click", handleClick);
         // clean up
         return () => window.removeEventListener("click", handleClick);
-    }, [open, openCal]);
+    }, [openCal]);
 
     useEffect(() => {
         window.addEventListener("scroll", loadMore);
@@ -392,7 +404,7 @@ export default function QuanLyDonHang({search}) {
                                                }}
                                             //value={filter.orderId}
                                             defaultValue={filter.orderId}
-                                           placeholder="Tra cứu đơn hàng"/>
+                                           placeholder="Nhập mã vận đơn, SĐT, tên khách hàng"/>
                                     </form>
                                 </div>
                                 <ul className="extra">
@@ -472,7 +484,7 @@ export default function QuanLyDonHang({search}) {
                                                 <p className="">{ (filter.day === 'day' || filter.day === 'week' || filter.day === 'month') ? 'Chọn ngày' :  filter.day}</p>
                                             </div>
                                         </label>
-                                        <div ref={dropdown} className={openCal ? "cal-box open" : "cal-box"}>
+                                        <div ref={dropdown_call} className={openCal ? "cal-box open" : "cal-box"}>
                                             <DateRange
                                                 /*editableDateInputs={true}*/
                                                 onChange={item => setSelectionRange([item.selection])}

@@ -153,10 +153,23 @@ function QuanLyDonHang({ search  }) {
     ]);
     (0,external_react_.useEffect)(()=>{
         // only add the event listener when the dropdown is opened
-        if (!open && !openCal) return;
+        if (!open) return;
         function handleClick(event) {
             if (dropdown.current && !dropdown.current.contains(event.target)) {
                 setOpen(false);
+            }
+        }
+        window.addEventListener("click", handleClick);
+        // clean up
+        return ()=>window.removeEventListener("click", handleClick);
+    }, [
+        open
+    ]);
+    (0,external_react_.useEffect)(()=>{
+        // only add the event listener when the dropdown is opened
+        if (!openCal) return;
+        function handleClick(event) {
+            if (dropdown_call.current && !dropdown_call.current.contains(event.target)) {
                 setOpenCal(false);
             }
         }
@@ -164,7 +177,6 @@ function QuanLyDonHang({ search  }) {
         // clean up
         return ()=>window.removeEventListener("click", handleClick);
     }, [
-        open,
         openCal
     ]);
     (0,external_react_.useEffect)(()=>{
@@ -619,7 +631,7 @@ function QuanLyDonHang({ search  }) {
                                                         },
                                                         //value={filter.orderId}
                                                         defaultValue: filter.orderId,
-                                                        placeholder: "Tra cứu đơn h\xe0ng"
+                                                        placeholder: "Nhập m\xe3 vận đơn, SĐT, t\xean kh\xe1ch h\xe0ng"
                                                     })
                                                 ]
                                             })
@@ -730,7 +742,7 @@ function QuanLyDonHang({ search  }) {
                                                             })
                                                         }),
                                                         /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-                                                            ref: dropdown,
+                                                            ref: dropdown_call,
                                                             className: openCal ? "cal-box open" : "cal-box",
                                                             children: [
                                                                 /*#__PURE__*/ jsx_runtime_.jsx(external_react_date_range_namespaceObject.DateRange, {

@@ -93,6 +93,9 @@ function ChiTietDonHang({ order  }) {
                         ...existingValues,
                         status: 2
                     }));
+                sweetalert2__WEBPACK_IMPORTED_MODULE_10___default().fire("Hủy đơn h\xe0ng th\xe0nh c\xf4ng");
+            } else {
+                sweetalert2__WEBPACK_IMPORTED_MODULE_10___default().fire(result.message);
             }
             setDisabled(false);
         }

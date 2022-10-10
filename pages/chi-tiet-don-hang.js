@@ -61,6 +61,9 @@ export default function ChiTietDonHang({order}) {
                     ...existingValues,
                     status: 2,
                 }))
+                Swal.fire('Hủy đơn hàng thành công')
+            }else {
+                Swal.fire(result.message)
             }
             setDisabled(false)
         }
