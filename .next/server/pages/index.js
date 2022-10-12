@@ -429,7 +429,7 @@ function Home({ banners , report  }) {
                                             }),
                                             /*#__PURE__*/ jsx_runtime_.jsx("input", {
                                                 type: "text",
-                                                placeholder: "Tra cứu m\xe3 đơn h\xe0ng / m\xe3 vận đơn",
+                                                placeholder: "Nhập m\xe3 vận đơn, SĐT, t\xean kh\xe1ch h\xe0ng",
                                                 value: search,
                                                 onChange: (e)=>setSearch(e.target.value)
                                             })
