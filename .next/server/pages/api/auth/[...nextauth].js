@@ -81,6 +81,28 @@ async function login(phone, password) {
     });
     return res;
 }
+async function user(req, res) {
+    let session = await unstable_getServerSession(req, res, authOptions);
+    if (session) {
+        let token = session.accessToken;
+        let result = await Axios({
+            method: "get",
+            url: process.env.GOMDON_API_URI + "/api/v2/auth/user",
+            headers: {
+                Authorization: `Bearer ` + token
+            }
+        }).then(function(response) {
+            return response.data;
+        }).catch(function(error) {
+            return error.response.data ?? {
+                result: false,
+                message: "Lấy dữ liệu k th\xe0nh c\xf4ng"
+            };
+        });
+        return result;
+    }
+    return null;
+}
 async function banners() {
     console.log(process.env.GOMDON_API_URI);
     let res = await Axios({
@@ -244,7 +266,8 @@ const _nextauth_authOptions = {
                     let data = result.data;
                     if (data.user.type === "customer") {
                         return {
-                            phone: data.user.name,
+                            id: data.user.id,
+                            phone: data.user.phone,
                             name: data.user.name,
                             access_token: data.access_token
                         };
@@ -263,6 +286,7 @@ const _nextauth_authOptions = {
         async jwt ({ token , user , account , profile  }) {
             if (user) {
                 user && (token.user = {
+                    id: user.id,
                     phone: user.phone,
                     name: user.name
                 });

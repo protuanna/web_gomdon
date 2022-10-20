@@ -17,6 +17,7 @@ import {useSession} from "next-auth/react";
 import {useRouter} from "next/router";
 import Swal from "sweetalert2";
 import Link from "next/link";
+import {da, it} from "react-date-range/dist/locale";
 
 
 export default function GuiHang() {
@@ -39,9 +40,18 @@ export default function GuiHang() {
     const [policy, setPolicy] = useState(0);
 
     const dropdown = useRef(null);
+    const sourceDropdown = useRef(null);
+    const destDropdown = useRef(null);
+    const ctDropdown = useRef(null);
     const [openDrop, setOpenDrop] = useState(false)
+    const [openSourceDrop, setOpenSourceDrop] = useState(false)
+    const [openDestDrop, setOpenDestDrop] = useState(false)
+    const [openCtDrop, setOpenCtDrop] = useState(false)
+
     const [searchAddress, setSearchAddress] = useState('')
     const [htmlAddress, setHtmlAddress] = useState('')
+    const [htmlSourceAddress, setHtmlSourceAddress] = useState('')
+    const [htmlDestAddress, setHtmlDestAddress] = useState('')
 
 
     const [serviceId, setServiceId] = useState(12491)
@@ -154,6 +164,45 @@ export default function GuiHang() {
     }, [openDrop]);
 
     useEffect(() => {
+        // only add the event listener when the dropdown is opened
+        if (!openSourceDrop) return;
+        function handleClick(event) {
+            if (sourceDropdown.current && !sourceDropdown.current.contains(event.target)) {
+                setOpenSourceDrop(false);
+            }
+        }
+        window.addEventListener("click", handleClick);
+        // clean up
+        return () => window.removeEventListener("click", handleClick);
+    }, [openSourceDrop]);
+
+    useEffect(() => {
+        // only add the event listener when the dropdown is opened
+        if (!openDestDrop) return;
+        function handleClick(event) {
+            if (destDropdown.current && !destDropdown.current.contains(event.target)) {
+                setOpenDestDrop(false);
+            }
+        }
+        window.addEventListener("click", handleClick);
+        // clean up
+        return () => window.removeEventListener("click", handleClick);
+    }, [openDestDrop]);
+
+    useEffect(() => {
+        // only add the event listener when the dropdown is opened
+        if (!openCtDrop) return;
+        function handleClick(event) {
+            if (ctDropdown.current && !ctDropdown.current.contains(event.target)) {
+                setOpenCtDrop(false);
+            }
+        }
+        window.addEventListener("click", handleClick);
+        // clean up
+        return () => window.removeEventListener("click", handleClick);
+    }, [openCtDrop]);
+
+    useEffect(() => {
         loadAddress()
     }, [searchAddress])
 
@@ -196,7 +245,6 @@ export default function GuiHang() {
     }, [action])
 
     useEffect(() => {
-        console.log(open)
         if (open === 'openSelectProvinceSend' || open === 'openSelectProvinceContactSend' || open === 'openSelectProvinceReceive') {
             openProvinceSend()
         }
@@ -238,7 +286,13 @@ export default function GuiHang() {
         let total = 0
         let html_address = []
         let contact_type = (((type === 1 || type === 3) && action === 'openAddressSend') || type === 2 && action === 'openAddressReceive') ? 'send' : 'receive';
-        let data = await address(contact_type, search, 1)
+        let dt = {
+            type:contact_type,
+            search:search,
+            page:1,
+            limit:200
+        }
+        let data = await address(dt)
         if (data.result === true) {
             let address = data.data
             total = data.meta.total
@@ -289,7 +343,6 @@ export default function GuiHang() {
     }
 
     function selectProvince(item) {
-        console.log(item)
         let name = item.name
         let aryAdd = name.split(",");
         if (open === 'openSelectProvinceSend') {
@@ -498,6 +551,106 @@ export default function GuiHang() {
         return () => clearTimeout(delayDebounceFn)
     }
 
+    function searchSourceAddressByPhone(search){
+        const delayDebounceFn = setTimeout(() => {
+            loadSourceAddress(search);
+        }, 500)
+        return () => clearTimeout(delayDebounceFn)
+    }
+
+    async function loadSourceAddress(search){
+        if(search === ''){
+            setOpenSourceDrop(false)
+            setHtmlSourceAddress('')
+            return
+        }
+        let contact_type = (type === 1 || type === 3) ? 'send' : 'receive';
+        let data = {
+            type: contact_type,
+            keyword: search,
+            page:1,
+            limit:10
+        }
+        let res = await address(data)
+        let html_address = [];
+        if(res.result === true){
+            let address = res.data
+            address.forEach(function (item, index) {
+                html_address.push(
+                    <a href="#!" key={index}  onClick={() => setSource(item)} title=""
+                       className="guest_single">
+                        <div className={"item-address"}>
+                            <span>{item.phone}</span>
+                        </div>
+                    </a>
+                )
+            })
+        }
+        setOpenSourceDrop(true)
+        setHtmlSourceAddress(html_address)
+    }
+
+    function setSource(item){
+        setOpenSourceDrop(false)
+        setHtmlSourceAddress('')
+        setSourceName(item.name)
+        setSourcePhone(item.phone)
+        setSourceAddress(item.address)
+        setSourceProvince(item.province_name)
+        setSourceDistrict(item.district_name)
+        setSourceWard(item.ward_name)
+    }
+
+    function searchDestAddressByPhone(search){
+        const delayDebounceFn = setTimeout(() => {
+            loadDestAddress(search);
+        }, 500)
+        return () => clearTimeout(delayDebounceFn)
+    }
+
+    async function loadDestAddress(search){
+        if(search === ''){
+            setOpenDestDrop(false)
+            setHtmlDestAddress('')
+            return
+        }
+        let contact_type = (type === 2) ? 'send' : 'receive';
+        let data = {
+            type: contact_type,
+            keyword: search,
+            page:1,
+            limit:10
+        }
+        let res = await address(data)
+        let html_address = [];
+        if(res.result === true){
+            let address = res.data
+            address.forEach(function (item, index) {
+                html_address.push(
+                    <a href="#!" key={index}  onClick={() => setDest(item)} title=""
+                       className="guest_single">
+                        <div className={"item-address"}>
+                            <span>{item.phone}</span>
+                        </div>
+                    </a>
+                )
+            })
+        }
+        setOpenDestDrop(true)
+        setHtmlDestAddress(html_address)
+    }
+
+    function setDest(item){
+        setOpenDestDrop(false)
+        setHtmlDestAddress('')
+        setDestName(item.name)
+        setDestPhone(item.phone)
+        setDestAddress(item.address)
+        setDestProvince(item.province_name)
+        setDestDistrict(item.district_name)
+        setDestWard(item.ward_name)
+    }
+
     async function loadAddress(){
         setHtmlAddress(<Loading/>)
         let data = {
@@ -668,7 +821,6 @@ export default function GuiHang() {
             length: length ? length * 10 : 0,
             width: width ? width * 10 : 0
         }
-        console.log(data)
         let res = await feeShop(data);
         if (res.result === true) {
             setFee(res.data)
@@ -678,7 +830,6 @@ export default function GuiHang() {
     }
 
     async function createOrder() {
-        console.log(disabled)
         if (disabled === false) {
             setDisabled(true)
             let error = 0
@@ -760,9 +911,12 @@ export default function GuiHang() {
                                 </div>
                             </div>
                             <form action="">
-                                <div className="form-field">
+                                <div className="form-field" style={{ position:'relative'}}  ref={sourceDropdown}>
                                     <input type="text" value={sourcePhone} placeholder="Số điện thoại *"
-                                           onChange={(e) => setSourcePhone(e.target.value)}/>
+                                           onChange={(e) => {setSourcePhone(e.target.value);searchSourceAddressByPhone(e.target.value)}}/>
+                                    <div className={openSourceDrop ? "phone_search open" : "phone_search"}>
+                                        {htmlSourceAddress}
+                                    </div>
                                 </div>
                                 <div className="label_error">{errorSourcePhone}</div>
                                 <div className="form-field">
@@ -836,9 +990,12 @@ export default function GuiHang() {
                                 </div>
                             </div>
                             <form action="">
-                                <div className="form-field">
+                                <div className="form-field" style={{ position:'relative'}}  ref={destDropdown}>
                                     <input type="text" value={destPhone} placeholder="Số điện thoại *"
-                                           onChange={(e) => setDestPhone(e.target.value)}/>
+                                           onChange={(e) => {setDestPhone(e.target.value);searchDestAddressByPhone(e.target.value)}}/>
+                                    <div className={openDestDrop ? "phone_search open" : "phone_search"}>
+                                        {htmlDestAddress}
+                                    </div>
                                 </div>
                                 <div className="label_error">{errorDestPhone}</div>
                                 <div className="form-field">
@@ -1083,9 +1240,32 @@ export default function GuiHang() {
                                             <div className="unit title16">cm</div>
                                         </div>
                                     </div>
-                                    <div className="form-field">
-                                        <textarea value={note} onChange={(e) => setNote(e.target.value)} cols="30"
-                                                  rows="3" placeholder="Chú thích"/>
+                                    <div className="form-field" style={{ position:'relative',marginBottom:'50px'}}  ref={ctDropdown}>
+                                        <textarea value={note}
+                                                  onChange={(e) => setNote(e.target.value)} cols="30"
+                                                  rows="3" placeholder="Chú thích"
+                                                  onClick={() => setOpenCtDrop(true)}
+                                        />
+                                        <div className={openCtDrop ? "ct_search open" : "ct_search"}>
+                                            <span onClick={() => {setOpenCtDrop(false); setNote('Cho khách xem hàng')}}>
+                                                Cho khách xem hàng
+                                            </span>
+                                            <span onClick={() => {setOpenCtDrop(false); setNote('Cho khách thử hàng')}}>
+                                                Cho khách thử hàng
+                                            </span>
+                                            <span onClick={() => {setOpenCtDrop(false); setNote('Không cho xem')}}>
+                                                Không cho xem
+                                            </span>
+                                            <span onClick={() => {setOpenCtDrop(false); setNote(' Nếu giao hàng không thành công liên hệ shop')}}>
+                                                Nếu giao hàng không thành công liên hệ shop
+                                            </span>
+                                            <span onClick={() => {setOpenCtDrop(false); setNote('Hàng dễ vỡ vui lòng nhẹ tay')}}>
+                                                Hàng dễ vỡ vui lòng nhẹ tay
+                                            </span>
+                                            <span onClick={() => {setOpenCtDrop(false); setNote('Gọi điện cho khách trước khi giao hàng')}}>
+                                                Gọi điện cho khách trước khi giao hàng
+                                            </span>
+                                        </div>
                                     </div>
                                 </form>
                             </div>

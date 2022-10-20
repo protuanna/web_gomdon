@@ -471,7 +471,7 @@ module.exports = import("@fortawesome/free-solid-svg-icons");;
 var __webpack_require__ = require("../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [377,952,964,664,675,595,893], () => (__webpack_exec__(7283)));
+var __webpack_exports__ = __webpack_require__.X(0, [377,952,964,835,675,595,893], () => (__webpack_exec__(7283)));
 module.exports = __webpack_exports__;
 
 })();

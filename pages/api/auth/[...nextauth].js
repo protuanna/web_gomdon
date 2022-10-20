@@ -22,7 +22,8 @@ export const authOptions = {
                     let data = result.data
                     if(data.user.type === 'customer'){
                         return {
-                            phone:data.user.name,
+                            id:data.user.id,
+                            phone:data.user.phone,
                             name: data.user.name,
                             access_token: data.access_token,
                         };
@@ -42,6 +43,7 @@ export const authOptions = {
 
             if (user) {
                 user && (token.user = {
+                    id: user.id,
                     phone:user.phone,
                     name:user.name
                 })

@@ -63,6 +63,7 @@ export default function Home({ banners , report}) {
 
     let data_banners = (banners.result === true ) ? banners.data : [];
     return (
+        <>
         <div id="main">
             <div className="container">
                 <div className="contents">
@@ -131,6 +132,7 @@ export default function Home({ banners , report}) {
                 </div>
             </div>
         </div>
+        </>
     )
 }
 

@@ -1963,6 +1963,67 @@ p {
   /*display: block;*/
 }
 
+.phone_search{
+  -webkit-box-shadow: 0px 3px 8px 0px rgba(163,161,163,1);
+  -moz-box-shadow: 0px 3px 8px 0px rgba(163,161,163,1);
+  box-shadow: 0px 3px 8px 0px rgba(163,161,163,1);
+  position: absolute;
+  top: 57px;
+  max-height: 180px;
+  overflow-y: scroll;
+  z-index: 2;
+  background: #fff;
+  margin-right: 40px;
+  left: 0;
+  right: -40px;
+  display: none;
+  /*display: none;*/
+  opacity: 0;
+  /*transition: opacity 0.5s linear;*/
+}
+.phone_search.open{
+  display: block;
+  opacity: 1;
+  transition: opacity 0.5s linear;
+  /*display: block;*/
+}
+
+.ct_search{
+  -webkit-box-shadow: 0px 0px 8px 2px rgba(163,161,163,1);
+  -moz-box-shadow: 0px 0px 8px 2px rgba(163,161,163,1);
+  box-shadow: 0px 0px 8px 2px rgba(163,161,163,1);
+  position: absolute;
+  top: -185px;
+  height: 180px;
+  overflow-y: scroll;
+  z-index: 2;
+  background: #fff;
+  margin-right: 40px;
+  left: 10px;
+  right: -30px;
+  display: none;
+  /*display: none;*/
+  opacity: 0;
+  border-radius: 5px;
+  padding: 20px;
+  /*transition: opacity 0.5s linear;*/
+}
+.ct_search.open{
+  display: block;
+  opacity: 1;
+  transition: opacity 0.5s linear;
+  /*display: block;*/
+}
+
+.ct_search span{
+  padding: 8px;
+  border: 1px solid gainsboro;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 0 20px 20px 0;
+  display: inline-block;
+}
+
 .btn-select-cal{
   background-color: rgb(61, 145, 255);
   height: 43px;

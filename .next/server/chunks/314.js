@@ -28,19 +28,14 @@ exports.modules = {
 /* harmony import */ var next_auth_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_auth_react__WEBPACK_IMPORTED_MODULE_1__);
 
 
-async function address(type, search, page) {
+async function address(data) {
     const session = await (0,next_auth_react__WEBPACK_IMPORTED_MODULE_1__.getSession)();
     if (session !== null) {
         let token = session.accessToken;
         let result = await _axios__WEBPACK_IMPORTED_MODULE_0___default()({
             method: "get",
             url: "https://admin.gomdon.com.vn" + "/api/v2/address",
-            params: {
-                type: type,
-                keyword: search,
-                page: page,
-                limit: 100
-            },
+            params: data,
             headers: {
                 Authorization: `Bearer ` + token
             }
