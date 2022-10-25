@@ -5,13 +5,13 @@
   "devFiles": [],
   "ampDevFiles": [],
   "lowPriorityFiles": [
-    "static/3LZdTFf1EOdabxHIfJPXx/_buildManifest.js",
-    "static/3LZdTFf1EOdabxHIfJPXx/_ssgManifest.js"
+    "static/QdkA2uBG8ukABHxoA9fLB/_buildManifest.js",
+    "static/QdkA2uBG8ukABHxoA9fLB/_ssgManifest.js"
   ],
   "rootMainFiles": [],
   "pages": {
     "/": [
-      "static/chunks/webpack-7151eda5f09e6d8b.js",
+      "static/chunks/webpack-a6e8493c9bdda067.js",
       "static/chunks/framework-5f4595e5518b5600.js",
       "static/chunks/main-f813a7991d8b5eee.js",
       "static/chunks/3fff1979-9ce35dde8eaf7f5a.js",
@@ -25,20 +25,20 @@
       "static/chunks/pages/index-23142997cc1aeff4.js"
     ],
     "/_app": [
-      "static/chunks/webpack-7151eda5f09e6d8b.js",
+      "static/chunks/webpack-a6e8493c9bdda067.js",
       "static/chunks/framework-5f4595e5518b5600.js",
       "static/chunks/main-f813a7991d8b5eee.js",
-      "static/css/b44f4da17f807f21.css",
+      "static/css/eed542f4d12cb8d0.css",
       "static/chunks/pages/_app-64a5f0aaae6fa5fe.js"
     ],
     "/_error": [
-      "static/chunks/webpack-7151eda5f09e6d8b.js",
+      "static/chunks/webpack-a6e8493c9bdda067.js",
       "static/chunks/framework-5f4595e5518b5600.js",
       "static/chunks/main-f813a7991d8b5eee.js",
       "static/chunks/pages/_error-a4ba2246ff8fb532.js"
     ],
     "/cap-nhat-don-hang": [
-      "static/chunks/webpack-7151eda5f09e6d8b.js",
+      "static/chunks/webpack-a6e8493c9bdda067.js",
       "static/chunks/framework-5f4595e5518b5600.js",
       "static/chunks/main-f813a7991d8b5eee.js",
       "static/chunks/c16184b3-31df094d4b1c7b76.js",
@@ -50,7 +50,7 @@
       "static/chunks/pages/cap-nhat-don-hang-db9c7946f9031478.js"
     ],
     "/chi-tiet-don-hang": [
-      "static/chunks/webpack-7151eda5f09e6d8b.js",
+      "static/chunks/webpack-a6e8493c9bdda067.js",
       "static/chunks/framework-5f4595e5518b5600.js",
       "static/chunks/main-f813a7991d8b5eee.js",
       "static/chunks/c16184b3-31df094d4b1c7b76.js",
@@ -62,7 +62,7 @@
       "static/chunks/pages/chi-tiet-don-hang-ab34e82f50793552.js"
     ],
     "/chi-tiet-phi-van-chuyen": [
-      "static/chunks/webpack-7151eda5f09e6d8b.js",
+      "static/chunks/webpack-a6e8493c9bdda067.js",
       "static/chunks/framework-5f4595e5518b5600.js",
       "static/chunks/main-f813a7991d8b5eee.js",
       "static/chunks/c16184b3-31df094d4b1c7b76.js",
@@ -73,7 +73,7 @@
       "static/chunks/pages/chi-tiet-phi-van-chuyen-e44cbc8b62a9571a.js"
     ],
     "/gui-hang": [
-      "static/chunks/webpack-7151eda5f09e6d8b.js",
+      "static/chunks/webpack-a6e8493c9bdda067.js",
       "static/chunks/framework-5f4595e5518b5600.js",
       "static/chunks/main-f813a7991d8b5eee.js",
       "static/chunks/c16184b3-31df094d4b1c7b76.js",
@@ -83,12 +83,12 @@
       "static/chunks/455-1dd189c6c807e6a3.js",
       "static/chunks/460-39454dc249a9df6e.js",
       "static/chunks/208-8691ff0d4ac20bf9.js",
-      "static/chunks/3-5fbf1f5cf136bad2.js",
+      "static/chunks/7-109af09d004f17b3.js",
       "static/chunks/551-7ee202927847cf5d.js",
-      "static/chunks/pages/gui-hang-12e3bec6725e4b0d.js"
+      "static/chunks/pages/gui-hang-2fab18c07e859d1d.js"
     ],
     "/gui-hang-thanh-cong": [
-      "static/chunks/webpack-7151eda5f09e6d8b.js",
+      "static/chunks/webpack-a6e8493c9bdda067.js",
       "static/chunks/framework-5f4595e5518b5600.js",
       "static/chunks/main-f813a7991d8b5eee.js",
       "static/chunks/c16184b3-31df094d4b1c7b76.js",
@@ -102,7 +102,7 @@
       "static/chunks/pages/gui-hang-thanh-cong-2e93868129146d4a.js"
     ],
     "/in-don-hang": [
-      "static/chunks/webpack-7151eda5f09e6d8b.js",
+      "static/chunks/webpack-a6e8493c9bdda067.js",
       "static/chunks/framework-5f4595e5518b5600.js",
       "static/chunks/main-f813a7991d8b5eee.js",
       "static/chunks/c16184b3-31df094d4b1c7b76.js",
@@ -115,7 +115,7 @@
       "static/chunks/pages/in-don-hang-5f03017292acb7dc.js"
     ],
     "/login": [
-      "static/chunks/webpack-7151eda5f09e6d8b.js",
+      "static/chunks/webpack-a6e8493c9bdda067.js",
       "static/chunks/framework-5f4595e5518b5600.js",
       "static/chunks/main-f813a7991d8b5eee.js",
       "static/chunks/c16184b3-31df094d4b1c7b76.js",
@@ -124,7 +124,7 @@
       "static/chunks/pages/login-2e21672f175aebd5.js"
     ],
     "/quan-ly-don-hang": [
-      "static/chunks/webpack-7151eda5f09e6d8b.js",
+      "static/chunks/webpack-a6e8493c9bdda067.js",
       "static/chunks/framework-5f4595e5518b5600.js",
       "static/chunks/main-f813a7991d8b5eee.js",
       "static/chunks/232-b0319b8dc14b762a.js",
@@ -137,7 +137,7 @@
       "static/chunks/pages/quan-ly-don-hang-4d9f8c1637589fd8.js"
     ],
     "/tai-khoan": [
-      "static/chunks/webpack-7151eda5f09e6d8b.js",
+      "static/chunks/webpack-a6e8493c9bdda067.js",
       "static/chunks/framework-5f4595e5518b5600.js",
       "static/chunks/main-f813a7991d8b5eee.js",
       "static/chunks/c16184b3-31df094d4b1c7b76.js",
@@ -149,7 +149,7 @@
       "static/chunks/pages/tai-khoan-ddb21add8e559681.js"
     ],
     "/tra-cuu-don-hang": [
-      "static/chunks/webpack-7151eda5f09e6d8b.js",
+      "static/chunks/webpack-a6e8493c9bdda067.js",
       "static/chunks/framework-5f4595e5518b5600.js",
       "static/chunks/main-f813a7991d8b5eee.js",
       "static/chunks/c16184b3-31df094d4b1c7b76.js",

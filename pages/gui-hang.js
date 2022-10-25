@@ -107,6 +107,8 @@ export default function GuiHang() {
     const [contactWard, setContactWard] = useState('')
     const [contactDefault, setContactDefault] = useState(0)
 
+    const [aryNote, setArrayNote] = useState([]);
+
     useEffect(() => {
         setErrorSourceName('')
     }, [sourceName])
@@ -153,11 +155,13 @@ export default function GuiHang() {
     useEffect(() => {
         // only add the event listener when the dropdown is opened
         if (!openDrop) return;
+
         function handleClick(event) {
             if (dropdown.current && !dropdown.current.contains(event.target)) {
                 setOpenDrop(false);
             }
         }
+
         window.addEventListener("click", handleClick);
         // clean up
         return () => window.removeEventListener("click", handleClick);
@@ -166,11 +170,13 @@ export default function GuiHang() {
     useEffect(() => {
         // only add the event listener when the dropdown is opened
         if (!openSourceDrop) return;
+
         function handleClick(event) {
             if (sourceDropdown.current && !sourceDropdown.current.contains(event.target)) {
                 setOpenSourceDrop(false);
             }
         }
+
         window.addEventListener("click", handleClick);
         // clean up
         return () => window.removeEventListener("click", handleClick);
@@ -179,11 +185,13 @@ export default function GuiHang() {
     useEffect(() => {
         // only add the event listener when the dropdown is opened
         if (!openDestDrop) return;
+
         function handleClick(event) {
             if (destDropdown.current && !destDropdown.current.contains(event.target)) {
                 setOpenDestDrop(false);
             }
         }
+
         window.addEventListener("click", handleClick);
         // clean up
         return () => window.removeEventListener("click", handleClick);
@@ -192,11 +200,13 @@ export default function GuiHang() {
     useEffect(() => {
         // only add the event listener when the dropdown is opened
         if (!openCtDrop) return;
+
         function handleClick(event) {
             if (ctDropdown.current && !ctDropdown.current.contains(event.target)) {
                 setOpenCtDrop(false);
             }
         }
+
         window.addEventListener("click", handleClick);
         // clean up
         return () => window.removeEventListener("click", handleClick);
@@ -250,6 +260,26 @@ export default function GuiHang() {
         }
     }, [open])
 
+    function changeArrayNote(value){
+        let index = aryNote.indexOf(value)
+        console.log(value, index)
+        if(index >= 0){
+            setArrayNote((oldArray) => [
+                ...aryNote.slice(0, index),
+                ...aryNote.slice(index + 1, aryNote.length)
+            ]);
+        }else {
+            setArrayNote((oldArray) => [...oldArray, value]);
+        }
+        console.log(aryNote)
+    }
+
+    function saveArrayNote(){
+        let text = aryNote.join('. ')
+        setNote(text);
+        setOpenCtDrop(false)
+    }
+
     function openAddressSend() {
         if (action === 'openAddressSend') {
             changeAddressSend()
@@ -287,10 +317,10 @@ export default function GuiHang() {
         let html_address = []
         let contact_type = (((type === 1 || type === 3) && action === 'openAddressSend') || type === 2 && action === 'openAddressReceive') ? 'send' : 'receive';
         let dt = {
-            type:contact_type,
-            search:search,
-            page:1,
-            limit:200
+            type: contact_type,
+            search: search,
+            page: 1,
+            limit: 200
         }
         let data = await address(dt)
         if (data.result === true) {
@@ -298,7 +328,7 @@ export default function GuiHang() {
             total = data.meta.total
             address.forEach(function (item, index) {
                 html_address.push(
-                    <a href="#!" key={index}  onClick={() => selectAddressSend(item)} title=""
+                    <a href="#!" key={index} onClick={() => selectAddressSend(item)} title=""
                        className="guest_single">
                         <div className="guesting">
                             {item.set_default === 1 &&
@@ -544,22 +574,22 @@ export default function GuiHang() {
         }
     }
 
-    function changeSearchAddress(search){
+    function changeSearchAddress(search) {
         const delayDebounceFn = setTimeout(() => {
             setSearchAddress(search)
         }, 500)
         return () => clearTimeout(delayDebounceFn)
     }
 
-    function searchSourceAddressByPhone(search){
+    function searchSourceAddressByPhone(search) {
         const delayDebounceFn = setTimeout(() => {
             loadSourceAddress(search);
         }, 500)
         return () => clearTimeout(delayDebounceFn)
     }
 
-    async function loadSourceAddress(search){
-        if(search === ''){
+    async function loadSourceAddress(search) {
+        if (search === '') {
             setOpenSourceDrop(false)
             setHtmlSourceAddress('')
             return
@@ -568,16 +598,16 @@ export default function GuiHang() {
         let data = {
             type: contact_type,
             keyword: search,
-            page:1,
-            limit:10
+            page: 1,
+            limit: 10
         }
         let res = await address(data)
         let html_address = [];
-        if(res.result === true){
+        if (res.result === true) {
             let address = res.data
             address.forEach(function (item, index) {
                 html_address.push(
-                    <a href="#!" key={index}  onClick={() => setSource(item)} title=""
+                    <a href="#!" key={index} onClick={() => setSource(item)} title=""
                        className="guest_single">
                         <div className={"item-address"}>
                             <span>{item.phone}</span>
@@ -590,7 +620,7 @@ export default function GuiHang() {
         setHtmlSourceAddress(html_address)
     }
 
-    function setSource(item){
+    function setSource(item) {
         setOpenSourceDrop(false)
         setHtmlSourceAddress('')
         setSourceName(item.name)
@@ -601,15 +631,15 @@ export default function GuiHang() {
         setSourceWard(item.ward_name)
     }
 
-    function searchDestAddressByPhone(search){
+    function searchDestAddressByPhone(search) {
         const delayDebounceFn = setTimeout(() => {
             loadDestAddress(search);
         }, 500)
         return () => clearTimeout(delayDebounceFn)
     }
 
-    async function loadDestAddress(search){
-        if(search === ''){
+    async function loadDestAddress(search) {
+        if (search === '') {
             setOpenDestDrop(false)
             setHtmlDestAddress('')
             return
@@ -618,16 +648,16 @@ export default function GuiHang() {
         let data = {
             type: contact_type,
             keyword: search,
-            page:1,
-            limit:10
+            page: 1,
+            limit: 10
         }
         let res = await address(data)
         let html_address = [];
-        if(res.result === true){
+        if (res.result === true) {
             let address = res.data
             address.forEach(function (item, index) {
                 html_address.push(
-                    <a href="#!" key={index}  onClick={() => setDest(item)} title=""
+                    <a href="#!" key={index} onClick={() => setDest(item)} title=""
                        className="guest_single">
                         <div className={"item-address"}>
                             <span>{item.phone}</span>
@@ -640,7 +670,7 @@ export default function GuiHang() {
         setHtmlDestAddress(html_address)
     }
 
-    function setDest(item){
+    function setDest(item) {
         setOpenDestDrop(false)
         setHtmlDestAddress('')
         setDestName(item.name)
@@ -651,20 +681,20 @@ export default function GuiHang() {
         setDestWard(item.ward_name)
     }
 
-    async function loadAddress(){
+    async function loadAddress() {
         setHtmlAddress(<Loading/>)
         let data = {
             keyword: searchAddress,
-            page:1,
-            limit:200
+            page: 1,
+            limit: 200
         }
         let res = await search_address(data)
         let html_address = [];
-        if(res.result === true){
+        if (res.result === true) {
             let address = res.data
             address.forEach(function (item, index) {
                 html_address.push(
-                    <a href="#!" key={index}  onClick={() => selectProvince(item)} title=""
+                    <a href="#!" key={index} onClick={() => selectProvince(item)} title=""
                        className="guest_single">
                         <div className={"item-address"}>
                             <span>
@@ -688,7 +718,7 @@ export default function GuiHang() {
     }
 
     async function addNewContactSend() {
-        if(disabled === false){
+        if (disabled === false) {
             setDisabled(true)
             let error = 0
             if (contactName.trim() === '') {
@@ -869,17 +899,17 @@ export default function GuiHang() {
                     dest_address: destAddress
                 }
                 let res = await createOrderDelivery(data)
-                if(res.result === true){
+                if (res.result === true) {
                     let or = res.data
                     router.push({
                         pathname: '/gui-hang-thanh-cong',
-                        query:{id:or.id}
+                        query: {id: or.id}
                     })
-                }else {
+                } else {
                     Swal.fire(res.message)
                     setDisabled(false)
                 }
-            }else {
+            } else {
                 setDisabled(false)
             }
         }
@@ -911,9 +941,12 @@ export default function GuiHang() {
                                 </div>
                             </div>
                             <form action="">
-                                <div className="form-field" style={{ position:'relative'}}  ref={sourceDropdown}>
+                                <div className="form-field" style={{position: 'relative'}} ref={sourceDropdown}>
                                     <input type="text" value={sourcePhone} placeholder="Số điện thoại *"
-                                           onChange={(e) => {setSourcePhone(e.target.value);searchSourceAddressByPhone(e.target.value)}}/>
+                                           onChange={(e) => {
+                                               setSourcePhone(e.target.value);
+                                               searchSourceAddressByPhone(e.target.value)
+                                           }}/>
                                     <div className={openSourceDrop ? "phone_search open" : "phone_search"}>
                                         {htmlSourceAddress}
                                     </div>
@@ -990,9 +1023,12 @@ export default function GuiHang() {
                                 </div>
                             </div>
                             <form action="">
-                                <div className="form-field" style={{ position:'relative'}}  ref={destDropdown}>
+                                <div className="form-field" style={{position: 'relative'}} ref={destDropdown}>
                                     <input type="text" value={destPhone} placeholder="Số điện thoại *"
-                                           onChange={(e) => {setDestPhone(e.target.value);searchDestAddressByPhone(e.target.value)}}/>
+                                           onChange={(e) => {
+                                               setDestPhone(e.target.value);
+                                               searchDestAddressByPhone(e.target.value)
+                                           }}/>
                                     <div className={openDestDrop ? "phone_search open" : "phone_search"}>
                                         {htmlDestAddress}
                                     </div>
@@ -1006,7 +1042,8 @@ export default function GuiHang() {
                                 <div className="form-field">
                                     <input type="text"
                                            value={(destProvince || destDistrict || destWard) && (destProvince + ' ' + destDistrict + ' ' + destWard)}
-                                           placeholder="Địa chỉ *" onChange={(e) => e.preventDefault()} onClick={() => openSelectProvinceReceive()}/>
+                                           placeholder="Địa chỉ *" onChange={(e) => e.preventDefault()}
+                                           onClick={() => openSelectProvinceReceive()}/>
                                 </div>
                                 <div className="label_error">{errorDestProvince}</div>
                                 <div className="form-field">
@@ -1240,31 +1277,52 @@ export default function GuiHang() {
                                             <div className="unit title16">cm</div>
                                         </div>
                                     </div>
-                                    <div className="form-field" style={{ position:'relative',marginBottom:'50px'}}  ref={ctDropdown}>
+                                    <div className="form-field" style={{position: 'relative', marginBottom: '50px'}}
+                                         ref={ctDropdown}>
                                         <textarea value={note}
                                                   onChange={(e) => setNote(e.target.value)} cols="30"
                                                   rows="3" placeholder="Chú thích"
                                                   onClick={() => setOpenCtDrop(true)}
                                         />
                                         <div className={openCtDrop ? "ct_search open" : "ct_search"}>
-                                            <span onClick={() => {setOpenCtDrop(false); setNote('Cho khách xem hàng')}}>
+                                            <div className={"content_ct"}>
+                                                <span className={(aryNote.indexOf('Cho khách xem hàng') >= 0) ? 'active' : ''} onClick={() => {
+                                                    changeArrayNote('Cho khách xem hàng')
+                                                }}>
                                                 Cho khách xem hàng
-                                            </span>
-                                            <span onClick={() => {setOpenCtDrop(false); setNote('Cho khách thử hàng')}}>
-                                                Cho khách thử hàng
-                                            </span>
-                                            <span onClick={() => {setOpenCtDrop(false); setNote('Không cho xem')}}>
-                                                Không cho xem
-                                            </span>
-                                            <span onClick={() => {setOpenCtDrop(false); setNote(' Nếu giao hàng không thành công liên hệ shop')}}>
-                                                Nếu giao hàng không thành công liên hệ shop
-                                            </span>
-                                            <span onClick={() => {setOpenCtDrop(false); setNote('Hàng dễ vỡ vui lòng nhẹ tay')}}>
-                                                Hàng dễ vỡ vui lòng nhẹ tay
-                                            </span>
-                                            <span onClick={() => {setOpenCtDrop(false); setNote('Gọi điện cho khách trước khi giao hàng')}}>
-                                                Gọi điện cho khách trước khi giao hàng
-                                            </span>
+                                                </span>
+                                                <span className={(aryNote.indexOf('Cho khách thử hàng') >= 0) ? 'active' : ''} onClick={() => {
+                                                        changeArrayNote('Cho khách thử hàng')
+                                                }}>
+                                                    Cho khách thử hàng
+                                                </span>
+                                                <span className={(aryNote.indexOf('Không cho xem') >= 0) ? 'active' : ''} onClick={() => {
+                                                        changeArrayNote('Không cho xem')
+                                                }}>
+                                                    Không cho xem
+                                                </span>
+                                                <span className={(aryNote.indexOf('Nếu giao hàng không thành công liên hệ shop') >= 0) ? 'active' : ''} onClick={() => {
+                                                        changeArrayNote('Nếu giao hàng không thành công liên hệ shop')
+                                                }}>
+                                                    Nếu giao hàng không thành công liên hệ shop
+                                                </span>
+                                                <span className={(aryNote.indexOf('Hàng dễ vỡ vui lòng nhẹ tay') >= 0) ? 'active' : ''} onClick={() => {
+                                                        changeArrayNote('Hàng dễ vỡ vui lòng nhẹ tay')
+                                                }}>
+                                                    Hàng dễ vỡ vui lòng nhẹ tay
+                                                </span>
+                                                <span className={(aryNote.indexOf('Gọi điện cho khách trước khi giao hàng') >= 0) ? 'active' : ''} onClick={() => {
+                                                        changeArrayNote('Gọi điện cho khách trước khi giao hàng')
+                                                }}>
+                                                    Gọi điện cho khách trước khi giao hàng
+                                                </span>
+                                            </div>
+
+                                            <div className={"btn-ct"}>
+                                                <div onClick={() => saveArrayNote()}>
+                                                    Xác nhận
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </form>
@@ -1348,10 +1406,10 @@ export default function GuiHang() {
                                 <span></span>
                             </div>
                             <div className="type_business">
-                                <div style={{display:"flex", justifyContent:"space-between"}}>
+                                <div style={{display: "flex", justifyContent: "space-between"}}>
                                     <span className="title16 tingle">Loại đơn theo nghiệp vụ</span>
                                     <Link href="/chi-tiet-phi-van-chuyen">
-                                        <span className="title16 tingle" style={{cursor:'pointer',color:'red'}}>Chi tiết phí vận chuyển</span>
+                                        <span className="title16 tingle" style={{cursor: 'pointer', color: 'red'}}>Chi tiết phí vận chuyển</span>
                                     </Link>
                                 </div>
                                 <ul className="extra">
@@ -1494,7 +1552,8 @@ export default function GuiHang() {
                                         <h3 className="title16 title_form">Địa chỉ <span>:</span></h3>
                                         <input type="text"
                                                value={(contactProvince || contactDistrict || contactWard) && (contactProvince + ' ' + contactDistrict + ' ' + contactWard)}
-                                               placeholder="" onChange={(e) => e.preventDefault()} onClick={() => openProvinceContact()}/>
+                                               placeholder="" onChange={(e) => e.preventDefault()}
+                                               onClick={() => openProvinceContact()}/>
                                     </div>
                                     <div className="label_error">{errorContactProvince}</div>
                                     <div className="form-field">
@@ -1537,7 +1596,7 @@ export default function GuiHang() {
                                 <h3 className="title18">Lựa chọn địa chỉ</h3>
                                 <span></span>
                             </div>
-                            <div className="search" id="search" style={{ position:'relative'}}  ref={dropdown}>
+                            <div className="search" id="search" style={{position: 'relative'}} ref={dropdown}>
                                 <form action="">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18"
                                          fill="currentColor">
@@ -1548,7 +1607,10 @@ export default function GuiHang() {
                                            placeholder="Nhập từ khóa tìm kiếm"
                                            defaultValue={searchAddress}
                                            onChange={(e) => changeSearchAddress(e.target.value)}
-                                           onClick={() => {if(openDrop === false)loadAddress();setOpenDrop(true)}}
+                                           onClick={() => {
+                                               if (openDrop === false) loadAddress();
+                                               setOpenDrop(true)
+                                           }}
                                     />
                                     <div className={openDrop ? "au_search open" : "au_search"}>
                                         {htmlAddress}
