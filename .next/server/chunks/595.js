@@ -30,19 +30,28 @@ exports.modules = {
 function Footer() {
     const { data: session , status  } = (0,next_auth_react__WEBPACK_IMPORTED_MODULE_3__.useSession)();
     let embed = "";
-    /*if(status === 'authenticated'){
+    if (status === "authenticated") {
         let user = session.user;
-        embed = (
-            <>
-
-                <Script src="https://admin.gomdon.com.vn/public/supportboard/js/min/jquery.min.js?lang=vi"></Script>
-                <Script id="sbinit" src="https://admin.gomdon.com.vn/public/supportboard/js/main.js?lang=vi"></Script>
-                <Script id="aecommerce-user">
-                    var SB_AECOMMERCE_ACTIVE_USER = {user.id}
-                </Script>
-            </>
-        )
-    }*/ const router = (0,next_router__WEBPACK_IMPORTED_MODULE_4__.useRouter)();
+        embed = /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+            children: [
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_script__WEBPACK_IMPORTED_MODULE_5___default()), {
+                    src: "https://chat.gomdon.com.vn/js/min/jquery.min.js?lang=vi"
+                }),
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_script__WEBPACK_IMPORTED_MODULE_5___default()), {
+                    id: "sbinit",
+                    src: "https://chat.gomdon.com.vn/js/main.js?lang=vi"
+                }),
+                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)((next_script__WEBPACK_IMPORTED_MODULE_5___default()), {
+                    id: "aecommerce-user",
+                    children: [
+                        "var SB_AECOMMERCE_ACTIVE_USER = ",
+                        user.id
+                    ]
+                })
+            ]
+        });
+    }
+    const router = (0,next_router__WEBPACK_IMPORTED_MODULE_4__.useRouter)();
     let routerName = router.route;
     const { 0: activeHome , 1: setActiveHome  } = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(routerName === "/" ? "active" : "");
     const { 0: activeDelivery , 1: setActiveDelivery  } = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(routerName === "/gui-hang" || routerName === "/gui-hang-thanh-cong" ? "active" : "");

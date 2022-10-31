@@ -7,19 +7,19 @@ import Script from "next/script";
 export default function Footer() {
     const { data: session, status } = useSession()
     let embed = '';
-    /*if(status === 'authenticated'){
+    if(status === 'authenticated'){
         let user = session.user;
         embed = (
             <>
 
-                <Script src="https://admin.gomdon.com.vn/public/supportboard/js/min/jquery.min.js?lang=vi"></Script>
-                <Script id="sbinit" src="https://admin.gomdon.com.vn/public/supportboard/js/main.js?lang=vi"></Script>
+                <Script src="https://chat.gomdon.com.vn/js/min/jquery.min.js?lang=vi"></Script>
+                <Script id="sbinit" src="https://chat.gomdon.com.vn/js/main.js?lang=vi"></Script>
                 <Script id="aecommerce-user">
                     var SB_AECOMMERCE_ACTIVE_USER = {user.id}
                 </Script>
             </>
         )
-    }*/
+    }
     const router = useRouter()
     let routerName = router.route
     const [activeHome, setActiveHome] = useState(routerName === '/' ? 'active' : '');

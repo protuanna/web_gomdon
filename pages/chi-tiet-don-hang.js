@@ -4,7 +4,7 @@ import Link from "next/link"
 import {useSession} from "next-auth/react";
 import {useRouter} from "next/router";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faAddressCard, faAngleLeft, faEdit} from "@fortawesome/free-solid-svg-icons";
+import {faMessage, faAngleLeft, faEdit} from "@fortawesome/free-solid-svg-icons";
 import {order_detail} from "../lib/api_gomdon";
 import {cancel_order, print_order} from "../lib/ajax_gomdon";
 import Swal from "sweetalert2";
@@ -92,6 +92,10 @@ export default function ChiTietDonHang({order}) {
         Swal.fire("Đã copy : " + text);
     }
 
+    function openChat(){
+        SBChat.open()
+    }
+
     let btn_cancel = ''
     let btn_edit = (<span></span>)
     if(detail.status === 1 || detail.status === 10){
@@ -137,6 +141,11 @@ export default function ChiTietDonHang({order}) {
                                                 {/*<p className="title15">Đang đi lấy hàng</p>*/}
                                             </div>
                                             <div className="btn_flex">
+                                                <button className="btn-mes" onClick={() => openChat()}>
+                                                    <span>
+                                                        <FontAwesomeIcon icon={faMessage}/>
+                                                    </span>
+                                                </button>
                                                 <button className="btn-in" onClick={() => printTrigger()}>
                                                     <span>in</span>
                                                 </button>

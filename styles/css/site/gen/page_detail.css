@@ -122,6 +122,13 @@
 .html_single_order .bann-red .receipt .btn_flex .btn-in span {
   color: #286a93;
 }
+
+.btn-mes{
+  color: #028be5;
+  border: 1px solid #028be5;
+  width: 38px !important;
+  border-radius: 19px !important;
+}
 .html_single_order .bann-red .receipt .btn_flex .btn-tc {
   border: 1px solid var(--color1);
 }

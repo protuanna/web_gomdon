@@ -122,6 +122,9 @@ function ChiTietDonHang({ order  }) {
         input.remove();
         sweetalert2__WEBPACK_IMPORTED_MODULE_10___default().fire("Đ\xe3 copy : " + text);
     }
+    function openChat() {
+        SBChat.open();
+    }
     let btn_cancel = "";
     let btn_edit = /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {});
     if (detail.status === 1 || detail.status === 10) {
@@ -204,6 +207,15 @@ function ChiTietDonHang({ order  }) {
                                                             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
                                                                 className: "btn_flex",
                                                                 children: [
+                                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
+                                                                        className: "btn-mes",
+                                                                        onClick: ()=>openChat(),
+                                                                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                                                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_6__.FontAwesomeIcon, {
+                                                                                icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_7__.faMessage
+                                                                            })
+                                                                        })
+                                                                    }),
                                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
                                                                         className: "btn-in",
                                                                         onClick: ()=>printTrigger(),
