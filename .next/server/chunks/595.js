@@ -37,11 +37,13 @@ import {Helmet} from "react-helmet";
         embed = /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
             children: [
                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_script__WEBPACK_IMPORTED_MODULE_5___default()), {
-                    src: "https://chat.gomdon.com.vn/js/min/jquery.min.js?lang=vi"
+                    id: "jquery-tag",
+                    src: "https://chat.gomdon.com.vn/js/min/jquery.min.js"
                 }),
                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_script__WEBPACK_IMPORTED_MODULE_5___default()), {
                     id: "sbinit",
-                    src: "https://chat.gomdon.com.vn/js/main.js?lang=vi"
+                    src: "https://chat.gomdon.com.vn/js/main.js?lang=vi&v=2.0",
+                    strategy: "lazyOnload"
                 }),
                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_script__WEBPACK_IMPORTED_MODULE_5___default()), {
                     id: "aecommerce-user",
