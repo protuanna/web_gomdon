@@ -1,18 +1,8 @@
 {
-  "/_error": "pages/_error.js",
   "/_app": "pages/_app.js",
-  "/api/auth/[...nextauth]": "pages/api/auth/[...nextauth].js",
-  "/gui-hang-thanh-cong": "pages/gui-hang-thanh-cong.html",
-  "/gui-hang": "pages/gui-hang.html",
-  "/tai-khoan": "pages/tai-khoan.html",
-  "/chi-tiet-phi-van-chuyen": "pages/chi-tiet-phi-van-chuyen.js",
-  "/": "pages/index.js",
-  "/chi-tiet-don-hang": "pages/chi-tiet-don-hang.js",
-  "/login": "pages/login.js",
-  "/in-don-hang": "pages/in-don-hang.js",
-  "/tra-cuu-don-hang": "pages/tra-cuu-don-hang.js",
+  "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/quan-ly-don-hang": "pages/quan-ly-don-hang.js",
-  "/cap-nhat-don-hang": "pages/cap-nhat-don-hang.js",
-  "/404": "pages/404.html"
+  "/chi-tiet-don-hang": "pages/chi-tiet-don-hang.js",
+  "/api/auth/[...nextauth]": "pages/api/auth/[...nextauth].js"
 }

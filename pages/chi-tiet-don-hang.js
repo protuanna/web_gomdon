@@ -141,10 +141,8 @@ export default function ChiTietDonHang({order}) {
                                                 {/*<p className="title15">Đang đi lấy hàng</p>*/}
                                             </div>
                                             <div className="btn_flex">
-                                                <button className="btn-mes" onClick={() => openChat()}>
-                                                    <span>
-                                                        <FontAwesomeIcon icon={faMessage}/>
-                                                    </span>
+                                                <button className="btn-in" onClick={() => openChat()}>
+                                                    <span>chat</span>
                                                 </button>
                                                 <button className="btn-in" onClick={() => printTrigger()}>
                                                     <span>in</span>

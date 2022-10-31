@@ -1,20 +1,8 @@
 {
   "chi-tiet-don-hang.js -> print-js": {
-    "id": 8607,
+    "id": "chi-tiet-don-hang.js -> print-js",
     "files": [
-      "static/chunks/607.8a1d598dca4afb1a.js"
-    ]
-  },
-  "gui-hang-thanh-cong.js -> print-js": {
-    "id": 8607,
-    "files": [
-      "static/chunks/607.8a1d598dca4afb1a.js"
-    ]
-  },
-  "in-don-hang.js -> print-js": {
-    "id": 8607,
-    "files": [
-      "static/chunks/607.8a1d598dca4afb1a.js"
+      "static/chunks/node_modules_print-js_dist_print_js.js"
     ]
   }
 }
