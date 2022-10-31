@@ -48,7 +48,7 @@ function Footer() {
                         user.id,
                         "; console.log(",
                         user.id,
-                        ")"
+                        ");"
                     ]
                 })
             ]
