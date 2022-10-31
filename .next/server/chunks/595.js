@@ -45,7 +45,10 @@ function Footer() {
                     id: "aecommerce-user",
                     children: [
                         "var SB_AECOMMERCE_ACTIVE_USER = ",
-                        user.id
+                        user.id,
+                        "; console.log(",
+                        user.id,
+                        ")"
                     ]
                 })
             ]

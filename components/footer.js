@@ -15,7 +15,8 @@ export default function Footer() {
                 <Script src="https://chat.gomdon.com.vn/js/min/jquery.min.js?lang=vi"></Script>
                 <Script id="sbinit" src="https://chat.gomdon.com.vn/js/main.js?lang=vi"></Script>
                 <Script id="aecommerce-user">
-                    var SB_AECOMMERCE_ACTIVE_USER = {user.id}
+                    var SB_AECOMMERCE_ACTIVE_USER = {user.id};
+                    console.log({user.id})
                 </Script>
             </>
         )
