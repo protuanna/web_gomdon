@@ -34,22 +34,19 @@ function Footer() {
         let user = session.user;
         embed = /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
             children: [
+                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)((next_script__WEBPACK_IMPORTED_MODULE_5___default()), {
+                    id: "aecommerce-user",
+                    children: [
+                        "var SB_AECOMMERCE_ACTIVE_USER = ",
+                        user.id
+                    ]
+                }),
                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_script__WEBPACK_IMPORTED_MODULE_5___default()), {
                     src: "https://chat.gomdon.com.vn/js/min/jquery.min.js?lang=vi"
                 }),
                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_script__WEBPACK_IMPORTED_MODULE_5___default()), {
                     id: "sbinit",
                     src: "https://chat.gomdon.com.vn/js/main.js?lang=vi"
-                }),
-                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)((next_script__WEBPACK_IMPORTED_MODULE_5___default()), {
-                    id: "aecommerce-user",
-                    children: [
-                        "var SB_AECOMMERCE_ACTIVE_USER = ",
-                        user.id,
-                        "; console.log(",
-                        user.id,
-                        ");"
-                    ]
                 })
             ]
         });

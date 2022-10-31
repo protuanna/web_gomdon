@@ -11,13 +11,12 @@ export default function Footer() {
         let user = session.user;
         embed = (
             <>
-
+                <Script id="aecommerce-user">
+                    var SB_AECOMMERCE_ACTIVE_USER = {user.id}
+                </Script>
                 <Script src="https://chat.gomdon.com.vn/js/min/jquery.min.js?lang=vi"></Script>
                 <Script id="sbinit" src="https://chat.gomdon.com.vn/js/main.js?lang=vi"></Script>
-                <Script id="aecommerce-user">
-                    var SB_AECOMMERCE_ACTIVE_USER = {user.id};
-                    console.log({user.id});
-                </Script>
+
             </>
         )
     }
