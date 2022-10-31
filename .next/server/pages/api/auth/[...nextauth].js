@@ -1,85 +1,315 @@
 "use strict";
-/*
- * ATTENTION: An "eval-source-map" devtool has been used.
- * This devtool is neither made for production nor for readable output files.
- * It uses "eval()" calls to create a separate source file with attached SourceMaps in the browser devtools.
- * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
- * or disable the default devtool with "devtool: false".
- * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
- */
 (() => {
 var exports = {};
-exports.id = "pages/api/auth/[...nextauth]";
-exports.ids = ["pages/api/auth/[...nextauth]"];
+exports.id = 748;
+exports.ids = [748];
 exports.modules = {
 
-/***/ "axios":
-/*!************************!*\
-  !*** external "axios" ***!
-  \************************/
+/***/ 2167:
 /***/ ((module) => {
 
 module.exports = require("axios");
 
 /***/ }),
 
-/***/ "next-auth":
-/*!****************************!*\
-  !*** external "next-auth" ***!
-  \****************************/
-/***/ ((module) => {
-
-module.exports = require("next-auth");
-
-/***/ }),
-
-/***/ "next-auth/next":
-/*!*********************************!*\
-  !*** external "next-auth/next" ***!
-  \*********************************/
-/***/ ((module) => {
-
-module.exports = require("next-auth/next");
-
-/***/ }),
-
-/***/ "next-auth/providers/credentials":
-/*!**************************************************!*\
-  !*** external "next-auth/providers/credentials" ***!
-  \**************************************************/
-/***/ ((module) => {
-
-module.exports = require("next-auth/providers/credentials");
-
-/***/ }),
-
-/***/ "(api)/./lib/api_gomdon.js":
-/*!***************************!*\
-  !*** ./lib/api_gomdon.js ***!
-  \***************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"api_orders\": () => (/* binding */ api_orders),\n/* harmony export */   \"banners\": () => (/* binding */ banners),\n/* harmony export */   \"detail_fee\": () => (/* binding */ detail_fee),\n/* harmony export */   \"login\": () => (/* binding */ login),\n/* harmony export */   \"order_detail\": () => (/* binding */ order_detail),\n/* harmony export */   \"report\": () => (/* binding */ report),\n/* harmony export */   \"user\": () => (/* binding */ user)\n/* harmony export */ });\n/* harmony import */ var _axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./axios */ \"(api)/./lib/axios.js\");\n/* harmony import */ var _axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_axios__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var next_auth_next__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! next-auth/next */ \"next-auth/next\");\n/* harmony import */ var next_auth_next__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_auth_next__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _pages_api_auth_nextauth___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../pages/api/auth/[...nextauth] */ \"(api)/./pages/api/auth/[...nextauth].js\");\n\n\n\nasync function login(phone, password) {\n    let res = await _axios__WEBPACK_IMPORTED_MODULE_0___default()({\n        method: \"post\",\n        url: process.env.GOMDON_API_URI + \"/api/v2/auth/login\",\n        data: {\n            phone: phone,\n            password: password\n        }\n    }).then(function(response) {\n        return response.data;\n    }).catch(function(error) {\n        console.log(error);\n        return {\n            result: false,\n            message: \"Đăng nhập kh\\xf4ng th\\xe0nh c\\xf4ng\"\n        };\n    });\n    return res;\n}\nasync function user(req, res) {\n    let session = await (0,next_auth_next__WEBPACK_IMPORTED_MODULE_1__.unstable_getServerSession)(req, res, _pages_api_auth_nextauth___WEBPACK_IMPORTED_MODULE_2__.authOptions);\n    if (session) {\n        let token = session.accessToken;\n        let result = await _axios__WEBPACK_IMPORTED_MODULE_0___default()({\n            method: \"get\",\n            url: process.env.GOMDON_API_URI + \"/api/v2/auth/user\",\n            headers: {\n                Authorization: `Bearer ` + token\n            }\n        }).then(function(response) {\n            return response.data;\n        }).catch(function(error) {\n            return error.response.data ?? {\n                result: false,\n                message: \"Lấy dữ liệu k th\\xe0nh c\\xf4ng\"\n            };\n        });\n        return result;\n    }\n    return null;\n}\nasync function banners() {\n    console.log(process.env.GOMDON_API_URI);\n    let res = await _axios__WEBPACK_IMPORTED_MODULE_0___default()({\n        method: \"get\",\n        url: process.env.GOMDON_API_URI + \"/api/v2/banner\"\n    }).then(function(response) {\n        return response.data;\n    }).catch(function(error) {\n        return {\n            result: false,\n            message: \"Lấy dữ liệu k th\\xe0nh c\\xf4ng\"\n        };\n    });\n    return res;\n}\nasync function report(req, res) {\n    let session = await (0,next_auth_next__WEBPACK_IMPORTED_MODULE_1__.unstable_getServerSession)(req, res, _pages_api_auth_nextauth___WEBPACK_IMPORTED_MODULE_2__.authOptions);\n    if (session) {\n        let token = session.accessToken;\n        let result = await _axios__WEBPACK_IMPORTED_MODULE_0___default()({\n            method: \"get\",\n            url: process.env.GOMDON_API_URI + \"/api/v2/order/report\",\n            headers: {\n                Authorization: `Bearer ` + token\n            }\n        }).then(function(response) {\n            return response.data;\n        }).catch(function(error) {\n            return error.response.data ?? {\n                result: false,\n                message: \"Lấy dữ liệu k th\\xe0nh c\\xf4ng\"\n            };\n        });\n        return result;\n    }\n    return null;\n}\n/*export async function address(token, type, search){\n    let result = await Axios({\n        method: 'get',\n        url: process.env.GOMDON_API_URI+'/api/v2/address',\n        params: { type: type, keyword:search },\n        headers: { Authorization: `Bearer ` + token},\n    }).then(function (response) {\n        return response.data;\n    }).catch(function (error) {\n        return error.response.data ?? {result: false, message: \"Lấy dữ liệu k thành công\"}\n    });\n    return result;\n}\n\nexport async function orders(token, type, search){\n    let result = await Axios({\n        method: 'get',\n        url: process.env.GOMDON_API_URI+'/api/v2/address',\n        params: { type: type, keyword:search },\n        headers: { Authorization: `Bearer ` + token},\n    }).then(function (response) {\n        return response.data;\n    }).catch(function (error) {\n        return error.response.data ?? {result: false, message: \"Lấy dữ liệu k thành công\"}\n    });\n    return result;\n}*/ async function api_orders(req, res, data) {\n    let session = await (0,next_auth_next__WEBPACK_IMPORTED_MODULE_1__.unstable_getServerSession)(req, res, _pages_api_auth_nextauth___WEBPACK_IMPORTED_MODULE_2__.authOptions);\n    if (session) {\n        let token = session.accessToken;\n        let result = await _axios__WEBPACK_IMPORTED_MODULE_0___default()({\n            method: \"get\",\n            url: \"https://admin.gomdon.com.vn\" + \"/api/v2/order\",\n            params: data,\n            headers: {\n                Authorization: `Bearer ` + token\n            }\n        }).then(function(response) {\n            return response.data;\n        }).catch(function(error) {\n            return error.response.data ?? {\n                result: false,\n                message: \"Lấy dữ liệu k th\\xe0nh c\\xf4ng\"\n            };\n        });\n        return result;\n    }\n    return null;\n}\nasync function order_detail(req, res, id) {\n    let session = await (0,next_auth_next__WEBPACK_IMPORTED_MODULE_1__.unstable_getServerSession)(req, res, _pages_api_auth_nextauth___WEBPACK_IMPORTED_MODULE_2__.authOptions);\n    if (session) {\n        let token = session.accessToken;\n        let result = await _axios__WEBPACK_IMPORTED_MODULE_0___default()({\n            method: \"get\",\n            url: process.env.GOMDON_API_URI + \"/api/v2/order/\" + id,\n            headers: {\n                Authorization: `Bearer ` + token\n            }\n        }).then(function(response) {\n            return response.data;\n        }).catch(function(error) {\n            return error.response.data ?? {\n                result: false,\n                message: \"Lấy dữ liệu k th\\xe0nh c\\xf4ng\"\n            };\n        });\n        return result;\n    }\n    return null;\n}\nasync function detail_fee(req, res) {\n    let session = await (0,next_auth_next__WEBPACK_IMPORTED_MODULE_1__.unstable_getServerSession)(req, res, _pages_api_auth_nextauth___WEBPACK_IMPORTED_MODULE_2__.authOptions);\n    if (session) {\n        let token = session.accessToken;\n        let result = await _axios__WEBPACK_IMPORTED_MODULE_0___default()({\n            method: \"get\",\n            url: process.env.GOMDON_API_URI + \"/api/v2/user_manual?type=delivery\",\n            headers: {\n                Authorization: `Bearer ` + token\n            }\n        }).then(function(response) {\n            return response.data;\n        }).catch(function(error) {\n            return error.response.data ?? {\n                result: false,\n                message: \"Lấy dữ liệu k th\\xe0nh c\\xf4ng\"\n            };\n        });\n        return result;\n    }\n    return null;\n}\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKGFwaSkvLi9saWIvYXBpX2dvbWRvbi5qcy5qcyIsIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7Ozs7Ozs7QUFBNEI7QUFDOEI7QUFDRztBQUV0RCxlQUFlRyxLQUFLLENBQUNDLEtBQUssRUFBRUMsUUFBUSxFQUFFO0lBQ3pDLElBQUlDLEdBQUcsR0FBRyxNQUFNTiw2Q0FBSyxDQUFDO1FBQ2xCTyxNQUFNLEVBQUUsTUFBTTtRQUNkQyxHQUFHLEVBQUVDLE9BQU8sQ0FBQ0MsR0FBRyxDQUFDQyxjQUFjLEdBQUMsb0JBQW9CO1FBQ3BEQyxJQUFJLEVBQUU7WUFDRlIsS0FBSyxFQUFFQSxLQUFLO1lBQ1pDLFFBQVEsRUFBRUEsUUFBUTtTQUNyQjtLQUNKLENBQUMsQ0FBQ1EsSUFBSSxDQUFDLFNBQVVDLFFBQVEsRUFBRTtRQUN4QixPQUFPQSxRQUFRLENBQUNGLElBQUksQ0FBQztLQUN4QixDQUFDLENBQUNHLEtBQUssQ0FBQyxTQUFVQyxLQUFLLEVBQUU7UUFDdEJDLE9BQU8sQ0FBQ0MsR0FBRyxDQUFDRixLQUFLLENBQUM7UUFDbEIsT0FBTztZQUFDRyxNQUFNLEVBQUUsS0FBSztZQUFFQyxPQUFPLEVBQUUscUNBQTRCO1NBQUM7S0FDaEUsQ0FBQztJQUNGLE9BQU9kLEdBQUcsQ0FBQztDQUNkO0FBRU0sZUFBZWUsSUFBSSxDQUFDQyxHQUFHLEVBQUNoQixHQUFHLEVBQUU7SUFDaEMsSUFBSWlCLE9BQU8sR0FBRyxNQUFNdEIseUVBQXlCLENBQUNxQixHQUFHLEVBQUVoQixHQUFHLEVBQUVKLGtFQUFXLENBQUM7SUFDcEUsSUFBR3FCLE9BQU8sRUFBQztRQUNQLElBQUlDLEtBQUssR0FBR0QsT0FBTyxDQUFDRSxXQUFXO1FBQy9CLElBQUlOLE1BQU0sR0FBRyxNQUFNbkIsNkNBQUssQ0FBQztZQUNyQk8sTUFBTSxFQUFFLEtBQUs7WUFDYkMsR0FBRyxFQUFFQyxPQUFPLENBQUNDLEdBQUcsQ0FBQ0MsY0FBYyxHQUFDLG1CQUFtQjtZQUNuRGUsT0FBTyxFQUFFO2dCQUFFQyxhQUFhLEVBQUUsQ0FBQyxPQUFPLENBQUMsR0FBR0gsS0FBSzthQUFDO1NBQy9DLENBQUMsQ0FBQ1gsSUFBSSxDQUFDLFNBQVVDLFFBQVEsRUFBRTtZQUN4QixPQUFPQSxRQUFRLENBQUNGLElBQUksQ0FBQztTQUN4QixDQUFDLENBQUNHLEtBQUssQ0FBQyxTQUFVQyxLQUFLLEVBQUU7WUFDdEIsT0FBT0EsS0FBSyxDQUFDRixRQUFRLENBQUNGLElBQUksSUFBSTtnQkFBQ08sTUFBTSxFQUFFLEtBQUs7Z0JBQUVDLE9BQU8sRUFBRSxnQ0FBMEI7YUFBQztTQUNyRixDQUFDO1FBQ0YsT0FBT0QsTUFBTSxDQUFDO0tBQ2pCO0lBQ0QsT0FBUSxJQUFJO0NBQ2Y7QUFFTSxlQUFlUyxPQUFPLEdBQUU7SUFDM0JYLE9BQU8sQ0FBQ0MsR0FBRyxDQUFDVCxPQUFPLENBQUNDLEdBQUcsQ0FBQ0MsY0FBYyxDQUFDO0lBQ3ZDLElBQUlMLEdBQUcsR0FBRyxNQUFNTiw2Q0FBSyxDQUFDO1FBQ2xCTyxNQUFNLEVBQUUsS0FBSztRQUNiQyxHQUFHLEVBQUVDLE9BQU8sQ0FBQ0MsR0FBRyxDQUFDQyxjQUFjLEdBQUMsZ0JBQWdCO0tBQ25ELENBQUMsQ0FBQ0UsSUFBSSxDQUFDLFNBQVVDLFFBQVEsRUFBRTtRQUN4QixPQUFPQSxRQUFRLENBQUNGLElBQUksQ0FBQztLQUN4QixDQUFDLENBQUNHLEtBQUssQ0FBQyxTQUFVQyxLQUFLLEVBQUU7UUFDdEIsT0FBTztZQUFDRyxNQUFNLEVBQUUsS0FBSztZQUFFQyxPQUFPLEVBQUUsZ0NBQTBCO1NBQUM7S0FDOUQsQ0FBQztJQUNGLE9BQU9kLEdBQUcsQ0FBQztDQUNkO0FBRU0sZUFBZXVCLE1BQU0sQ0FBQ1AsR0FBRyxFQUFDaEIsR0FBRyxFQUFDO0lBQ2pDLElBQUlpQixPQUFPLEdBQUcsTUFBTXRCLHlFQUF5QixDQUFDcUIsR0FBRyxFQUFFaEIsR0FBRyxFQUFFSixrRUFBVyxDQUFDO0lBQ3BFLElBQUdxQixPQUFPLEVBQUM7UUFDUCxJQUFJQyxLQUFLLEdBQUdELE9BQU8sQ0FBQ0UsV0FBVztRQUUvQixJQUFJTixNQUFNLEdBQUcsTUFBTW5CLDZDQUFLLENBQUM7WUFDckJPLE1BQU0sRUFBRSxLQUFLO1lBQ2JDLEdBQUcsRUFBRUMsT0FBTyxDQUFDQyxHQUFHLENBQUNDLGNBQWMsR0FBQyxzQkFBc0I7WUFDdERlLE9BQU8sRUFBRTtnQkFBRUMsYUFBYSxFQUFFLENBQUMsT0FBTyxDQUFDLEdBQUdILEtBQUs7YUFBQztTQUMvQyxDQUFDLENBQUNYLElBQUksQ0FBQyxTQUFVQyxRQUFRLEVBQUU7WUFDeEIsT0FBT0EsUUFBUSxDQUFDRixJQUFJLENBQUM7U0FDeEIsQ0FBQyxDQUFDRyxLQUFLLENBQUMsU0FBVUMsS0FBSyxFQUFFO1lBQ3RCLE9BQU9BLEtBQUssQ0FBQ0YsUUFBUSxDQUFDRixJQUFJLElBQUk7Z0JBQUNPLE1BQU0sRUFBRSxLQUFLO2dCQUFFQyxPQUFPLEVBQUUsZ0NBQTBCO2FBQUM7U0FDckYsQ0FBQztRQUNGLE9BQU9ELE1BQU0sQ0FBQztLQUNqQjtJQUNELE9BQVEsSUFBSTtDQUVmO0FBRUQ7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0NBMEJDLEdBRU0sZUFBZVcsVUFBVSxDQUFDUixHQUFHLEVBQUVoQixHQUFHLEVBQUVNLElBQUksRUFBQztJQUM1QyxJQUFJVyxPQUFPLEdBQUcsTUFBTXRCLHlFQUF5QixDQUFDcUIsR0FBRyxFQUFFaEIsR0FBRyxFQUFFSixrRUFBVyxDQUFDO0lBQ3BFLElBQUdxQixPQUFPLEVBQUM7UUFDUCxJQUFJQyxLQUFLLEdBQUdELE9BQU8sQ0FBQ0UsV0FBVztRQUMvQixJQUFJTixNQUFNLEdBQUcsTUFBTW5CLDZDQUFLLENBQUM7WUFDckJPLE1BQU0sRUFBRSxLQUFLO1lBQ2JDLEdBQUcsRUFBRUMsNkJBQXNDLEdBQUMsZUFBZTtZQUMzRHVCLE1BQU0sRUFBQ3BCLElBQUk7WUFDWGMsT0FBTyxFQUFFO2dCQUFFQyxhQUFhLEVBQUUsQ0FBQyxPQUFPLENBQUMsR0FBR0gsS0FBSzthQUFDO1NBQy9DLENBQUMsQ0FBQ1gsSUFBSSxDQUFDLFNBQVVDLFFBQVEsRUFBRTtZQUN4QixPQUFPQSxRQUFRLENBQUNGLElBQUksQ0FBQztTQUN4QixDQUFDLENBQUNHLEtBQUssQ0FBQyxTQUFVQyxLQUFLLEVBQUU7WUFDdEIsT0FBT0EsS0FBSyxDQUFDRixRQUFRLENBQUNGLElBQUksSUFBSTtnQkFBQ08sTUFBTSxFQUFFLEtBQUs7Z0JBQUVDLE9BQU8sRUFBRSxnQ0FBMEI7YUFBQztTQUNyRixDQUFDO1FBQ0YsT0FBT0QsTUFBTSxDQUFDO0tBQ2pCO0lBQ0QsT0FBUSxJQUFJO0NBQ2Y7QUFFTSxlQUFlYyxZQUFZLENBQUNYLEdBQUcsRUFBRWhCLEdBQUcsRUFBRTRCLEVBQUUsRUFBQztJQUM1QyxJQUFJWCxPQUFPLEdBQUcsTUFBTXRCLHlFQUF5QixDQUFDcUIsR0FBRyxFQUFFaEIsR0FBRyxFQUFFSixrRUFBVyxDQUFDO0lBQ3BFLElBQUdxQixPQUFPLEVBQUM7UUFDUCxJQUFJQyxLQUFLLEdBQUdELE9BQU8sQ0FBQ0UsV0FBVztRQUMvQixJQUFJTixNQUFNLEdBQUcsTUFBTW5CLDZDQUFLLENBQUM7WUFDckJPLE1BQU0sRUFBRSxLQUFLO1lBQ2JDLEdBQUcsRUFBRUMsT0FBTyxDQUFDQyxHQUFHLENBQUNDLGNBQWMsR0FBQyxnQkFBZ0IsR0FBR3VCLEVBQUU7WUFDckRSLE9BQU8sRUFBRTtnQkFBRUMsYUFBYSxFQUFFLENBQUMsT0FBTyxDQUFDLEdBQUdILEtBQUs7YUFBQztTQUMvQyxDQUFDLENBQUNYLElBQUksQ0FBQyxTQUFVQyxRQUFRLEVBQUU7WUFDeEIsT0FBT0EsUUFBUSxDQUFDRixJQUFJLENBQUM7U0FDeEIsQ0FBQyxDQUFDRyxLQUFLLENBQUMsU0FBVUMsS0FBSyxFQUFFO1lBQ3RCLE9BQU9BLEtBQUssQ0FBQ0YsUUFBUSxDQUFDRixJQUFJLElBQUk7Z0JBQUNPLE1BQU0sRUFBRSxLQUFLO2dCQUFFQyxPQUFPLEVBQUUsZ0NBQTBCO2FBQUM7U0FDckYsQ0FBQztRQUNGLE9BQU9ELE1BQU0sQ0FBQztLQUNqQjtJQUNELE9BQVEsSUFBSTtDQUNmO0FBRU0sZUFBZWdCLFVBQVUsQ0FBQ2IsR0FBRyxFQUFFaEIsR0FBRyxFQUFDO0lBQ3RDLElBQUlpQixPQUFPLEdBQUcsTUFBTXRCLHlFQUF5QixDQUFDcUIsR0FBRyxFQUFFaEIsR0FBRyxFQUFFSixrRUFBVyxDQUFDO0lBQ3BFLElBQUdxQixPQUFPLEVBQUM7UUFDUCxJQUFJQyxLQUFLLEdBQUdELE9BQU8sQ0FBQ0UsV0FBVztRQUMvQixJQUFJTixNQUFNLEdBQUcsTUFBTW5CLDZDQUFLLENBQUM7WUFDckJPLE1BQU0sRUFBRSxLQUFLO1lBQ2JDLEdBQUcsRUFBRUMsT0FBTyxDQUFDQyxHQUFHLENBQUNDLGNBQWMsR0FBQyxtQ0FBbUM7WUFDbkVlLE9BQU8sRUFBRTtnQkFBRUMsYUFBYSxFQUFFLENBQUMsT0FBTyxDQUFDLEdBQUdILEtBQUs7YUFBQztTQUMvQyxDQUFDLENBQUNYLElBQUksQ0FBQyxTQUFVQyxRQUFRLEVBQUU7WUFDeEIsT0FBT0EsUUFBUSxDQUFDRixJQUFJLENBQUM7U0FDeEIsQ0FBQyxDQUFDRyxLQUFLLENBQUMsU0FBVUMsS0FBSyxFQUFFO1lBQ3RCLE9BQU9BLEtBQUssQ0FBQ0YsUUFBUSxDQUFDRixJQUFJLElBQUk7Z0JBQUNPLE1BQU0sRUFBRSxLQUFLO2dCQUFFQyxPQUFPLEVBQUUsZ0NBQTBCO2FBQUM7U0FDckYsQ0FBQztRQUNGLE9BQU9ELE1BQU0sQ0FBQztLQUNqQjtJQUNELE9BQVEsSUFBSTtDQUNmIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vLy4vbGliL2FwaV9nb21kb24uanM/Nzc0YSJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgQXhpb3MgZnJvbSAnLi9heGlvcyc7XG5pbXBvcnQgeyB1bnN0YWJsZV9nZXRTZXJ2ZXJTZXNzaW9uIH0gZnJvbSBcIm5leHQtYXV0aC9uZXh0XCJcbmltcG9ydCB7IGF1dGhPcHRpb25zIH0gZnJvbSBcIi4uL3BhZ2VzL2FwaS9hdXRoL1suLi5uZXh0YXV0aF1cIlxuXG5leHBvcnQgYXN5bmMgZnVuY3Rpb24gbG9naW4ocGhvbmUsIHBhc3N3b3JkKSB7XG4gICAgbGV0IHJlcyA9IGF3YWl0IEF4aW9zKHtcbiAgICAgICAgbWV0aG9kOiAncG9zdCcsXG4gICAgICAgIHVybDogcHJvY2Vzcy5lbnYuR09NRE9OX0FQSV9VUkkrJy9hcGkvdjIvYXV0aC9sb2dpbicsXG4gICAgICAgIGRhdGE6IHtcbiAgICAgICAgICAgIHBob25lOiBwaG9uZSxcbiAgICAgICAgICAgIHBhc3N3b3JkOiBwYXNzd29yZFxuICAgICAgICB9XG4gICAgfSkudGhlbihmdW5jdGlvbiAocmVzcG9uc2UpIHtcbiAgICAgICAgcmV0dXJuIHJlc3BvbnNlLmRhdGE7XG4gICAgfSkuY2F0Y2goZnVuY3Rpb24gKGVycm9yKSB7XG4gICAgICAgIGNvbnNvbGUubG9nKGVycm9yKVxuICAgICAgICByZXR1cm4ge3Jlc3VsdDogZmFsc2UsIG1lc3NhZ2U6IFwixJDEg25nIG5o4bqtcCBraMO0bmcgdGjDoG5oIGPDtG5nXCJ9XG4gICAgfSk7XG4gICAgcmV0dXJuIHJlcztcbn1cblxuZXhwb3J0IGFzeW5jIGZ1bmN0aW9uIHVzZXIocmVxLHJlcykge1xuICAgIGxldCBzZXNzaW9uID0gYXdhaXQgdW5zdGFibGVfZ2V0U2VydmVyU2Vzc2lvbihyZXEsIHJlcywgYXV0aE9wdGlvbnMpXG4gICAgaWYoc2Vzc2lvbil7XG4gICAgICAgIGxldCB0b2tlbiA9IHNlc3Npb24uYWNjZXNzVG9rZW47XG4gICAgICAgIGxldCByZXN1bHQgPSBhd2FpdCBBeGlvcyh7XG4gICAgICAgICAgICBtZXRob2Q6ICdnZXQnLFxuICAgICAgICAgICAgdXJsOiBwcm9jZXNzLmVudi5HT01ET05fQVBJX1VSSSsnL2FwaS92Mi9hdXRoL3VzZXInLFxuICAgICAgICAgICAgaGVhZGVyczogeyBBdXRob3JpemF0aW9uOiBgQmVhcmVyIGAgKyB0b2tlbn0sXG4gICAgICAgIH0pLnRoZW4oZnVuY3Rpb24gKHJlc3BvbnNlKSB7XG4gICAgICAgICAgICByZXR1cm4gcmVzcG9uc2UuZGF0YTtcbiAgICAgICAgfSkuY2F0Y2goZnVuY3Rpb24gKGVycm9yKSB7XG4gICAgICAgICAgICByZXR1cm4gZXJyb3IucmVzcG9uc2UuZGF0YSA/PyB7cmVzdWx0OiBmYWxzZSwgbWVzc2FnZTogXCJM4bqleSBk4buvIGxp4buHdSBrIHRow6BuaCBjw7RuZ1wifVxuICAgICAgICB9KTtcbiAgICAgICAgcmV0dXJuIHJlc3VsdDtcbiAgICB9XG4gICAgcmV0dXJuICBudWxsXG59XG5cbmV4cG9ydCBhc3luYyBmdW5jdGlvbiBiYW5uZXJzKCl7XG4gICAgY29uc29sZS5sb2cocHJvY2Vzcy5lbnYuR09NRE9OX0FQSV9VUkkpXG4gICAgbGV0IHJlcyA9IGF3YWl0IEF4aW9zKHtcbiAgICAgICAgbWV0aG9kOiAnZ2V0JyxcbiAgICAgICAgdXJsOiBwcm9jZXNzLmVudi5HT01ET05fQVBJX1VSSSsnL2FwaS92Mi9iYW5uZXInLFxuICAgIH0pLnRoZW4oZnVuY3Rpb24gKHJlc3BvbnNlKSB7XG4gICAgICAgIHJldHVybiByZXNwb25zZS5kYXRhO1xuICAgIH0pLmNhdGNoKGZ1bmN0aW9uIChlcnJvcikge1xuICAgICAgICByZXR1cm4ge3Jlc3VsdDogZmFsc2UsIG1lc3NhZ2U6IFwiTOG6pXkgZOG7ryBsaeG7h3UgayB0aMOgbmggY8O0bmdcIn1cbiAgICB9KTtcbiAgICByZXR1cm4gcmVzO1xufVxuXG5leHBvcnQgYXN5bmMgZnVuY3Rpb24gcmVwb3J0KHJlcSxyZXMpe1xuICAgIGxldCBzZXNzaW9uID0gYXdhaXQgdW5zdGFibGVfZ2V0U2VydmVyU2Vzc2lvbihyZXEsIHJlcywgYXV0aE9wdGlvbnMpXG4gICAgaWYoc2Vzc2lvbil7XG4gICAgICAgIGxldCB0b2tlbiA9IHNlc3Npb24uYWNjZXNzVG9rZW47XG5cbiAgICAgICAgbGV0IHJlc3VsdCA9IGF3YWl0IEF4aW9zKHtcbiAgICAgICAgICAgIG1ldGhvZDogJ2dldCcsXG4gICAgICAgICAgICB1cmw6IHByb2Nlc3MuZW52LkdPTURPTl9BUElfVVJJKycvYXBpL3YyL29yZGVyL3JlcG9ydCcsXG4gICAgICAgICAgICBoZWFkZXJzOiB7IEF1dGhvcml6YXRpb246IGBCZWFyZXIgYCArIHRva2VufSxcbiAgICAgICAgfSkudGhlbihmdW5jdGlvbiAocmVzcG9uc2UpIHtcbiAgICAgICAgICAgIHJldHVybiByZXNwb25zZS5kYXRhO1xuICAgICAgICB9KS5jYXRjaChmdW5jdGlvbiAoZXJyb3IpIHtcbiAgICAgICAgICAgIHJldHVybiBlcnJvci5yZXNwb25zZS5kYXRhID8/IHtyZXN1bHQ6IGZhbHNlLCBtZXNzYWdlOiBcIkzhuqV5IGThu68gbGnhu4d1IGsgdGjDoG5oIGPDtG5nXCJ9XG4gICAgICAgIH0pO1xuICAgICAgICByZXR1cm4gcmVzdWx0O1xuICAgIH1cbiAgICByZXR1cm4gIG51bGxcblxufVxuXG4vKmV4cG9ydCBhc3luYyBmdW5jdGlvbiBhZGRyZXNzKHRva2VuLCB0eXBlLCBzZWFyY2gpe1xuICAgIGxldCByZXN1bHQgPSBhd2FpdCBBeGlvcyh7XG4gICAgICAgIG1ldGhvZDogJ2dldCcsXG4gICAgICAgIHVybDogcHJvY2Vzcy5lbnYuR09NRE9OX0FQSV9VUkkrJy9hcGkvdjIvYWRkcmVzcycsXG4gICAgICAgIHBhcmFtczogeyB0eXBlOiB0eXBlLCBrZXl3b3JkOnNlYXJjaCB9LFxuICAgICAgICBoZWFkZXJzOiB7IEF1dGhvcml6YXRpb246IGBCZWFyZXIgYCArIHRva2VufSxcbiAgICB9KS50aGVuKGZ1bmN0aW9uIChyZXNwb25zZSkge1xuICAgICAgICByZXR1cm4gcmVzcG9uc2UuZGF0YTtcbiAgICB9KS5jYXRjaChmdW5jdGlvbiAoZXJyb3IpIHtcbiAgICAgICAgcmV0dXJuIGVycm9yLnJlc3BvbnNlLmRhdGEgPz8ge3Jlc3VsdDogZmFsc2UsIG1lc3NhZ2U6IFwiTOG6pXkgZOG7ryBsaeG7h3UgayB0aMOgbmggY8O0bmdcIn1cbiAgICB9KTtcbiAgICByZXR1cm4gcmVzdWx0O1xufVxuXG5leHBvcnQgYXN5bmMgZnVuY3Rpb24gb3JkZXJzKHRva2VuLCB0eXBlLCBzZWFyY2gpe1xuICAgIGxldCByZXN1bHQgPSBhd2FpdCBBeGlvcyh7XG4gICAgICAgIG1ldGhvZDogJ2dldCcsXG4gICAgICAgIHVybDogcHJvY2Vzcy5lbnYuR09NRE9OX0FQSV9VUkkrJy9hcGkvdjIvYWRkcmVzcycsXG4gICAgICAgIHBhcmFtczogeyB0eXBlOiB0eXBlLCBrZXl3b3JkOnNlYXJjaCB9LFxuICAgICAgICBoZWFkZXJzOiB7IEF1dGhvcml6YXRpb246IGBCZWFyZXIgYCArIHRva2VufSxcbiAgICB9KS50aGVuKGZ1bmN0aW9uIChyZXNwb25zZSkge1xuICAgICAgICByZXR1cm4gcmVzcG9uc2UuZGF0YTtcbiAgICB9KS5jYXRjaChmdW5jdGlvbiAoZXJyb3IpIHtcbiAgICAgICAgcmV0dXJuIGVycm9yLnJlc3BvbnNlLmRhdGEgPz8ge3Jlc3VsdDogZmFsc2UsIG1lc3NhZ2U6IFwiTOG6pXkgZOG7ryBsaeG7h3UgayB0aMOgbmggY8O0bmdcIn1cbiAgICB9KTtcbiAgICByZXR1cm4gcmVzdWx0O1xufSovXG5cbmV4cG9ydCBhc3luYyBmdW5jdGlvbiBhcGlfb3JkZXJzKHJlcSwgcmVzLCBkYXRhKXtcbiAgICBsZXQgc2Vzc2lvbiA9IGF3YWl0IHVuc3RhYmxlX2dldFNlcnZlclNlc3Npb24ocmVxLCByZXMsIGF1dGhPcHRpb25zKVxuICAgIGlmKHNlc3Npb24pe1xuICAgICAgICBsZXQgdG9rZW4gPSBzZXNzaW9uLmFjY2Vzc1Rva2VuO1xuICAgICAgICBsZXQgcmVzdWx0ID0gYXdhaXQgQXhpb3Moe1xuICAgICAgICAgICAgbWV0aG9kOiAnZ2V0JyxcbiAgICAgICAgICAgIHVybDogcHJvY2Vzcy5lbnYuTkVYVF9QVUJMSUNfR09NRE9OX0FQSV9VUkkrJy9hcGkvdjIvb3JkZXInLFxuICAgICAgICAgICAgcGFyYW1zOmRhdGEsXG4gICAgICAgICAgICBoZWFkZXJzOiB7IEF1dGhvcml6YXRpb246IGBCZWFyZXIgYCArIHRva2VufSxcbiAgICAgICAgfSkudGhlbihmdW5jdGlvbiAocmVzcG9uc2UpIHtcbiAgICAgICAgICAgIHJldHVybiByZXNwb25zZS5kYXRhO1xuICAgICAgICB9KS5jYXRjaChmdW5jdGlvbiAoZXJyb3IpIHtcbiAgICAgICAgICAgIHJldHVybiBlcnJvci5yZXNwb25zZS5kYXRhID8/IHtyZXN1bHQ6IGZhbHNlLCBtZXNzYWdlOiBcIkzhuqV5IGThu68gbGnhu4d1IGsgdGjDoG5oIGPDtG5nXCJ9XG4gICAgICAgIH0pO1xuICAgICAgICByZXR1cm4gcmVzdWx0O1xuICAgIH1cbiAgICByZXR1cm4gIG51bGxcbn1cblxuZXhwb3J0IGFzeW5jIGZ1bmN0aW9uIG9yZGVyX2RldGFpbChyZXEsIHJlcywgaWQpe1xuICAgIGxldCBzZXNzaW9uID0gYXdhaXQgdW5zdGFibGVfZ2V0U2VydmVyU2Vzc2lvbihyZXEsIHJlcywgYXV0aE9wdGlvbnMpXG4gICAgaWYoc2Vzc2lvbil7XG4gICAgICAgIGxldCB0b2tlbiA9IHNlc3Npb24uYWNjZXNzVG9rZW47XG4gICAgICAgIGxldCByZXN1bHQgPSBhd2FpdCBBeGlvcyh7XG4gICAgICAgICAgICBtZXRob2Q6ICdnZXQnLFxuICAgICAgICAgICAgdXJsOiBwcm9jZXNzLmVudi5HT01ET05fQVBJX1VSSSsnL2FwaS92Mi9vcmRlci8nICsgaWQgLFxuICAgICAgICAgICAgaGVhZGVyczogeyBBdXRob3JpemF0aW9uOiBgQmVhcmVyIGAgKyB0b2tlbn0sXG4gICAgICAgIH0pLnRoZW4oZnVuY3Rpb24gKHJlc3BvbnNlKSB7XG4gICAgICAgICAgICByZXR1cm4gcmVzcG9uc2UuZGF0YTtcbiAgICAgICAgfSkuY2F0Y2goZnVuY3Rpb24gKGVycm9yKSB7XG4gICAgICAgICAgICByZXR1cm4gZXJyb3IucmVzcG9uc2UuZGF0YSA/PyB7cmVzdWx0OiBmYWxzZSwgbWVzc2FnZTogXCJM4bqleSBk4buvIGxp4buHdSBrIHRow6BuaCBjw7RuZ1wifVxuICAgICAgICB9KTtcbiAgICAgICAgcmV0dXJuIHJlc3VsdDtcbiAgICB9XG4gICAgcmV0dXJuICBudWxsXG59XG5cbmV4cG9ydCBhc3luYyBmdW5jdGlvbiBkZXRhaWxfZmVlKHJlcSwgcmVzKXtcbiAgICBsZXQgc2Vzc2lvbiA9IGF3YWl0IHVuc3RhYmxlX2dldFNlcnZlclNlc3Npb24ocmVxLCByZXMsIGF1dGhPcHRpb25zKVxuICAgIGlmKHNlc3Npb24pe1xuICAgICAgICBsZXQgdG9rZW4gPSBzZXNzaW9uLmFjY2Vzc1Rva2VuO1xuICAgICAgICBsZXQgcmVzdWx0ID0gYXdhaXQgQXhpb3Moe1xuICAgICAgICAgICAgbWV0aG9kOiAnZ2V0JyxcbiAgICAgICAgICAgIHVybDogcHJvY2Vzcy5lbnYuR09NRE9OX0FQSV9VUkkrJy9hcGkvdjIvdXNlcl9tYW51YWw/dHlwZT1kZWxpdmVyeScgLFxuICAgICAgICAgICAgaGVhZGVyczogeyBBdXRob3JpemF0aW9uOiBgQmVhcmVyIGAgKyB0b2tlbn0sXG4gICAgICAgIH0pLnRoZW4oZnVuY3Rpb24gKHJlc3BvbnNlKSB7XG4gICAgICAgICAgICByZXR1cm4gcmVzcG9uc2UuZGF0YTtcbiAgICAgICAgfSkuY2F0Y2goZnVuY3Rpb24gKGVycm9yKSB7XG4gICAgICAgICAgICByZXR1cm4gZXJyb3IucmVzcG9uc2UuZGF0YSA/PyB7cmVzdWx0OiBmYWxzZSwgbWVzc2FnZTogXCJM4bqleSBk4buvIGxp4buHdSBrIHRow6BuaCBjw7RuZ1wifVxuICAgICAgICB9KTtcbiAgICAgICAgcmV0dXJuIHJlc3VsdDtcbiAgICB9XG4gICAgcmV0dXJuICBudWxsXG59XG5cbiJdLCJuYW1lcyI6WyJBeGlvcyIsInVuc3RhYmxlX2dldFNlcnZlclNlc3Npb24iLCJhdXRoT3B0aW9ucyIsImxvZ2luIiwicGhvbmUiLCJwYXNzd29yZCIsInJlcyIsIm1ldGhvZCIsInVybCIsInByb2Nlc3MiLCJlbnYiLCJHT01ET05fQVBJX1VSSSIsImRhdGEiLCJ0aGVuIiwicmVzcG9uc2UiLCJjYXRjaCIsImVycm9yIiwiY29uc29sZSIsImxvZyIsInJlc3VsdCIsIm1lc3NhZ2UiLCJ1c2VyIiwicmVxIiwic2Vzc2lvbiIsInRva2VuIiwiYWNjZXNzVG9rZW4iLCJoZWFkZXJzIiwiQXV0aG9yaXphdGlvbiIsImJhbm5lcnMiLCJyZXBvcnQiLCJhcGlfb3JkZXJzIiwiTkVYVF9QVUJMSUNfR09NRE9OX0FQSV9VUkkiLCJwYXJhbXMiLCJvcmRlcl9kZXRhaWwiLCJpZCIsImRldGFpbF9mZWUiXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///(api)/./lib/api_gomdon.js\n");
-
-/***/ }),
-
-/***/ "(api)/./lib/axios.js":
-/*!**********************!*\
-  !*** ./lib/axios.js ***!
-  \**********************/
+/***/ 201:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("\nlet axios = __webpack_require__(/*! axios */ \"axios\");\n//import * as https from \"https\";\nconst Axios = axios.create({\n    //baseURL: window.location.origin,\n    headers: {\n        \"X-Requested-With\": \"XMLHttpRequest\",\n        \"Content-Type\": \"application/json\"\n    }\n});\nAxios.interceptors.request.use(function(config) {\n    return config;\n}, function(error) {\n    return Promise.reject(error);\n});\nmodule.exports = Axios;\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKGFwaSkvLi9saWIvYXhpb3MuanMuanMiLCJtYXBwaW5ncyI6IkFBQUE7QUFBQSxJQUFJQSxLQUFLLEdBQUdDLG1CQUFPLENBQUMsb0JBQU8sQ0FBQztBQUM1QixpQ0FBaUM7QUFDakMsTUFBTUMsS0FBSyxHQUFHRixLQUFLLENBQUNHLE1BQU0sQ0FBQztJQUN2QixrQ0FBa0M7SUFFbENDLE9BQU8sRUFBRTtRQUNMLGtCQUFrQixFQUFFLGdCQUFnQjtRQUNwQyxjQUFjLEVBQUUsa0JBQWtCO0tBSXJDO0NBSUosQ0FBQztBQUVGRixLQUFLLENBQUNHLFlBQVksQ0FBQ0MsT0FBTyxDQUFDQyxHQUFHLENBQUMsU0FBVUMsTUFBTSxFQUFFO0lBQzdDLE9BQU9BLE1BQU0sQ0FBQztDQUNqQixFQUFFLFNBQVVDLEtBQUssRUFBRTtJQUNoQixPQUFPQyxPQUFPLENBQUNDLE1BQU0sQ0FBQ0YsS0FBSyxDQUFDLENBQUM7Q0FDaEMsQ0FBQyxDQUFDO0FBRUhHLE1BQU0sQ0FBQ0MsT0FBTyxHQUFHWCxLQUFLLENBQUMiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9saWIvYXhpb3MuanM/OWIyOCJdLCJzb3VyY2VzQ29udGVudCI6WyJsZXQgYXhpb3MgPSByZXF1aXJlKCdheGlvcycpO1xuLy9pbXBvcnQgKiBhcyBodHRwcyBmcm9tIFwiaHR0cHNcIjtcbmNvbnN0IEF4aW9zID0gYXhpb3MuY3JlYXRlKHtcbiAgICAvL2Jhc2VVUkw6IHdpbmRvdy5sb2NhdGlvbi5vcmlnaW4sXG5cbiAgICBoZWFkZXJzOiB7XG4gICAgICAgICdYLVJlcXVlc3RlZC1XaXRoJzogJ1hNTEh0dHBSZXF1ZXN0JyxcbiAgICAgICAgJ0NvbnRlbnQtVHlwZSc6ICdhcHBsaWNhdGlvbi9qc29uJyxcbiAgICAgICAgLypcbiAgICAgICAgICAgICAgICAnWC1DU1JGLVRPS0VOJzogJCgnbWV0YVtuYW1lPVwiY3NyZi10b2tlblwiXScpLmF0dHIoJ2NvbnRlbnQnKSxcbiAgICAgICAgKi9cbiAgICB9LFxuICAgIC8qaHR0cHNBZ2VudDogbmV3IGh0dHBzLkFnZW50KHtcbiAgICAgICAgcmVqZWN0VW5hdXRob3JpemVkOiBmYWxzZVxuICAgIH0pKi9cbn0pO1xuXG5BeGlvcy5pbnRlcmNlcHRvcnMucmVxdWVzdC51c2UoZnVuY3Rpb24gKGNvbmZpZykge1xuICAgIHJldHVybiBjb25maWc7XG59LCBmdW5jdGlvbiAoZXJyb3IpIHtcbiAgICByZXR1cm4gUHJvbWlzZS5yZWplY3QoZXJyb3IpO1xufSk7XG5cbm1vZHVsZS5leHBvcnRzID0gQXhpb3M7XG4iXSwibmFtZXMiOlsiYXhpb3MiLCJyZXF1aXJlIiwiQXhpb3MiLCJjcmVhdGUiLCJoZWFkZXJzIiwiaW50ZXJjZXB0b3JzIiwicmVxdWVzdCIsInVzZSIsImNvbmZpZyIsImVycm9yIiwiUHJvbWlzZSIsInJlamVjdCIsIm1vZHVsZSIsImV4cG9ydHMiXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///(api)/./lib/axios.js\n");
+
+let axios = __webpack_require__(2167);
+//import * as https from "https";
+const Axios = axios.create({
+    //baseURL: window.location.origin,
+    headers: {
+        "X-Requested-With": "XMLHttpRequest",
+        "Content-Type": "application/json"
+    }
+});
+Axios.interceptors.request.use(function(config) {
+    return config;
+}, function(error) {
+    return Promise.reject(error);
+});
+module.exports = Axios;
+
 
 /***/ }),
 
-/***/ "(api)/./pages/api/auth/[...nextauth].js":
-/*!*****************************************!*\
-  !*** ./pages/api/auth/[...nextauth].js ***!
-  \*****************************************/
+/***/ 4737:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"authOptions\": () => (/* binding */ authOptions),\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var next_auth__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! next-auth */ \"next-auth\");\n/* harmony import */ var next_auth__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(next_auth__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var next_auth_providers_credentials__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! next-auth/providers/credentials */ \"next-auth/providers/credentials\");\n/* harmony import */ var next_auth_providers_credentials__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_auth_providers_credentials__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _lib_api_gomdon__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../lib/api_gomdon */ \"(api)/./lib/api_gomdon.js\");\n\n\n\nconst authOptions = {\n    // Configure one or more authentication providers\n    providers: [\n        next_auth_providers_credentials__WEBPACK_IMPORTED_MODULE_1___default()({\n            id: \"username-login\",\n            // The name to display on the sign in form (e.g. \"Sign in with...\")\n            name: \"credentials\",\n            // The credentials is used to generate a suitable form on the sign in page.\n            // You can specify whatever fields you are expecting to be submitted.\n            // e.g. domain, username, password, 2FA token, etc.\n            // You can pass any HTML attribute to the <input> tag through the object.\n            credentials: {\n                username: {\n                    label: \"Username\",\n                    type: \"text\",\n                    placeholder: \"098999999\"\n                },\n                password: {\n                    label: \"Password\",\n                    type: \"password\"\n                }\n            },\n            async authorize (credentials, req) {\n                let result = await (0,_lib_api_gomdon__WEBPACK_IMPORTED_MODULE_2__.login)(credentials.username, credentials.password);\n                if (result.result === true) {\n                    let data = result.data;\n                    if (data.user.type === \"customer\") {\n                        return {\n                            id: data.user.id,\n                            phone: data.user.phone,\n                            name: data.user.name,\n                            access_token: data.access_token\n                        };\n                    }\n                    result.message = \"T\\xe0i khoản kh\\xf4ng tồn tại\";\n                }\n                throw new Error(result.message);\n            }\n        })\n    ],\n    secret: \"WaV+XXE/Vfca6SXUndN3fE4wZHTHrkfbKxztwv3SjdM=\",\n    pages: {\n        signIn: \"/login\"\n    },\n    callbacks: {\n        async jwt ({ token , user , account , profile  }) {\n            if (user) {\n                user && (token.user = {\n                    id: user.id,\n                    phone: user.phone,\n                    name: user.name\n                });\n                token.accessToken = user.access_token;\n            }\n            return token;\n        },\n        async session ({ session , token , user  }) {\n            session.user = token.user;\n            session.accessToken = token.accessToken;\n            return session;\n        },\n        async redirect ({ url , baseUrl  }) {\n            console.log(url, baseUrl);\n            // Allows relative callback URLs\n            if (url.startsWith(\"/\")) return `${baseUrl}${url}`;\n            else if (new URL(url).origin === baseUrl) return url;\n            return baseUrl;\n        }\n    }\n};\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (next_auth__WEBPACK_IMPORTED_MODULE_0___default()(authOptions));\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKGFwaSkvLi9wYWdlcy9hcGkvYXV0aC9bLi4ubmV4dGF1dGhdLmpzLmpzIiwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7QUFBZ0M7QUFDaUM7QUFDbkI7QUFDdkMsTUFBTUcsV0FBVyxHQUFHO0lBQ3ZCLGlEQUFpRDtJQUNqREMsU0FBUyxFQUFFO1FBQ1BILHNFQUFtQixDQUFDO1lBQ2hCSSxFQUFFLEVBQUUsZ0JBQWdCO1lBQ3BCLG1FQUFtRTtZQUNuRUMsSUFBSSxFQUFFLGFBQWE7WUFDbkIsMkVBQTJFO1lBQzNFLHFFQUFxRTtZQUNyRSxtREFBbUQ7WUFDbkQseUVBQXlFO1lBQ3pFQyxXQUFXLEVBQUU7Z0JBQ1RDLFFBQVEsRUFBRTtvQkFBRUMsS0FBSyxFQUFFLFVBQVU7b0JBQUVDLElBQUksRUFBRSxNQUFNO29CQUFFQyxXQUFXLEVBQUUsV0FBVztpQkFBRTtnQkFDdkVDLFFBQVEsRUFBRTtvQkFBR0gsS0FBSyxFQUFFLFVBQVU7b0JBQUVDLElBQUksRUFBRSxVQUFVO2lCQUFFO2FBQ3JEO1lBQ0QsTUFBTUcsU0FBUyxFQUFDTixXQUFXLEVBQUVPLEdBQUcsRUFBRTtnQkFDOUIsSUFBSUMsTUFBTSxHQUFHLE1BQU1iLHNEQUFLLENBQUNLLFdBQVcsQ0FBQ0MsUUFBUSxFQUFFRCxXQUFXLENBQUNLLFFBQVEsQ0FBQztnQkFDcEUsSUFBR0csTUFBTSxDQUFDQSxNQUFNLEtBQUssSUFBSSxFQUFDO29CQUN0QixJQUFJQyxJQUFJLEdBQUdELE1BQU0sQ0FBQ0MsSUFBSTtvQkFDdEIsSUFBR0EsSUFBSSxDQUFDQyxJQUFJLENBQUNQLElBQUksS0FBSyxVQUFVLEVBQUM7d0JBQzdCLE9BQU87NEJBQ0hMLEVBQUUsRUFBQ1csSUFBSSxDQUFDQyxJQUFJLENBQUNaLEVBQUU7NEJBQ2ZhLEtBQUssRUFBQ0YsSUFBSSxDQUFDQyxJQUFJLENBQUNDLEtBQUs7NEJBQ3JCWixJQUFJLEVBQUVVLElBQUksQ0FBQ0MsSUFBSSxDQUFDWCxJQUFJOzRCQUNwQmEsWUFBWSxFQUFFSCxJQUFJLENBQUNHLFlBQVk7eUJBQ2xDLENBQUM7cUJBQ0w7b0JBQ0RKLE1BQU0sQ0FBQ0ssT0FBTyxHQUFHLCtCQUF5QjtpQkFDN0M7Z0JBQ0QsTUFBTSxJQUFJQyxLQUFLLENBQUNOLE1BQU0sQ0FBQ0ssT0FBTyxDQUFDO2FBQ2xDO1NBQ0osQ0FBQztLQUNMO0lBQ0RFLE1BQU0sRUFBQyw4Q0FBOEM7SUFDckRDLEtBQUssRUFBRTtRQUNIQyxNQUFNLEVBQUUsUUFBUTtLQUNuQjtJQUNEQyxTQUFTLEVBQUU7UUFDUCxNQUFNQyxHQUFHLEVBQUMsRUFBRUMsS0FBSyxHQUFFVixJQUFJLEdBQUVXLE9BQU8sR0FBRUMsT0FBTyxHQUFFLEVBQUU7WUFFekMsSUFBSVosSUFBSSxFQUFFO2dCQUNOQSxJQUFJLElBQUksQ0FBQ1UsS0FBSyxDQUFDVixJQUFJLEdBQUc7b0JBQ2xCWixFQUFFLEVBQUVZLElBQUksQ0FBQ1osRUFBRTtvQkFDWGEsS0FBSyxFQUFDRCxJQUFJLENBQUNDLEtBQUs7b0JBQ2hCWixJQUFJLEVBQUNXLElBQUksQ0FBQ1gsSUFBSTtpQkFDakIsQ0FBQztnQkFDRnFCLEtBQUssQ0FBQ0csV0FBVyxHQUFHYixJQUFJLENBQUNFLFlBQVk7YUFDeEM7WUFDRCxPQUFPUSxLQUFLO1NBQ2Y7UUFDRCxNQUFNSSxPQUFPLEVBQUMsRUFBRUEsT0FBTyxHQUFFSixLQUFLLEdBQUVWLElBQUksR0FBRSxFQUFFO1lBQ3BDYyxPQUFPLENBQUNkLElBQUksR0FBR1UsS0FBSyxDQUFDVixJQUFJO1lBQ3pCYyxPQUFPLENBQUNELFdBQVcsR0FBR0gsS0FBSyxDQUFDRyxXQUFXO1lBQ3ZDLE9BQU9DLE9BQU87U0FDakI7UUFDRCxNQUFNQyxRQUFRLEVBQUMsRUFBRUMsR0FBRyxHQUFFQyxPQUFPLEdBQUUsRUFBRTtZQUM3QkMsT0FBTyxDQUFDQyxHQUFHLENBQUNILEdBQUcsRUFBQ0MsT0FBTyxDQUFDO1lBQ3hCLGdDQUFnQztZQUNoQyxJQUFJRCxHQUFHLENBQUNJLFVBQVUsQ0FBQyxHQUFHLENBQUMsRUFBRSxPQUFPLENBQUMsRUFBRUgsT0FBTyxDQUFDLEVBQUVELEdBQUcsQ0FBQyxDQUFDO2lCQUU3QyxJQUFJLElBQUlLLEdBQUcsQ0FBQ0wsR0FBRyxDQUFDLENBQUNNLE1BQU0sS0FBS0wsT0FBTyxFQUFFLE9BQU9ELEdBQUc7WUFDcEQsT0FBT0MsT0FBTztTQUNqQjtLQUNKO0NBQ0o7QUFDRCxpRUFBZWxDLGdEQUFRLENBQUNHLFdBQVcsQ0FBQyIsInNvdXJjZXMiOlsid2VicGFjazovLy8uL3BhZ2VzL2FwaS9hdXRoL1suLi5uZXh0YXV0aF0uanM/NTI3ZiJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgTmV4dEF1dGggZnJvbSBcIm5leHQtYXV0aFwiXG5pbXBvcnQgQ3JlZGVudGlhbHNQcm92aWRlciBmcm9tIFwibmV4dC1hdXRoL3Byb3ZpZGVycy9jcmVkZW50aWFsc1wiXG5pbXBvcnQge2xvZ2lufSBmcm9tICcuLi8uLi8uLi9saWIvYXBpX2dvbWRvbic7XG5leHBvcnQgY29uc3QgYXV0aE9wdGlvbnMgPSB7XG4gICAgLy8gQ29uZmlndXJlIG9uZSBvciBtb3JlIGF1dGhlbnRpY2F0aW9uIHByb3ZpZGVyc1xuICAgIHByb3ZpZGVyczogW1xuICAgICAgICBDcmVkZW50aWFsc1Byb3ZpZGVyKHtcbiAgICAgICAgICAgIGlkOiBcInVzZXJuYW1lLWxvZ2luXCIsIC8vIDwtIGFkZCB0aGlzIGxpbmVcbiAgICAgICAgICAgIC8vIFRoZSBuYW1lIHRvIGRpc3BsYXkgb24gdGhlIHNpZ24gaW4gZm9ybSAoZS5nLiBcIlNpZ24gaW4gd2l0aC4uLlwiKVxuICAgICAgICAgICAgbmFtZTogXCJjcmVkZW50aWFsc1wiLFxuICAgICAgICAgICAgLy8gVGhlIGNyZWRlbnRpYWxzIGlzIHVzZWQgdG8gZ2VuZXJhdGUgYSBzdWl0YWJsZSBmb3JtIG9uIHRoZSBzaWduIGluIHBhZ2UuXG4gICAgICAgICAgICAvLyBZb3UgY2FuIHNwZWNpZnkgd2hhdGV2ZXIgZmllbGRzIHlvdSBhcmUgZXhwZWN0aW5nIHRvIGJlIHN1Ym1pdHRlZC5cbiAgICAgICAgICAgIC8vIGUuZy4gZG9tYWluLCB1c2VybmFtZSwgcGFzc3dvcmQsIDJGQSB0b2tlbiwgZXRjLlxuICAgICAgICAgICAgLy8gWW91IGNhbiBwYXNzIGFueSBIVE1MIGF0dHJpYnV0ZSB0byB0aGUgPGlucHV0PiB0YWcgdGhyb3VnaCB0aGUgb2JqZWN0LlxuICAgICAgICAgICAgY3JlZGVudGlhbHM6IHtcbiAgICAgICAgICAgICAgICB1c2VybmFtZTogeyBsYWJlbDogXCJVc2VybmFtZVwiLCB0eXBlOiBcInRleHRcIiwgcGxhY2Vob2xkZXI6IFwiMDk4OTk5OTk5XCIgfSxcbiAgICAgICAgICAgICAgICBwYXNzd29yZDogeyAgbGFiZWw6IFwiUGFzc3dvcmRcIiwgdHlwZTogXCJwYXNzd29yZFwiIH1cbiAgICAgICAgICAgIH0sXG4gICAgICAgICAgICBhc3luYyBhdXRob3JpemUoY3JlZGVudGlhbHMsIHJlcSkge1xuICAgICAgICAgICAgICAgIGxldCByZXN1bHQgPSBhd2FpdCBsb2dpbihjcmVkZW50aWFscy51c2VybmFtZSwgY3JlZGVudGlhbHMucGFzc3dvcmQpO1xuICAgICAgICAgICAgICAgIGlmKHJlc3VsdC5yZXN1bHQgPT09IHRydWUpe1xuICAgICAgICAgICAgICAgICAgICBsZXQgZGF0YSA9IHJlc3VsdC5kYXRhXG4gICAgICAgICAgICAgICAgICAgIGlmKGRhdGEudXNlci50eXBlID09PSAnY3VzdG9tZXInKXtcbiAgICAgICAgICAgICAgICAgICAgICAgIHJldHVybiB7XG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgaWQ6ZGF0YS51c2VyLmlkLFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgIHBob25lOmRhdGEudXNlci5waG9uZSxcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICBuYW1lOiBkYXRhLnVzZXIubmFtZSxcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICBhY2Nlc3NfdG9rZW46IGRhdGEuYWNjZXNzX3Rva2VuLFxuICAgICAgICAgICAgICAgICAgICAgICAgfTtcbiAgICAgICAgICAgICAgICAgICAgfVxuICAgICAgICAgICAgICAgICAgICByZXN1bHQubWVzc2FnZSA9ICdUw6BpIGtob+G6o24ga2jDtG5nIHThu5NuIHThuqFpJ1xuICAgICAgICAgICAgICAgIH1cbiAgICAgICAgICAgICAgICB0aHJvdyBuZXcgRXJyb3IocmVzdWx0Lm1lc3NhZ2UpXG4gICAgICAgICAgICB9XG4gICAgICAgIH0pXG4gICAgXSxcbiAgICBzZWNyZXQ6J1dhVitYWEUvVmZjYTZTWFVuZE4zZkU0d1pIVEhya2ZiS3h6dHd2M1NqZE09JyxcbiAgICBwYWdlczoge1xuICAgICAgICBzaWduSW46ICcvbG9naW4nLFxuICAgIH0sXG4gICAgY2FsbGJhY2tzOiB7XG4gICAgICAgIGFzeW5jIGp3dCh7IHRva2VuLCB1c2VyLCBhY2NvdW50LCBwcm9maWxlIH0pIHtcblxuICAgICAgICAgICAgaWYgKHVzZXIpIHtcbiAgICAgICAgICAgICAgICB1c2VyICYmICh0b2tlbi51c2VyID0ge1xuICAgICAgICAgICAgICAgICAgICBpZDogdXNlci5pZCxcbiAgICAgICAgICAgICAgICAgICAgcGhvbmU6dXNlci5waG9uZSxcbiAgICAgICAgICAgICAgICAgICAgbmFtZTp1c2VyLm5hbWVcbiAgICAgICAgICAgICAgICB9KVxuICAgICAgICAgICAgICAgIHRva2VuLmFjY2Vzc1Rva2VuID0gdXNlci5hY2Nlc3NfdG9rZW5cbiAgICAgICAgICAgIH1cbiAgICAgICAgICAgIHJldHVybiB0b2tlblxuICAgICAgICB9LFxuICAgICAgICBhc3luYyBzZXNzaW9uKHsgc2Vzc2lvbiwgdG9rZW4sIHVzZXIgfSkge1xuICAgICAgICAgICAgc2Vzc2lvbi51c2VyID0gdG9rZW4udXNlclxuICAgICAgICAgICAgc2Vzc2lvbi5hY2Nlc3NUb2tlbiA9IHRva2VuLmFjY2Vzc1Rva2VuXG4gICAgICAgICAgICByZXR1cm4gc2Vzc2lvblxuICAgICAgICB9LFxuICAgICAgICBhc3luYyByZWRpcmVjdCh7IHVybCwgYmFzZVVybCB9KSB7XG4gICAgICAgICAgICBjb25zb2xlLmxvZyh1cmwsYmFzZVVybClcbiAgICAgICAgICAgIC8vIEFsbG93cyByZWxhdGl2ZSBjYWxsYmFjayBVUkxzXG4gICAgICAgICAgICBpZiAodXJsLnN0YXJ0c1dpdGgoXCIvXCIpKSByZXR1cm4gYCR7YmFzZVVybH0ke3VybH1gXG4gICAgICAgICAgICAvLyBBbGxvd3MgY2FsbGJhY2sgVVJMcyBvbiB0aGUgc2FtZSBvcmlnaW5cbiAgICAgICAgICAgIGVsc2UgaWYgKG5ldyBVUkwodXJsKS5vcmlnaW4gPT09IGJhc2VVcmwpIHJldHVybiB1cmxcbiAgICAgICAgICAgIHJldHVybiBiYXNlVXJsXG4gICAgICAgIH1cbiAgICB9XG59XG5leHBvcnQgZGVmYXVsdCBOZXh0QXV0aChhdXRoT3B0aW9ucylcbiJdLCJuYW1lcyI6WyJOZXh0QXV0aCIsIkNyZWRlbnRpYWxzUHJvdmlkZXIiLCJsb2dpbiIsImF1dGhPcHRpb25zIiwicHJvdmlkZXJzIiwiaWQiLCJuYW1lIiwiY3JlZGVudGlhbHMiLCJ1c2VybmFtZSIsImxhYmVsIiwidHlwZSIsInBsYWNlaG9sZGVyIiwicGFzc3dvcmQiLCJhdXRob3JpemUiLCJyZXEiLCJyZXN1bHQiLCJkYXRhIiwidXNlciIsInBob25lIiwiYWNjZXNzX3Rva2VuIiwibWVzc2FnZSIsIkVycm9yIiwic2VjcmV0IiwicGFnZXMiLCJzaWduSW4iLCJjYWxsYmFja3MiLCJqd3QiLCJ0b2tlbiIsImFjY291bnQiLCJwcm9maWxlIiwiYWNjZXNzVG9rZW4iLCJzZXNzaW9uIiwicmVkaXJlY3QiLCJ1cmwiLCJiYXNlVXJsIiwiY29uc29sZSIsImxvZyIsInN0YXJ0c1dpdGgiLCJVUkwiLCJvcmlnaW4iXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///(api)/./pages/api/auth/[...nextauth].js\n");
+// ESM COMPAT FLAG
+__webpack_require__.r(__webpack_exports__);
+
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, {
+  "authOptions": () => (/* binding */ _nextauth_authOptions),
+  "default": () => (/* binding */ _nextauth_)
+});
+
+;// CONCATENATED MODULE: external "next-auth"
+const external_next_auth_namespaceObject = require("next-auth");
+var external_next_auth_default = /*#__PURE__*/__webpack_require__.n(external_next_auth_namespaceObject);
+;// CONCATENATED MODULE: external "next-auth/providers/credentials"
+const credentials_namespaceObject = require("next-auth/providers/credentials");
+var credentials_default = /*#__PURE__*/__webpack_require__.n(credentials_namespaceObject);
+// EXTERNAL MODULE: ./lib/axios.js
+var axios = __webpack_require__(201);
+var axios_default = /*#__PURE__*/__webpack_require__.n(axios);
+;// CONCATENATED MODULE: external "next-auth/next"
+const next_namespaceObject = require("next-auth/next");
+;// CONCATENATED MODULE: ./lib/api_gomdon.js
+
+
+
+async function login(phone, password) {
+    let res = await axios_default()({
+        method: "post",
+        url: process.env.GOMDON_API_URI + "/api/v2/auth/login",
+        data: {
+            phone: phone,
+            password: password
+        }
+    }).then(function(response) {
+        return response.data;
+    }).catch(function(error) {
+        console.log(error);
+        return {
+            result: false,
+            message: "Đăng nhập kh\xf4ng th\xe0nh c\xf4ng"
+        };
+    });
+    return res;
+}
+async function user(req, res) {
+    let session = await unstable_getServerSession(req, res, authOptions);
+    if (session) {
+        let token = session.accessToken;
+        let result = await Axios({
+            method: "get",
+            url: process.env.GOMDON_API_URI + "/api/v2/auth/user",
+            headers: {
+                Authorization: `Bearer ` + token
+            }
+        }).then(function(response) {
+            return response.data;
+        }).catch(function(error) {
+            return error.response.data ?? {
+                result: false,
+                message: "Lấy dữ liệu k th\xe0nh c\xf4ng"
+            };
+        });
+        return result;
+    }
+    return null;
+}
+async function banners() {
+    console.log(process.env.GOMDON_API_URI);
+    let res = await Axios({
+        method: "get",
+        url: process.env.GOMDON_API_URI + "/api/v2/banner"
+    }).then(function(response) {
+        return response.data;
+    }).catch(function(error) {
+        return {
+            result: false,
+            message: "Lấy dữ liệu k th\xe0nh c\xf4ng"
+        };
+    });
+    return res;
+}
+async function report(req, res) {
+    let session = await unstable_getServerSession(req, res, authOptions);
+    if (session) {
+        let token = session.accessToken;
+        let result = await Axios({
+            method: "get",
+            url: process.env.GOMDON_API_URI + "/api/v2/order/report",
+            headers: {
+                Authorization: `Bearer ` + token
+            }
+        }).then(function(response) {
+            return response.data;
+        }).catch(function(error) {
+            return error.response.data ?? {
+                result: false,
+                message: "Lấy dữ liệu k th\xe0nh c\xf4ng"
+            };
+        });
+        return result;
+    }
+    return null;
+}
+/*export async function address(token, type, search){
+    let result = await Axios({
+        method: 'get',
+        url: process.env.GOMDON_API_URI+'/api/v2/address',
+        params: { type: type, keyword:search },
+        headers: { Authorization: `Bearer ` + token},
+    }).then(function (response) {
+        return response.data;
+    }).catch(function (error) {
+        return error.response.data ?? {result: false, message: "Lấy dữ liệu k thành công"}
+    });
+    return result;
+}
+
+export async function orders(token, type, search){
+    let result = await Axios({
+        method: 'get',
+        url: process.env.GOMDON_API_URI+'/api/v2/address',
+        params: { type: type, keyword:search },
+        headers: { Authorization: `Bearer ` + token},
+    }).then(function (response) {
+        return response.data;
+    }).catch(function (error) {
+        return error.response.data ?? {result: false, message: "Lấy dữ liệu k thành công"}
+    });
+    return result;
+}*/ async function api_orders(req, res, data) {
+    let session = await unstable_getServerSession(req, res, authOptions);
+    if (session) {
+        let token = session.accessToken;
+        let result = await Axios({
+            method: "get",
+            url: "https://admin.gomdon.com.vn" + "/api/v2/order",
+            params: data,
+            headers: {
+                Authorization: `Bearer ` + token
+            }
+        }).then(function(response) {
+            return response.data;
+        }).catch(function(error) {
+            return error.response.data ?? {
+                result: false,
+                message: "Lấy dữ liệu k th\xe0nh c\xf4ng"
+            };
+        });
+        return result;
+    }
+    return null;
+}
+async function order_detail(req, res, id) {
+    let session = await unstable_getServerSession(req, res, authOptions);
+    if (session) {
+        let token = session.accessToken;
+        let result = await Axios({
+            method: "get",
+            url: process.env.GOMDON_API_URI + "/api/v2/order/" + id,
+            headers: {
+                Authorization: `Bearer ` + token
+            }
+        }).then(function(response) {
+            return response.data;
+        }).catch(function(error) {
+            return error.response.data ?? {
+                result: false,
+                message: "Lấy dữ liệu k th\xe0nh c\xf4ng"
+            };
+        });
+        return result;
+    }
+    return null;
+}
+async function detail_fee(req, res) {
+    let session = await unstable_getServerSession(req, res, authOptions);
+    if (session) {
+        let token = session.accessToken;
+        let result = await Axios({
+            method: "get",
+            url: process.env.GOMDON_API_URI + "/api/v2/user_manual?type=delivery",
+            headers: {
+                Authorization: `Bearer ` + token
+            }
+        }).then(function(response) {
+            return response.data;
+        }).catch(function(error) {
+            return error.response.data ?? {
+                result: false,
+                message: "Lấy dữ liệu k th\xe0nh c\xf4ng"
+            };
+        });
+        return result;
+    }
+    return null;
+}
+
+;// CONCATENATED MODULE: ./pages/api/auth/[...nextauth].js
+
+
+
+const _nextauth_authOptions = {
+    // Configure one or more authentication providers
+    providers: [
+        credentials_default()({
+            id: "username-login",
+            // The name to display on the sign in form (e.g. "Sign in with...")
+            name: "credentials",
+            // The credentials is used to generate a suitable form on the sign in page.
+            // You can specify whatever fields you are expecting to be submitted.
+            // e.g. domain, username, password, 2FA token, etc.
+            // You can pass any HTML attribute to the <input> tag through the object.
+            credentials: {
+                username: {
+                    label: "Username",
+                    type: "text",
+                    placeholder: "098999999"
+                },
+                password: {
+                    label: "Password",
+                    type: "password"
+                }
+            },
+            async authorize (credentials, req) {
+                let result = await login(credentials.username, credentials.password);
+                if (result.result === true) {
+                    let data = result.data;
+                    if (data.user.type === "customer") {
+                        return {
+                            id: data.user.id,
+                            phone: data.user.phone,
+                            name: data.user.name,
+                            access_token: data.access_token
+                        };
+                    }
+                    result.message = "T\xe0i khoản kh\xf4ng tồn tại";
+                }
+                throw new Error(result.message);
+            }
+        })
+    ],
+    secret: "WaV+XXE/Vfca6SXUndN3fE4wZHTHrkfbKxztwv3SjdM=",
+    pages: {
+        signIn: "/login"
+    },
+    callbacks: {
+        async jwt ({ token , user , account , profile  }) {
+            if (user) {
+                user && (token.user = {
+                    id: user.id,
+                    phone: user.phone,
+                    name: user.name
+                });
+                token.accessToken = user.access_token;
+            }
+            return token;
+        },
+        async session ({ session , token , user  }) {
+            session.user = token.user;
+            session.accessToken = token.accessToken;
+            return session;
+        },
+        async redirect ({ url , baseUrl  }) {
+            console.log(url, baseUrl);
+            // Allows relative callback URLs
+            if (url.startsWith("/")) return `${baseUrl}${url}`;
+            else if (new URL(url).origin === baseUrl) return url;
+            return baseUrl;
+        }
+    }
+};
+/* harmony default export */ const _nextauth_ = (external_next_auth_default()(_nextauth_authOptions));
+
 
 /***/ })
 
@@ -90,7 +320,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 var __webpack_require__ = require("../../../webpack-api-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = (__webpack_exec__("(api)/./pages/api/auth/[...nextauth].js"));
+var __webpack_exports__ = (__webpack_exec__(4737));
 module.exports = __webpack_exports__;
 
 })();
