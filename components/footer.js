@@ -3,6 +3,9 @@ import Link from 'next/link'
 import {useSession} from "next-auth/react"
 import { useRouter } from 'next/router'
 import Script from "next/script";
+/*
+import {Helmet} from "react-helmet";
+*/
 
 export default function Footer() {
     const { data: session, status } = useSession()
@@ -11,12 +14,15 @@ export default function Footer() {
         let user = session.user;
         embed = (
             <>
-                <Script id="aecommerce-user">
-                    var SB_AECOMMERCE_ACTIVE_USER = {user.id}
-                </Script>
-                <Script src="https://chat.gomdon.com.vn/js/min/jquery.min.js?lang=vi"></Script>
-                <Script id="sbinit" src="https://chat.gomdon.com.vn/js/main.js?lang=vi"></Script>
 
+                <Script src="https://chat.gomdon.com.vn/js/min/jquery.min.js?lang=vi"/>
+                <Script id="sbinit" src="https://chat.gomdon.com.vn/js/main.js?lang=vi"/>
+
+                <Script id="aecommerce-user" data-id={user.id}>
+                    {`
+                        var SB_AECOMMERCE_ACTIVE_USER = document.getElementById('aecommerce-user').getAttribute('data-id');
+                    `}
+                </Script>
             </>
         )
     }
