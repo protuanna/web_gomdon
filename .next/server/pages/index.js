@@ -97,79 +97,81 @@ function Report({ data  }) {
     //const [search, setSearch] = useState('');
     let dt = [];
     let total = 0;
-    data.forEach(function(item, index) {
-        dt[item.status] = item.total;
-        total += item.total;
-    });
+    if (data.length > 0) {
+        data.forEach(function(item, index) {
+            dt[item.status] = item.total;
+            total += item.total;
+        });
+    }
     const { 0: report , 1: setReport  } = (0,external_react_.useState)([
         {
             label: "Tạo mới",
             status: 1,
             value: dt[1] ?? 0,
-            percent: ((dt[1] ?? 0) * 100 / total).toFixed(2),
+            percent: total > 0 ? ((dt[1] ?? 0) * 100 / total).toFixed(2) : 0,
             color: "#228B22"
         },
         {
             label: "Hủy",
             status: 2,
             value: dt[2] ?? 0,
-            percent: ((dt[2] ?? 0) * 100 / total).toFixed(2),
+            percent: total > 0 ? ((dt[2] ?? 0) * 100 / total).toFixed(2) : 0,
             color: "#BEBEBE"
         },
         {
             label: "Đ\xe3 lấy h\xe0ng",
             status: 3,
             value: dt[3] ?? 0,
-            percent: ((dt[3] ?? 0) * 100 / total).toFixed(2),
+            percent: total > 0 ? ((dt[3] ?? 0) * 100 / total).toFixed(2) : 0,
             color: "#FF0000"
         },
         {
             label: "Đang vận chuyển",
             status: 4,
             value: dt[4] ?? 0,
-            percent: ((dt[4] ?? 0) * 100 / total).toFixed(2),
+            percent: total > 0 ? ((dt[4] ?? 0) * 100 / total).toFixed(2) : 0,
             color: "#4CAEE3"
         },
         {
             label: "Đang giao h\xe0ng",
             status: 5,
             value: dt[5] ?? 0,
-            percent: ((dt[5] ?? 0) * 100 / total).toFixed(2),
+            percent: total > 0 ? ((dt[5] ?? 0) * 100 / total).toFixed(2) : 0,
             color: "#FF8C00"
         },
         {
             label: "Đang chuyển ho\xe0n",
             status: 6,
             value: dt[6] ?? 0,
-            percent: ((dt[6] ?? 0) * 100 / total).toFixed(2),
+            percent: total > 0 ? ((dt[6] ?? 0) * 100 / total).toFixed(2) : 0,
             color: "#4169E1"
         },
         {
             label: "Đ\xe3 giao h\xe0ng",
             status: 7,
             value: dt[7] ?? 0,
-            percent: ((dt[7] ?? 0) * 100 / total).toFixed(2),
+            percent: total > 0 ? ((dt[7] ?? 0) * 100 / total).toFixed(2) : 0,
             color: "#20B2AA"
         },
         {
             label: "Đ\xe3 trả h\xe0ng",
             status: 8,
             value: dt[8] ?? 0,
-            percent: ((dt[8] ?? 0) * 100 / total).toFixed(2),
+            percent: total > 0 ? ((dt[8] ?? 0) * 100 / total).toFixed(2) : 0,
             color: "#9966FF"
         },
         {
             label: "Kiện vấn đề",
             status: 9,
             value: dt[9] ?? 0,
-            percent: ((dt[9] ?? 0) * 100 / total).toFixed(2),
+            percent: total > 0 ? ((dt[9] ?? 0) * 100 / total).toFixed(2) : 0,
             color: "#FF69B4"
         },
         {
             label: "Đơn lấy h\xe0ng thất bại",
             status: 10,
             value: dt[10] ?? 0,
-            percent: ((dt[10] ?? 0) * 100 / total).toFixed(2),
+            percent: total > 0 ? ((dt[10] ?? 0) * 100 / total).toFixed(2) : 0,
             color: "#607C8E"
         }, 
     ]);
