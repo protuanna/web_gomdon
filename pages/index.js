@@ -20,7 +20,7 @@ export default function Home({ banners , report}) {
     const [order, setOrder] = useState((status==="authenticated")?'/order':'/login');*/
     let html  = '';
     if(status === 'authenticated'){
-        let data_report = report.data;
+        let data_report = (report.result === true) ? report.data : [];
         html = (
             <Report data={data_report}/>
         )

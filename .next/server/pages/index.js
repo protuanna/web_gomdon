@@ -324,7 +324,7 @@ function Home({ banners , report  }) {
     /*const [delivery, setDelivery] = useState((status==="authenticated")?'/delivery':'/login');
     const [order, setOrder] = useState((status==="authenticated")?'/order':'/login');*/ let html = "";
     if (status === "authenticated") {
-        let data_report = report.data;
+        let data_report = report.result === true ? report.data : [];
         html = /*#__PURE__*/ jsx_runtime_.jsx(Report, {
             data: data_report
         });
