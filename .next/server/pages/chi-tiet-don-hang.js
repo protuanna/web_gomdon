@@ -122,7 +122,8 @@ function ChiTietDonHang({ order  }) {
         input.remove();
         sweetalert2__WEBPACK_IMPORTED_MODULE_10___default().fire("Đ\xe3 copy : " + text);
     }
-    function openChat() {
+    async function openChat() {
+        await (0,_lib_ajax_gomdon__WEBPACK_IMPORTED_MODULE_9__/* .sendMessage */ .bG)("T\xf4i cần hỗ trợ đơn h\xe0ng : " + detail.partner_code);
         SBChat.open();
     }
     let btn_cancel = "";
@@ -208,10 +209,10 @@ function ChiTietDonHang({ order  }) {
                                                                 className: "btn_flex",
                                                                 children: [
                                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
-                                                                        className: "btn-in",
+                                                                        className: "btn-chat",
                                                                         onClick: ()=>openChat(),
                                                                         children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                                                                            children: "chat"
+                                                                            children: "chat hỗ trợ"
                                                                         })
                                                                     }),
                                                                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {

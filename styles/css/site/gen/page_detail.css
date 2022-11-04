@@ -123,6 +123,14 @@
   color: #286a93;
 }
 
+.html_single_order .bann-red .receipt .btn_flex .btn-chat {
+  border: 1px solid #286a93;
+  width: 100px;
+  border-radius: 5px;
+  overflow: hidden;
+  color: #286a93;
+}
+
 .btn-mes{
   color: #028be5;
   border: 1px solid #028be5;

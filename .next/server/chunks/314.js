@@ -17,6 +17,7 @@ exports.modules = {
 /* harmony export */   "PC": () => (/* binding */ createOrderDelivery),
 /* harmony export */   "Y7": () => (/* binding */ update_address_order),
 /* harmony export */   "aU": () => (/* binding */ feeShop),
+/* harmony export */   "bG": () => (/* binding */ sendMessage),
 /* harmony export */   "h7": () => (/* binding */ print_order),
 /* harmony export */   "hG": () => (/* binding */ ordersDelivery),
 /* harmony export */   "ms": () => (/* binding */ search_address),
@@ -371,10 +372,40 @@ async function search_address(data) {
     }).catch(function(error) {
         return error.response.data ?? {
             result: false,
-            message: "Lấy dữ liệu k th\xe0nh c\xf4ng"
+            qessage: "Lấy dữ liệu k th\xe0nh c\xf4ng"
         };
     });
     return result;
+}
+async function sendMessage(message) {
+    const session = await (0,next_auth_react__WEBPACK_IMPORTED_MODULE_1__.getSession)();
+    console.log(session);
+    if (session !== null) {
+        let user_id = session.user.id;
+        var bodyFormData = new FormData();
+        bodyFormData.append("token", "6e22d72026bcc4722ff96eb8c780eb2ef90784cc");
+        bodyFormData.append("function", "send-message-aecommerce");
+        bodyFormData.append("aecommerce_id", user_id);
+        bodyFormData.append("message", message);
+        let result = await _axios__WEBPACK_IMPORTED_MODULE_0___default()({
+            method: "post",
+            url: "https://chat.gomdon.com.vn" + "/include/api.php",
+            data: bodyFormData
+        }).then(function(response) {
+            console.log(response);
+            return response.data;
+        }).catch(function(error) {
+            return error.response.data ?? {
+                result: false,
+                message: "Gửi tin nhắn kh\xf4ng th\xe0nh c\xf4ng"
+            };
+        });
+        return result;
+    }
+    return {
+        result: false,
+        message: "Vui l\xf2ng đăng nhập"
+    };
 }
 
 

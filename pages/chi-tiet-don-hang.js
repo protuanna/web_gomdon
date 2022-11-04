@@ -4,9 +4,9 @@ import Link from "next/link"
 import {useSession} from "next-auth/react";
 import {useRouter} from "next/router";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faMessage, faAngleLeft, faEdit} from "@fortawesome/free-solid-svg-icons";
+import {faComment, faAngleLeft, faEdit} from "@fortawesome/free-solid-svg-icons";
 import {order_detail} from "../lib/api_gomdon";
-import {cancel_order, print_order} from "../lib/ajax_gomdon";
+import {cancel_order, print_order, sendMessage} from "../lib/ajax_gomdon";
 import Swal from "sweetalert2";
 
 export default function ChiTietDonHang({order}) {
@@ -92,7 +92,8 @@ export default function ChiTietDonHang({order}) {
         Swal.fire("Đã copy : " + text);
     }
 
-    function openChat(){
+    async function openChat(){
+        await sendMessage('Tôi cần hỗ trợ đơn hàng : ' + detail.partner_code)
         SBChat.open()
     }
 
@@ -141,8 +142,10 @@ export default function ChiTietDonHang({order}) {
                                                 {/*<p className="title15">Đang đi lấy hàng</p>*/}
                                             </div>
                                             <div className="btn_flex">
-                                                <button className="btn-in" onClick={() => openChat()}>
-                                                    <span>chat</span>
+                                                <button className="btn-chat" onClick={() => openChat()}>
+                                                    <span>
+                                                        chat hỗ trợ
+                                                    </span>
                                                 </button>
                                                 <button className="btn-in" onClick={() => printTrigger()}>
                                                     <span>in</span>
