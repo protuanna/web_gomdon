@@ -83,21 +83,33 @@ function ChiTietDonHang({ order  }) {
         return `${hours}:${minutes}:${seconds}`;
     }
     async function cancelOrder() {
-        console.log(detail, 22);
         if (disabled === false) {
             setDisabled(true);
-            let result = await (0,_lib_ajax_gomdon__WEBPACK_IMPORTED_MODULE_9__/* .cancel_order */ .Gd)(detail.id);
-            setDisabled(true);
-            if (result.result === true) {
-                setDetail((existingValues)=>({
-                        ...existingValues,
-                        status: 2
-                    }));
-                sweetalert2__WEBPACK_IMPORTED_MODULE_10___default().fire("Hủy đơn h\xe0ng th\xe0nh c\xf4ng");
-            } else {
-                sweetalert2__WEBPACK_IMPORTED_MODULE_10___default().fire(result.message);
-            }
-            setDisabled(false);
+            sweetalert2__WEBPACK_IMPORTED_MODULE_10___default().fire({
+                title: "X\xe1c nhận x\xf3a?",
+                text: "Bạn chắc chắn muốn x\xf3a đơn h\xe0ng n\xe0y",
+                /*icon: 'warning',*/ showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "X\xe1c nhận",
+                cancelButtonText: "Bỏ qua"
+            }).then(async (result)=>{
+                if (result.isConfirmed) {
+                    let result1 = await (0,_lib_ajax_gomdon__WEBPACK_IMPORTED_MODULE_9__/* .cancel_order */ .Gd)(detail.id);
+                    if (result1.result === true) {
+                        setDetail((existingValues)=>({
+                                ...existingValues,
+                                status: 2
+                            }));
+                        sweetalert2__WEBPACK_IMPORTED_MODULE_10___default().fire("Hủy đơn h\xe0ng th\xe0nh c\xf4ng");
+                    } else {
+                        sweetalert2__WEBPACK_IMPORTED_MODULE_10___default().fire(result1.message);
+                    }
+                    setDisabled(false);
+                } else {
+                    setDisabled(false);
+                }
+            });
         }
     }
     async function printTrigger() {
@@ -129,18 +141,41 @@ function ChiTietDonHang({ order  }) {
     let btn_cancel = "";
     let btn_edit = /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {});
     if (detail.status === 1 || detail.status === 10) {
-        btn_cancel = /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+        btn_cancel = /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
             className: "Group_cancel",
-            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                className: "btn_print",
-                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
-                    className: disabled ? "butt active disabled" : "butt active",
-                    onClick: ()=>cancelOrder(),
-                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                        children: "Hủy đơn"
+            style: {
+                display: "flex"
+            },
+            children: [
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                    className: "btn_print",
+                    style: {
+                        with: "50%"
+                    },
+                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
+                        className: disabled ? "butt active disabled" : "butt active",
+                        onClick: ()=>cancelOrder(),
+                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                            children: "Hủy đơn"
+                        })
+                    })
+                }),
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
+                    className: "btn_print",
+                    style: {
+                        with: "50%"
+                    },
+                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_3___default()), {
+                        href: "/cap-nhat-don-hang?id=" + detail.id,
+                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
+                            className: disabled ? "butt disabled" : "butt",
+                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
+                                children: "Sửa đơn"
+                            })
+                        })
                     })
                 })
-            })
+            ]
         });
         btn_edit = /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_3___default()), {
             href: "/cap-nhat-don-hang?id=" + detail.id,

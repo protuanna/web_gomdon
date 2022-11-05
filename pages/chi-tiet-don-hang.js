@@ -50,22 +50,37 @@ export default function ChiTietDonHang({order}) {
     }
 
     async function cancelOrder(){
-        console.log(detail, 22)
+
         if(disabled === false){
             setDisabled(true)
+            Swal.fire({
+                title: 'Xác nhận xóa?',
+                text: "Bạn chắc chắn muốn xóa đơn hàng này",
+                /*icon: 'warning',*/
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Xác nhận',
+                cancelButtonText : 'Bỏ qua'
+            }).then( async (result) => {
+                if (result.isConfirmed) {
+                    let result = await cancel_order(detail.id)
+                    if (result.result === true) {
+                        setDetail((existingValues) => ({
+                            ...existingValues,
+                            status: 2,
+                        }))
+                        Swal.fire('Hủy đơn hàng thành công')
+                    }else {
+                        Swal.fire(result.message)
+                    }
+                    setDisabled(false)
+                }else {
+                    setDisabled(false)
+                }
+            })
 
-            let result = await cancel_order(detail.id)
-            setDisabled(true)
-            if (result.result === true) {
-                setDetail((existingValues) => ({
-                    ...existingValues,
-                    status: 2,
-                }))
-                Swal.fire('Hủy đơn hàng thành công')
-            }else {
-                Swal.fire(result.message)
-            }
-            setDisabled(false)
+
         }
     }
 
@@ -101,11 +116,18 @@ export default function ChiTietDonHang({order}) {
     let btn_edit = (<span></span>)
     if(detail.status === 1 || detail.status === 10){
         btn_cancel = (
-            <div className="Group_cancel">
-                <div className="btn_print">
+            <div className="Group_cancel" style={{display:'flex'}}>
+                <div className="btn_print" style={{with:'50%'}}>
                     <button className={disabled ? "butt active disabled" : "butt active"} onClick={() => cancelOrder()}>
                         <span>Hủy đơn</span>
                     </button>
+                </div>
+                <div className="btn_print" style={{with:'50%'}}>
+                    <Link href={"/cap-nhat-don-hang?id=" + detail.id} >
+                        <button className={disabled ? "butt disabled" : "butt"}>
+                            <span>Sửa đơn</span>
+                        </button>
+                    </Link>
                 </div>
             </div>
         )
