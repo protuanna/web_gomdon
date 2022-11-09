@@ -16,7 +16,7 @@ export default function Footer() {
             <>
 
                 <Script id="jquery-tag" src="https://chat.gomdon.com.vn/js/min/jquery.min.js" />
-                <Script id="sbinit" src="https://chat.gomdon.com.vn/js/main.js?lang=vi&v=2.0" strategy="lazyOnload"/>
+                <Script id="sbinit" src="https://chat.gomdon.com.vn/js/main.js?lang=vi&v=3.0" strategy="lazyOnload"/>
 
                 <Script id="aecommerce-user" data-id={user.id}>
                     {`

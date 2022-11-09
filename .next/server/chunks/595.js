@@ -42,7 +42,7 @@ import {Helmet} from "react-helmet";
                 }),
                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_script__WEBPACK_IMPORTED_MODULE_5___default()), {
                     id: "sbinit",
-                    src: "https://chat.gomdon.com.vn/js/main.js?lang=vi&v=2.0",
+                    src: "https://chat.gomdon.com.vn/js/main.js?lang=vi&v=3.0",
                     strategy: "lazyOnload"
                 }),
                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_script__WEBPACK_IMPORTED_MODULE_5___default()), {
