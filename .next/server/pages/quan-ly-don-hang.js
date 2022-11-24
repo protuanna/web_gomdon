@@ -41,40 +41,31 @@ function Loading() {
 
 /***/ }),
 
-/***/ 2188:
+/***/ 2217:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-// ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
-
-// EXPORTS
-__webpack_require__.d(__webpack_exports__, {
-  "default": () => (/* binding */ QuanLyDonHang),
-  "getServerSideProps": () => (/* binding */ getServerSideProps)
-});
-
-// EXTERNAL MODULE: external "react/jsx-runtime"
-var jsx_runtime_ = __webpack_require__(997);
-// EXTERNAL MODULE: ./components/footer.js
-var footer = __webpack_require__(6151);
-// EXTERNAL MODULE: ./components/loading.js + 1 modules
-var components_loading = __webpack_require__(8330);
-// EXTERNAL MODULE: external "react"
-var external_react_ = __webpack_require__(6689);
-;// CONCATENATED MODULE: external "react-date-range"
-const external_react_date_range_namespaceObject = require("react-date-range");
-;// CONCATENATED MODULE: external "date-fns/locale"
-const locale_namespaceObject = require("date-fns/locale");
-// EXTERNAL MODULE: ./lib/ajax_gomdon.js
-var ajax_gomdon = __webpack_require__(3314);
-// EXTERNAL MODULE: external "next-auth/react"
-var react_ = __webpack_require__(1649);
-// EXTERNAL MODULE: external "next/router"
-var router_ = __webpack_require__(1853);
-// EXTERNAL MODULE: ./node_modules/next/link.js
-var next_link = __webpack_require__(1664);
-var link_default = /*#__PURE__*/__webpack_require__.n(next_link);
-;// CONCATENATED MODULE: ./pages/quan-ly-don-hang.js
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ QuanLyDonHang),
+/* harmony export */   "getServerSideProps": () => (/* binding */ getServerSideProps)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(997);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _components_footer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6151);
+/* harmony import */ var _components_loading__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(8330);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(6689);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var react_date_range__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(4304);
+/* harmony import */ var react_date_range__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_date_range__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var date_fns_locale__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(5564);
+/* harmony import */ var date_fns_locale__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(date_fns_locale__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _lib_ajax_gomdon__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(3314);
+/* harmony import */ var next_auth_react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(1649);
+/* harmony import */ var next_auth_react__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(next_auth_react__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(1853);
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(1664);
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_9__);
 
 
 
@@ -86,29 +77,29 @@ var link_default = /*#__PURE__*/__webpack_require__.n(next_link);
 
 
 function QuanLyDonHang({ search  }) {
-    const { data: session , status  } = (0,react_.useSession)();
-    const router = (0,router_.useRouter)();
+    const { data: session , status  } = (0,next_auth_react__WEBPACK_IMPORTED_MODULE_7__.useSession)();
+    const router = (0,next_router__WEBPACK_IMPORTED_MODULE_8__.useRouter)();
     if (status === "unauthenticated") {
         router.push("/login");
     }
-    /*const{search} = router.query*/ const { 0: open , 1: setOpen  } = (0,external_react_.useState)(false);
-    const { 0: openCal , 1: setOpenCal  } = (0,external_react_.useState)(false);
-    const dropdown = (0,external_react_.useRef)(null);
-    const dropdown_call = (0,external_react_.useRef)(null);
-    const { 0: orderStatus , 1: setOrderStatus  } = (0,external_react_.useState)(0);
-    const { 0: loading , 1: setLoading  } = (0,external_react_.useState)(false);
-    const { 0: htmlStatus , 1: setHtmlStatus  } = (0,external_react_.useState)([]);
-    const { 0: lastPage , 1: setLastPage  } = (0,external_react_.useState)(1);
-    const { 0: filter , 1: setFilter  } = (0,external_react_.useState)({
+    /*const{search} = router.query*/ const { 0: open , 1: setOpen  } = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(false);
+    const { 0: openCal , 1: setOpenCal  } = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(false);
+    const dropdown = (0,react__WEBPACK_IMPORTED_MODULE_3__.useRef)(null);
+    const dropdown_call = (0,react__WEBPACK_IMPORTED_MODULE_3__.useRef)(null);
+    const { 0: orderStatus , 1: setOrderStatus  } = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(0);
+    const { 0: loading , 1: setLoading  } = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(false);
+    const { 0: htmlStatus , 1: setHtmlStatus  } = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)([]);
+    const { 0: lastPage , 1: setLastPage  } = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(1);
+    const { 0: filter , 1: setFilter  } = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)({
         page: 1,
         type: 1,
         orderId: search,
         day: "week",
         status: 0
     });
-    const { 0: total , 1: setTotal  } = (0,external_react_.useState)(0);
-    const { 0: orders , 1: setOrders  } = (0,external_react_.useState)([]);
-    const { 0: aryStatus , 1: setAryStatus  } = (0,external_react_.useState)({
+    const { 0: total , 1: setTotal  } = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(0);
+    const { 0: orders , 1: setOrders  } = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)([]);
+    const { 0: aryStatus , 1: setAryStatus  } = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)({
         "1": "Tạo mới",
         "2": "Hủy",
         "3": "Đ\xe3 lấy h\xe0ng",
@@ -124,14 +115,14 @@ function QuanLyDonHang({ search  }) {
         startDate: new Date(),
         endDate: new Date(),
         key: 'selection',
-    }*/ const { 0: selectionRange , 1: setSelectionRange  } = (0,external_react_.useState)([
+    }*/ const { 0: selectionRange , 1: setSelectionRange  } = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)([
         {
             startDate: new Date(),
             endDate: new Date(),
             key: "selection"
         }
     ]);
-    (0,external_react_.useEffect)(async ()=>{
+    (0,react__WEBPACK_IMPORTED_MODULE_3__.useEffect)(async ()=>{
         if (filter.page <= lastPage) {
             if (filter.page === 1) {
                 setLoading(true);
@@ -151,7 +142,7 @@ function QuanLyDonHang({ search  }) {
     }, [
         filter
     ]);
-    (0,external_react_.useEffect)(()=>{
+    (0,react__WEBPACK_IMPORTED_MODULE_3__.useEffect)(()=>{
         // only add the event listener when the dropdown is opened
         if (!open) return;
         function handleClick(event) {
@@ -165,7 +156,7 @@ function QuanLyDonHang({ search  }) {
     }, [
         open
     ]);
-    (0,external_react_.useEffect)(()=>{
+    (0,react__WEBPACK_IMPORTED_MODULE_3__.useEffect)(()=>{
         // only add the event listener when the dropdown is opened
         if (!openCal) return;
         function handleClick(event) {
@@ -179,10 +170,10 @@ function QuanLyDonHang({ search  }) {
     }, [
         openCal
     ]);
-    (0,external_react_.useEffect)(()=>{
+    (0,react__WEBPACK_IMPORTED_MODULE_3__.useEffect)(()=>{
         window.addEventListener("scroll", loadMore);
     }, []);
-    (0,external_react_.useEffect)(()=>{
+    (0,react__WEBPACK_IMPORTED_MODULE_3__.useEffect)(()=>{
         console.log(selectionRange);
     }, [
         selectionRange
@@ -261,7 +252,7 @@ function QuanLyDonHang({ search  }) {
                 data.start_time = parseInt(new Date(selectionRange[0].startDate).setHours(0, 0, 0, 0) / 1000);
                 data.end_time = parseInt(new Date(selectionRange[0].endDate).setHours(23, 59, 59, 0) / 1000);
         }
-        let res = await (0,ajax_gomdon/* ordersDelivery */.hG)(data);
+        let res = await (0,_lib_ajax_gomdon__WEBPACK_IMPORTED_MODULE_6__/* .ordersDelivery */ .hG)(data);
         return res;
     }
     function format_date(ti) {
@@ -284,52 +275,52 @@ function QuanLyDonHang({ search  }) {
     let html_content = [];
     if (orders.length > 0) {
         orders.forEach(function(item, index) {
-            html_content.push(/*#__PURE__*/ jsx_runtime_.jsx((link_default()), {
+            html_content.push(/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_9___default()), {
                 href: "/chi-tiet-don-hang?id=" + item.id,
-                children: /*#__PURE__*/ jsx_runtime_.jsx("a", {
+                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
                     href: "",
                     title: "",
-                    children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
+                    children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
                         className: "item_single",
                         children: [
-                            /*#__PURE__*/ jsx_runtime_.jsx("div", {
+                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                 className: "new new_" + item.status,
                                 children: aryStatus[item.status]
                             }),
-                            /*#__PURE__*/ (0,jsx_runtime_.jsxs)("h5", {
+                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("h5", {
                                 className: "title16",
                                 children: [
                                     "M\xe3 vận đơn: ",
                                     item.partner_code
                                 ]
                             }),
-                            /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
+                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
                                 className: "tp_to",
                                 children: [
-                                    /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
+                                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
                                         className: "honest",
                                         children: [
-                                            /*#__PURE__*/ jsx_runtime_.jsx("div", {
+                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                                 className: "name",
                                                 children: item.source_name
                                             }),
-                                            /*#__PURE__*/ jsx_runtime_.jsx("div", {
+                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                                 className: "city",
                                                 children: item.source_province
                                             })
                                         ]
                                     }),
-                                    /*#__PURE__*/ jsx_runtime_.jsx("span", {
+                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
                                         children: "----->"
                                     }),
-                                    /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
+                                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
                                         className: "honest",
                                         children: [
-                                            /*#__PURE__*/ jsx_runtime_.jsx("div", {
+                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                                 className: "name",
                                                 children: item.dest_name
                                             }),
-                                            /*#__PURE__*/ jsx_runtime_.jsx("div", {
+                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                                 className: "city",
                                                 children: item.dest_province
                                             })
@@ -337,7 +328,7 @@ function QuanLyDonHang({ search  }) {
                                     })
                                 ]
                             }),
-                            /*#__PURE__*/ (0,jsx_runtime_.jsxs)("p", {
+                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
                                 className: "title15 bold",
                                 children: [
                                     item.source_district,
@@ -348,14 +339,14 @@ function QuanLyDonHang({ search  }) {
                                     "]"
                                 ]
                             }),
-                            /*#__PURE__*/ (0,jsx_runtime_.jsxs)("p", {
+                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
                                 className: "title12",
                                 children: [
                                     "Thời gian tạo đơn ",
                                     format_date(item.created_at)
                                 ]
                             }),
-                            /*#__PURE__*/ (0,jsx_runtime_.jsxs)("p", {
+                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("p", {
                                 className: "title12",
                                 children: [
                                     "Thời gian cập nhật ",
@@ -368,7 +359,7 @@ function QuanLyDonHang({ search  }) {
             }, item.id));
         });
     } else {
-        html_content = /*#__PURE__*/ jsx_runtime_.jsx("div", {
+        html_content = /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
             style: {
                 textAlign: "center"
             },
@@ -376,17 +367,17 @@ function QuanLyDonHang({ search  }) {
         });
     }
     if (loading === true) {
-        html_content = /*#__PURE__*/ jsx_runtime_.jsx(components_loading/* default */.Z, {});
+        html_content = /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_loading__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .Z, {});
     }
     let html_status = [];
     Object.keys(aryStatus).forEach(function(key) {
-        html_status.push(/*#__PURE__*/ jsx_runtime_.jsx("li", {
+        html_status.push(/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
             onClick: ()=>setOrderStatus(orderStatus === key ? 0 : key),
             className: orderStatus === key ? "active" : "",
-            children: /*#__PURE__*/ jsx_runtime_.jsx("label", {
-                children: /*#__PURE__*/ jsx_runtime_.jsx("div", {
+            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("label", {
+                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                     className: "item-dm",
-                    children: /*#__PURE__*/ jsx_runtime_.jsx("p", {
+                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
                         className: "",
                         children: aryStatus[key]
                     })
@@ -394,13 +385,13 @@ function QuanLyDonHang({ search  }) {
             })
         }, key));
     });
-    (0,external_react_.useEffect)(()=>{
+    (0,react__WEBPACK_IMPORTED_MODULE_3__.useEffect)(()=>{
         let html_status = [];
         Object.keys(aryStatus).forEach(function(key) {
-            html_status.push(/*#__PURE__*/ jsx_runtime_.jsx("li", {
-                children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)("label", {
+            html_status.push(/*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
+                children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("label", {
                     children: [
-                        /*#__PURE__*/ jsx_runtime_.jsx("input", {
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
                             className: "Dashboard",
                             name: "clothing",
                             type: "radio",
@@ -410,9 +401,9 @@ function QuanLyDonHang({ search  }) {
                                 setOrderStatus(key);
                             }
                         }),
-                        /*#__PURE__*/ jsx_runtime_.jsx("div", {
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                             className: "item-dm",
-                            children: /*#__PURE__*/ jsx_runtime_.jsx("p", {
+                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
                                 className: "",
                                 children: aryStatus[key]
                             })
@@ -427,77 +418,77 @@ function QuanLyDonHang({ search  }) {
     ]);
     /*aryStatus.forEach(function (item,index){
         console.log(item,index)
-    })*/ return /*#__PURE__*/ jsx_runtime_.jsx("div", {
+    })*/ return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
         id: "main",
-        children: /*#__PURE__*/ jsx_runtime_.jsx("div", {
+        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
             className: "container",
-            children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
+            children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
                 className: "contents",
                 children: [
-                    /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
+                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
                         className: "head_col",
                         children: [
-                            /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
+                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
                                 className: "head_title",
                                 children: [
-                                    /*#__PURE__*/ jsx_runtime_.jsx("h3", {
+                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
                                         className: "title18",
                                         children: "Quản l\xfd đơn h\xe0ng"
                                     }),
-                                    /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
+                                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
                                         className: "profil_col3_locsanpham",
                                         children: [
-                                            /*#__PURE__*/ jsx_runtime_.jsx("div", {
+                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                                 className: "fill-wrapper rotate-menu",
                                                 onClick: ()=>setOpen(!open),
-                                                children: /*#__PURE__*/ jsx_runtime_.jsx("div", {
+                                                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                                     className: "filter",
-                                                    children: /*#__PURE__*/ jsx_runtime_.jsx("svg", {
+                                                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
                                                         xmlns: "http://www.w3.org/2000/svg",
                                                         width: "26",
                                                         height: "26",
                                                         fill: "currentColor",
                                                         className: "bi bi-funnel",
                                                         viewBox: "0 0 16 16",
-                                                        children: /*#__PURE__*/ jsx_runtime_.jsx("path", {
+                                                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
                                                             d: "M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2zm1 .5v1.308l4.372 4.858A.5.5 0 0 1 7 8.5v5.306l2-.666V8.5a.5.5 0 0 1 .128-.334L13.5 3.308V2h-11z"
                                                         })
                                                     })
                                                 })
                                             }),
-                                            /*#__PURE__*/ jsx_runtime_.jsx("div", {
+                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                                 ref: dropdown,
                                                 className: open ? "main_fill open" : "main_fill",
-                                                children: /*#__PURE__*/ jsx_runtime_.jsx("div", {
+                                                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                                     className: "tabel",
-                                                    children: /*#__PURE__*/ jsx_runtime_.jsx("div", {
+                                                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                                         className: "list-danhmuc",
-                                                        children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
+                                                        children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
                                                             className: "label wow fadeInLeft",
                                                             "data-wow-delay": "0.3s",
                                                             children: [
-                                                                /*#__PURE__*/ jsx_runtime_.jsx("label", {
+                                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("label", {
                                                                     className: "danhmuc-sp active",
                                                                     htmlFor: "show_01",
-                                                                    children: /*#__PURE__*/ jsx_runtime_.jsx("div", {
+                                                                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                                                         className: "item_title",
-                                                                        children: /*#__PURE__*/ jsx_runtime_.jsx("h3", {
+                                                                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h3", {
                                                                             className: "",
                                                                             children: "Trạng th\xe1i"
                                                                         })
                                                                     })
                                                                 }),
-                                                                /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
+                                                                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
                                                                     className: "item_fields",
                                                                     children: [
-                                                                        /*#__PURE__*/ jsx_runtime_.jsx("ul", {
+                                                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("ul", {
                                                                             className: "extra",
                                                                             children: html_status
                                                                         }),
-                                                                        /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
+                                                                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
                                                                             className: "item-btn",
                                                                             children: [
-                                                                                /*#__PURE__*/ jsx_runtime_.jsx("button", {
+                                                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
                                                                                     className: "butt",
                                                                                     onClick: ()=>{
                                                                                         setOpen(false);
@@ -508,11 +499,11 @@ function QuanLyDonHang({ search  }) {
                                                                                                 page: 1
                                                                                             }));
                                                                                     },
-                                                                                    children: /*#__PURE__*/ jsx_runtime_.jsx("span", {
+                                                                                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
                                                                                         children: "Đặt lại"
                                                                                     })
                                                                                 }),
-                                                                                /*#__PURE__*/ jsx_runtime_.jsx("button", {
+                                                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
                                                                                     className: "butt active",
                                                                                     onClick: ()=>{
                                                                                         setOpen(false);
@@ -522,7 +513,7 @@ function QuanLyDonHang({ search  }) {
                                                                                                 page: 1
                                                                                             }));
                                                                                     },
-                                                                                    children: /*#__PURE__*/ jsx_runtime_.jsx("span", {
+                                                                                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
                                                                                         children: "X\xe1c nhận"
                                                                                     })
                                                                                 })
@@ -539,10 +530,10 @@ function QuanLyDonHang({ search  }) {
                                     })
                                 ]
                             }),
-                            /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
+                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
                                 className: "pws-list",
                                 children: [
-                                    /*#__PURE__*/ jsx_runtime_.jsx("div", {
+                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                         style: {
                                             cursor: "pointer"
                                         },
@@ -557,7 +548,7 @@ function QuanLyDonHang({ search  }) {
                                         className: filter.type === 1 ? "title15 pws-title active" : "title15 pws-title",
                                         children: "H\xe0ng gửi"
                                     }),
-                                    /*#__PURE__*/ jsx_runtime_.jsx("div", {
+                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                         style: {
                                             cursor: "pointer"
                                         },
@@ -576,23 +567,23 @@ function QuanLyDonHang({ search  }) {
                             })
                         ]
                     }),
-                    /*#__PURE__*/ jsx_runtime_.jsx("div", {
+                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                         className: "content",
-                        children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
+                        children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
                             className: "ranle",
                             children: [
-                                /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
+                                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
                                     className: "item_search",
                                     children: [
-                                        /*#__PURE__*/ jsx_runtime_.jsx("div", {
+                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                             className: "search",
                                             id: "search",
-                                            children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)("form", {
+                                            children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("form", {
                                                 onSubmit: (e)=>{
                                                     e.preventDefault();
                                                 },
                                                 children: [
-                                                    /*#__PURE__*/ (0,jsx_runtime_.jsxs)("svg", {
+                                                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
                                                         xmlns: "http://www.w3.org/2000/svg",
                                                         width: "16",
                                                         height: "16",
@@ -600,24 +591,24 @@ function QuanLyDonHang({ search  }) {
                                                         className: "bi bi-qr-code-scan",
                                                         viewBox: "0 0 16 16",
                                                         children: [
-                                                            /*#__PURE__*/ jsx_runtime_.jsx("path", {
+                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
                                                                 d: "M0 .5A.5.5 0 0 1 .5 0h3a.5.5 0 0 1 0 1H1v2.5a.5.5 0 0 1-1 0v-3Zm12 0a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0V1h-2.5a.5.5 0 0 1-.5-.5ZM.5 12a.5.5 0 0 1 .5.5V15h2.5a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5v-3a.5.5 0 0 1 .5-.5Zm15 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1 0-1H15v-2.5a.5.5 0 0 1 .5-.5ZM4 4h1v1H4V4Z"
                                                             }),
-                                                            /*#__PURE__*/ jsx_runtime_.jsx("path", {
+                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
                                                                 d: "M7 2H2v5h5V2ZM3 3h3v3H3V3Zm2 8H4v1h1v-1Z"
                                                             }),
-                                                            /*#__PURE__*/ jsx_runtime_.jsx("path", {
+                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
                                                                 d: "M7 9H2v5h5V9Zm-4 1h3v3H3v-3Zm8-6h1v1h-1V4Z"
                                                             }),
-                                                            /*#__PURE__*/ jsx_runtime_.jsx("path", {
+                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
                                                                 d: "M9 2h5v5H9V2Zm1 1v3h3V3h-3ZM8 8v2h1v1H8v1h2v-2h1v2h1v-1h2v-1h-3V8H8Zm2 2H9V9h1v1Zm4 2h-1v1h-2v1h3v-2Zm-4 2v-1H8v1h2Z"
                                                             }),
-                                                            /*#__PURE__*/ jsx_runtime_.jsx("path", {
+                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
                                                                 d: "M12 9h2V8h-2v1Z"
                                                             })
                                                         ]
                                                     }),
-                                                    /*#__PURE__*/ jsx_runtime_.jsx("input", {
+                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
                                                         type: "text",
                                                         id: "txt_search",
                                                         /*onChange={(e) => {
@@ -636,13 +627,13 @@ function QuanLyDonHang({ search  }) {
                                                 ]
                                             })
                                         }),
-                                        /*#__PURE__*/ (0,jsx_runtime_.jsxs)("ul", {
+                                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("ul", {
                                             className: "extra",
                                             children: [
-                                                /*#__PURE__*/ jsx_runtime_.jsx("li", {
-                                                    children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)("label", {
+                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
+                                                    children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("label", {
                                                         children: [
-                                                            /*#__PURE__*/ jsx_runtime_.jsx("input", {
+                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
                                                                 className: "Dashboard",
                                                                 name: "clothing",
                                                                 type: "radio",
@@ -656,9 +647,9 @@ function QuanLyDonHang({ search  }) {
                                                                         }));
                                                                 }
                                                             }),
-                                                            /*#__PURE__*/ jsx_runtime_.jsx("div", {
+                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                                                 className: "item-dm",
-                                                                children: /*#__PURE__*/ jsx_runtime_.jsx("p", {
+                                                                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
                                                                     className: "",
                                                                     children: "H\xf4m nay"
                                                                 })
@@ -666,10 +657,10 @@ function QuanLyDonHang({ search  }) {
                                                         ]
                                                     })
                                                 }),
-                                                /*#__PURE__*/ jsx_runtime_.jsx("li", {
-                                                    children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)("label", {
+                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
+                                                    children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("label", {
                                                         children: [
-                                                            /*#__PURE__*/ jsx_runtime_.jsx("input", {
+                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
                                                                 className: "Dashboard",
                                                                 name: "clothing",
                                                                 type: "radio",
@@ -683,9 +674,9 @@ function QuanLyDonHang({ search  }) {
                                                                         }));
                                                                 }
                                                             }),
-                                                            /*#__PURE__*/ jsx_runtime_.jsx("div", {
+                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                                                 className: "item-dm",
-                                                                children: /*#__PURE__*/ jsx_runtime_.jsx("p", {
+                                                                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
                                                                     className: "",
                                                                     children: "Tuần gần nhất"
                                                                 })
@@ -693,10 +684,10 @@ function QuanLyDonHang({ search  }) {
                                                         ]
                                                     })
                                                 }),
-                                                /*#__PURE__*/ jsx_runtime_.jsx("li", {
-                                                    children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)("label", {
+                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("li", {
+                                                    children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("label", {
                                                         children: [
-                                                            /*#__PURE__*/ jsx_runtime_.jsx("input", {
+                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
                                                                 className: "Dashboard",
                                                                 name: "clothing",
                                                                 type: "radio",
@@ -710,9 +701,9 @@ function QuanLyDonHang({ search  }) {
                                                                         }));
                                                                 }
                                                             }),
-                                                            /*#__PURE__*/ jsx_runtime_.jsx("div", {
+                                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                                                 className: "item-dm",
-                                                                children: /*#__PURE__*/ jsx_runtime_.jsx("p", {
+                                                                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
                                                                     className: "",
                                                                     children: "Th\xe1ng gần nhất"
                                                                 })
@@ -720,13 +711,13 @@ function QuanLyDonHang({ search  }) {
                                                         ]
                                                     })
                                                 }),
-                                                /*#__PURE__*/ (0,jsx_runtime_.jsxs)("li", {
+                                                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("li", {
                                                     style: {
                                                         position: "relative"
                                                     },
                                                     children: [
-                                                        /*#__PURE__*/ jsx_runtime_.jsx("label", {
-                                                            children: /*#__PURE__*/ jsx_runtime_.jsx("div", {
+                                                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("label", {
+                                                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                                                 className: filter.day === "day" || filter.day === "week" || filter.day === "month" ? "item-dm" : "item-dm active",
                                                                 onClick: ()=>{
                                                                     setOpenCal(!openCal);
@@ -735,26 +726,26 @@ function QuanLyDonHang({ search  }) {
                                                     day: 'day',
                                                     page:1
                                                 }))*/ },
-                                                                children: /*#__PURE__*/ jsx_runtime_.jsx("p", {
+                                                                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
                                                                     className: "",
                                                                     children: filter.day === "day" || filter.day === "week" || filter.day === "month" ? "Chọn ng\xe0y" : filter.day
                                                                 })
                                                             })
                                                         }),
-                                                        /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
+                                                        /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
                                                             ref: dropdown_call,
                                                             className: openCal ? "cal-box open" : "cal-box",
                                                             children: [
-                                                                /*#__PURE__*/ jsx_runtime_.jsx(external_react_date_range_namespaceObject.DateRange, {
+                                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(react_date_range__WEBPACK_IMPORTED_MODULE_4__.DateRange, {
                                                                     /*editableDateInputs={true}*/ onChange: (item)=>setSelectionRange([
                                                                             item.selection
                                                                         ]),
                                                                     moveRangeOnFirstSelection: false,
                                                                     showDateDisplay: false,
                                                                     ranges: selectionRange,
-                                                                    locale: locale_namespaceObject.vi
+                                                                    locale: date_fns_locale__WEBPACK_IMPORTED_MODULE_5__.vi
                                                                 }),
-                                                                /*#__PURE__*/ jsx_runtime_.jsx("div", {
+                                                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                                                     className: "btn-select-cal",
                                                                     onClick: ()=>sbmDate(),
                                                                     children: "Chọn"
@@ -767,13 +758,13 @@ function QuanLyDonHang({ search  }) {
                                         })
                                     ]
                                 }),
-                                /*#__PURE__*/ jsx_runtime_.jsx("div", {
+                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                     className: "pro_col9_sanpham",
-                                    children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
+                                    children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
                                         className: "list_single_code",
                                         children: [
                                             html_content,
-                                            /*#__PURE__*/ jsx_runtime_.jsx("div", {
+                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                                                 style: {
                                                     "display": "none"
                                                 },
@@ -792,22 +783,22 @@ function QuanLyDonHang({ search  }) {
                             ]
                         })
                     }),
-                    /*#__PURE__*/ jsx_runtime_.jsx("div", {
+                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                         className: "Group_cancel",
-                        children: /*#__PURE__*/ jsx_runtime_.jsx("div", {
+                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
                             className: "btn_print",
-                            children: /*#__PURE__*/ jsx_runtime_.jsx((link_default()), {
+                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_9___default()), {
                                 href: "/in-don-hang",
-                                children: /*#__PURE__*/ jsx_runtime_.jsx("button", {
+                                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
                                     className: "butt active",
-                                    children: /*#__PURE__*/ jsx_runtime_.jsx("span", {
+                                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
                                         children: "In số lượng lớn"
                                     })
                                 })
                             })
                         })
                     }),
-                    /*#__PURE__*/ jsx_runtime_.jsx(footer/* default */.Z, {})
+                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_footer__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z, {})
                 ]
             })
         })
@@ -830,6 +821,13 @@ async function getServerSideProps(context) {
 /***/ ((module) => {
 
 module.exports = require("axios");
+
+/***/ }),
+
+/***/ 5564:
+/***/ ((module) => {
+
+module.exports = require("date-fns/locale");
 
 /***/ }),
 
@@ -1015,6 +1013,13 @@ module.exports = require("react");
 
 /***/ }),
 
+/***/ 4304:
+/***/ ((module) => {
+
+module.exports = require("react-date-range");
+
+/***/ }),
+
 /***/ 997:
 /***/ ((module) => {
 
@@ -1029,7 +1034,7 @@ module.exports = require("react/jsx-runtime");
 var __webpack_require__ = require("../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [377,952,964,835,595,314], () => (__webpack_exec__(2188)));
+var __webpack_exports__ = __webpack_require__.X(0, [377,952,964,835,595,314], () => (__webpack_exec__(2217)));
 module.exports = __webpack_exports__;
 
 })();

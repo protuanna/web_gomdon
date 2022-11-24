@@ -13,6 +13,7 @@ exports.modules = {
 /* harmony export */   "G0": () => (/* binding */ update_order),
 /* harmony export */   "Gd": () => (/* binding */ cancel_order),
 /* harmony export */   "JI": () => (/* binding */ provinces),
+/* harmony export */   "LD": () => (/* binding */ bill),
 /* harmony export */   "Lk": () => (/* binding */ address),
 /* harmony export */   "PC": () => (/* binding */ createOrderDelivery),
 /* harmony export */   "Y7": () => (/* binding */ update_address_order),
@@ -215,6 +216,32 @@ async function ordersDelivery(data) {
         let result = await _axios__WEBPACK_IMPORTED_MODULE_0___default()({
             method: "get",
             url: "https://admin.gomdon.com.vn" + "/api/v2/order",
+            /*params: { type: type, keyword:search, page:page },*/ params: data,
+            headers: {
+                Authorization: `Bearer ` + token
+            }
+        }).then(function(response) {
+            return response.data;
+        }).catch(function(error) {
+            return error.response.data ?? {
+                result: false,
+                message: "Lấy dữ liệu k th\xe0nh c\xf4ng"
+            };
+        });
+        return result;
+    }
+    return {
+        result: false,
+        message: "Vui l\xf2ng đăng nhập"
+    };
+}
+async function bill(data) {
+    const session = await (0,next_auth_react__WEBPACK_IMPORTED_MODULE_1__.getSession)();
+    if (session !== null) {
+        let token = session.accessToken;
+        let result = await _axios__WEBPACK_IMPORTED_MODULE_0___default()({
+            method: "get",
+            url: "https://admin.gomdon.com.vn" + "/api/v2/bill",
             /*params: { type: type, keyword:search, page:page },*/ params: data,
             headers: {
                 Authorization: `Bearer ` + token

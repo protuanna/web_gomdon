@@ -82,6 +82,7 @@ _fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_4__ = (__webpack_asyn
 
 
 
+
  // main style file
  // theme css file
 _fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_4__.config.autoAddCss = false;

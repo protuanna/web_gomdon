@@ -11,6 +11,7 @@ import '../styles/css/site/gen/content_page.css'
 import '../styles/css/site/gen/quanlydonhang.css'
 import '../styles/css/site/gen/taikhoan.css'
 import '../styles/css/site/gen/page_detail.css'
+import '../styles/css/site/gen/phieudoisoat.css'
 import "react-responsive-carousel/lib/styles/carousel.min.css"
 import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'

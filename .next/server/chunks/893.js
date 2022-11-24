@@ -11,6 +11,7 @@ exports.modules = {
 __webpack_require__.d(__webpack_exports__, {
   "Jm": () => (/* binding */ api_orders),
   "Ty": () => (/* binding */ banners),
+  "cM": () => (/* binding */ bill_detail),
   "PM": () => (/* binding */ detail_fee),
   "x4": () => (/* binding */ login),
   "zQ": () => (/* binding */ order_detail),
@@ -244,6 +245,28 @@ async function order_detail(req, res, id) {
         let result = await axios_default()({
             method: "get",
             url: process.env.GOMDON_API_URI + "/api/v2/order/" + id,
+            headers: {
+                Authorization: `Bearer ` + token
+            }
+        }).then(function(response) {
+            return response.data;
+        }).catch(function(error) {
+            return error.response.data ?? {
+                result: false,
+                message: "Lấy dữ liệu k th\xe0nh c\xf4ng"
+            };
+        });
+        return result;
+    }
+    return null;
+}
+async function bill_detail(req, res, id) {
+    let session = await (0,next_.unstable_getServerSession)(req, res, _nextauth_authOptions);
+    if (session) {
+        let token = session.accessToken;
+        let result = await axios_default()({
+            method: "get",
+            url: process.env.GOMDON_API_URI + "/api/v2/bill/" + id,
             headers: {
                 Authorization: `Bearer ` + token
             }

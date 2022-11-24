@@ -1,0 +1,36 @@
+.table{
+    border: 0.5px solid #666666;
+    border-radius: 5px;
+    width: 100%;
+}
+.table_responsive{
+    overflow-x:scroll;
+    display: block;
+}
+.table thead {
+    font-weight: bold;
+
+}
+
+.table thead th{
+    white-space: nowrap;
+    padding: 15px 10px;
+    /*color: var(--color1);*/
+    font-weight: bold;
+}
+.table tbody td{
+    white-space: nowrap;
+    padding: 15px 10px;
+    border-top: 0.5px solid #666666;
+    color: #666666;
+}
+.text_center{
+    text-align: center;
+}
+
+.table thead {
+    /*background: #028be5;*/
+}
+.fs-12{
+    font-size: 12px;
+}

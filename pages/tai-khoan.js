@@ -2,8 +2,8 @@ import Footer from "../components/footer"
 
 import {useState, useEffect} from "react"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
-import {faSignOut} from '@fortawesome/free-solid-svg-icons'
-
+import {faSignOut, faCreditCard} from '@fortawesome/free-solid-svg-icons'
+import Link from 'next/link'
 import {
     ordersDelivery,
 } from '../lib/ajax_gomdon'
@@ -60,6 +60,17 @@ export default function TaiKhoan() {
                     </div>
                     <div className="content">
                         <div className="ranle">
+                            <div className="tab_list_menu">
+                                <Link href='/phieu-doi-soat'>
+                                    <a href="" title="" className="alv_col">
+                                        <div className="icon">
+                                            <FontAwesomeIcon icon={faCreditCard}/>
+                                        </div>
+                                        <p className="title16">Phiếu đối soát</p>
+                                        <div className="angle-right"><i className='fas fa-angle-right'></i></div>
+                                    </a>
+                                </Link>
+                            </div>
                             {/*<div className="tab_list_menu">
                                 <a href="./tracuugia.html" title="" className="alv_col">
                                     <div className="icon"><i className='fas fa-search'></i></div>
