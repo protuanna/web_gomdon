@@ -5,8 +5,8 @@
   "devFiles": [],
   "ampDevFiles": [],
   "lowPriorityFiles": [
-    "static/gbR2KnX6qbENT8yJMwCzd/_buildManifest.js",
-    "static/gbR2KnX6qbENT8yJMwCzd/_ssgManifest.js"
+    "static/Klf53le4vP4MVHcj5zUnd/_buildManifest.js",
+    "static/Klf53le4vP4MVHcj5zUnd/_ssgManifest.js"
   ],
   "rootMainFiles": [],
   "pages": {
@@ -111,7 +111,7 @@
       "static/chunks/675-a68a687f75217cc4.js",
       "static/chunks/342-66dbc7c8fc6636c1.js",
       "static/chunks/551-0b15fe9385bf4bee.js",
-      "static/chunks/pages/gui-hang-thanh-cong-2e93868129146d4a.js"
+      "static/chunks/pages/gui-hang-thanh-cong-213485626f2ebd29.js"
     ],
     "/in-don-hang": [
       "static/chunks/webpack-55f05a144fbe86ef.js",

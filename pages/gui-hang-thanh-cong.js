@@ -68,7 +68,7 @@ export default function GuiHangThanhCong() {
                                     </div>
                                     <div style={{textAlign: 'center', lineHeight: '30px'}}>
                                         <i>Đối với khu vực cấp thành phố bưu tá sẽ đến lấy hàng trong ngày hoặc chậm
-                                            nhất ngày hôm sau nếu lên đơn sau 16h</i>
+                                            nhất ngày hôm sau nếu lên đơn sau 14h</i>
                                     </div>
                                     <div style={{textAlign: 'center', lineHeight: '30px'}}>
                                         <i>Đối với cấp phường xã bưu tá sẽ đến lấy hàng chậm nhất tối đa 72h</i>
